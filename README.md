@@ -114,15 +114,15 @@ Para reemplazarlos:
 
 4. Repite lo mismo para cada marcador. La lista completa de marcadores es:
 
-   | Marcador                    | Dónde se usa                              |
-   |------------------------------|--------------------------------------------|
-   | `ENLACE_INSTAGRAM`          | Header, "Seguir el proceso", "Sobre mí", pie de página, contacto |
-   | `ENLACE_TIKTOK`              | Pie de página |
-   | `ENLACE_PINTEREST`           | Pie de página |
-   | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" |
-   | `CORREO_PROFESIONAL`         | Botón "Escribir por correo" y pie de página |
-   | `ENLACE_PUBLICO_GUMROAD`     | Botón "Comprar en Gumroad" |
-   | `ENLACE_COMUNIDAD`           | Sección "Comunidad" (por ahora el botón dice "Próximamente" y está desactivado a propósito, hasta que exista el enlace real) |
+   | Marcador                    | Dónde se usa                              | Estado |
+   |------------------------------|--------------------------------------------|--------|
+   | `ENLACE_INSTAGRAM`          | "Seguir el proceso", "Sobre mí", pie de página, contacto | ✅ Ya reemplazado por `https://www.instagram.com/cvmilapazz/` |
+   | `ENLACE_TIKTOK`              | Pie de página | Pendiente |
+   | `ENLACE_PINTEREST`           | Pie de página | Pendiente |
+   | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" | Pendiente |
+   | `CORREO_PROFESIONAL`         | Botón "Escribir por correo" y pie de página | Pendiente |
+   | `ENLACE_PUBLICO_GUMROAD`     | Botón "Comprar en Gumroad" | Pendiente |
+   | `ENLACE_COMUNIDAD`           | Sección "Comunidad" (por ahora el botón dice "Próximamente" y está desactivado a propósito, hasta que exista el enlace real) | Pendiente |
 
 **Importante:** el botón de la comunidad se deja intencionalmente sin enlace ("Próximamente") porque ese espacio todavía no existe. Cuando lo crees, dime o edita el botón en `index.html` (sección `id="comunidad"`) para convertirlo en un enlace activo, siguiendo el mismo formato que los demás botones.
 
@@ -197,7 +197,7 @@ Si usas otro proveedor de formularios (Netlify Forms, Web3Forms, etc.), sigue su
 
 Antes de publicar el sitio, esto es lo que falta por definir o reemplazar:
 
-- [ ] Enlace real de Instagram
+- [x] Enlace real de Instagram (`https://www.instagram.com/cvmilapazz/`)
 - [ ] Enlace real de TikTok
 - [ ] Enlace real de Pinterest
 - [ ] Enlace real de WhatsApp (con el número correcto)
