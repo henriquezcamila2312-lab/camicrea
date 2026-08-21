@@ -124,7 +124,7 @@ Para reemplazarlos:
    | `ENLACE_PINTEREST`           | Pie de página | Pendiente |
    | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" | Pendiente |
    | `CORREO_PROFESIONAL`         | Botón "Escribir por correo" y pie de página | Pendiente |
-   | `ENLACE_PUBLICO_GUMROAD`     | Botón "Comprar en Gumroad" | Pendiente |
+   | `ENLACE_PUBLICO_GUMROAD`     | Botón "Comprar plantilla 369" | ✅ Ya reemplazado por `https://camicrea.gumroad.com/l/twxfh` |
    | `ENLACE_COMUNIDAD`           | Sección "Comunidad" (por ahora el botón dice "Próximamente" y está desactivado a propósito, hasta que exista el enlace real) | Pendiente |
 
 **Importante:** el botón de la comunidad se deja intencionalmente sin enlace ("Próximamente") porque ese espacio todavía no existe. Cuando lo crees, dime o edita el botón en `index.html` (sección `id="comunidad"`) para convertirlo en un enlace activo, siguiendo el mismo formato que los demás botones.
@@ -205,7 +205,7 @@ Antes de publicar el sitio, esto es lo que falta por definir o reemplazar:
 - [ ] Enlace real de Pinterest
 - [ ] Enlace real de WhatsApp (con el número correcto)
 - [ ] Correo profesional real
-- [ ] Enlace público del producto en Gumroad
+- [x] Enlace público del producto en Gumroad (`https://camicrea.gumroad.com/l/twxfh`)
 - [ ] Enlace de la comunidad (cuando exista)
 - [ ] Conectar el formulario de contacto (ver punto 9)
 - [ ] Fotografía de Camila
