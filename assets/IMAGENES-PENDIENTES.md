@@ -11,12 +11,12 @@ para conectarla en el HTML.
 
 ---
 
-## 1. Logo de CAMICREA
+## 1. Logo de CAMICREA — ✅ agregado
 
-- **Archivo sugerido:** `logo-camicrea.png` (o `.svg` si tienes una versión vectorial)
-- **Medidas sugeridas:** 400 × 120 px aprox. (fondo transparente)
-- **Dónde aparece:** Encabezado del sitio (`.logo`) y pie de página, en reemplazo del logotipo textual "CAMICREA ✿"
-- **Texto alternativo sugerido:** "Logo de CAMICREA"
+- **Archivo:** `logo-camicrea.png` (recortado y con fondo transparente, 1044 × 346 px)
+- **Dónde aparece:** Encabezado del sitio (`.logo-img`) y pie de página (`.footer-logo-img`, invertido a blanco con CSS para leerse sobre el fondo burdeos oscuro)
+- **Texto alternativo usado:** "CamiCrea Estudio Creativo"
+- Si más adelante quieres reemplazarlo por otra versión, guarda el nuevo archivo con el mismo nombre (`logo-camicrea.png`) dentro de `assets/` y listo — no hace falta tocar el HTML.
 
 ## 2. Fotografía de Camila (sección "Sobre mí")
 

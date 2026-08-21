@@ -209,7 +209,7 @@ Antes de publicar el sitio, esto es lo que falta por definir o reemplazar:
 - [ ] Enlace de la comunidad (cuando exista)
 - [ ] Conectar el formulario de contacto (ver punto 9)
 - [ ] Fotografía de Camila
-- [ ] Logo de CAMICREA (actualmente se usa el logotipo en texto "CAMICREA ✿")
+- [x] Logo de CAMICREA (`assets/logo-camicrea.png`, en el encabezado y el pie de página)
 - [ ] Portada e interiores del Método 369
 - [ ] Imagen para compartir en redes sociales (Open Graph)
 - [ ] Imágenes y datos reales de cada proyecto del portafolio
