@@ -81,15 +81,18 @@ Para cambiar un texto:
 Todos los colores están definidos en un solo lugar, al principio de `styles.css`, dentro de `:root { ... }`:
 
 ```css
---color-crema: #FBF3EC;
---color-fucsia: #E0448A;
---color-morado: #6B3FA0;
---color-burdeos: #7A2048;
---color-coral: #F1785A;
+--color-marfil: #FFF8F2;       /* fondo principal del sitio */
+--color-rosa-palido: #FBE8EC;  /* fondos suaves y resplandores */
+--color-rosa-pastel: #F2C5D0;  /* bordes, franjas y detalles */
+--color-frambuesa: #C93F5B;    /* botones y llamados a la acción */
+--color-burdeos: #8F2346;      /* títulos y elementos principales */
+--color-cafe: #3D3033;         /* texto principal */
 ...
 ```
 
 Para cambiar un color en todo el sitio, solo necesitas cambiar el valor (el código que empieza con `#`) en esa línea. No hace falta tocar nada más: como el resto del sitio usa esas mismas variables, el cambio se aplica automáticamente en todas las secciones.
+
+La paleta actual está alineada con el logo editorial de CAMICREA: sin morados ni lilas, con burdeos, frambuesa y tonos rosa suaves sobre fondo marfil.
 
 ---
 
