@@ -208,7 +208,7 @@ Antes de publicar el sitio, esto es lo que falta por definir o reemplazar:
 - [x] Enlace público del producto en Gumroad (`https://camicrea.gumroad.com/l/twxfh`)
 - [ ] Enlace de la comunidad (cuando exista)
 - [ ] Conectar el formulario de contacto (ver punto 9)
-- [ ] Fotografía de Camila
+- [x] Fotografía de Camila (`assets/sobre-mi/camila-henriquez.jpg`)
 - [x] Logo de CAMICREA (`assets/logo-camicrea.png`, en el encabezado y el pie de página)
 - [ ] Portada e interiores del Método 369
 - [ ] Imagen para compartir en redes sociales (Open Graph)
