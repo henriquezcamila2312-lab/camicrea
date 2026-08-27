@@ -69,6 +69,18 @@ a { color: var(--color-burdeos); text-decoration: none; }
 
 button { font-family: inherit; cursor: pointer; }
 
+/* Menciones visibles del nombre "CamiCrea" dentro de texto corrido
+   (párrafos y titulares sobre fondo claro). Evoca la tipografía serif
+   e itálica del logo sin convertir el texto en imagen. No se aplica
+   dentro de botones, insignias (section-tag) ni el pie de página
+   oscuro, donde el burdeos perdería contraste o chocaría con el
+   tratamiento tipográfico de esos componentes. */
+.marca-camicrea {
+  font-family: var(--fuente-serif);
+  font-style: italic;
+  color: var(--color-burdeos);
+}
+
 .container {
   width: 100%;
   max-width: var(--ancho-maximo);
@@ -290,6 +302,11 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border-radius: 999px;
   margin-bottom: var(--espacio-sm);
 }
+
+/* Insignias que incluyen el nombre "CamiCrea": el nombre nunca debe
+   verse todo en mayúsculas, así que se desactiva el text-transform
+   heredado solo en estos casos puntuales. */
+.section-tag--marca { text-transform: none; }
 
 .section-title {
   font-size: clamp(1.9rem, 4vw, 2.75rem);
