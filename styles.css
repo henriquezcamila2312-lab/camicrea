@@ -934,6 +934,24 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   margin-top: 0.4rem;
 }
 
+/* Variante suave: para proyectos que piden un tono más delicado y sensible
+   que la energía de una campaña publicitaria (por ejemplo, ADA Vestuario). */
+.detalle-proyecto-visual--suave {
+  background: linear-gradient(160deg, var(--color-rosa-pastel), var(--color-rosa-palido));
+  color: var(--color-burdeos);
+}
+
+/* Galería con más protagonismo visual: tarjetas más grandes y aire de sobra,
+   para cuando las imágenes reales de un proyecto son la parte más importante. */
+.galeria-proyecto-grid--protagonista {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--espacio-lg);
+}
+.galeria-proyecto-grid--protagonista .galeria-proyecto-item {
+  aspect-ratio: 3 / 4;
+  font-size: 1.8rem;
+}
+
 .detalle-proyecto-seccion { padding-top: var(--espacio-lg); padding-bottom: var(--espacio-lg); }
 
 .detalle-proyecto-concepto {
