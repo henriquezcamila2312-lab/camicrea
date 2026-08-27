@@ -122,7 +122,7 @@ Para reemplazarlos:
    | `ENLACE_INSTAGRAM`          | "Seguir el proceso", "Sobre mí", pie de página, contacto | ✅ Ya reemplazado por `https://www.instagram.com/cvmilapazz/` |
    | `ENLACE_TIKTOK`              | Pie de página | ✅ Ya reemplazado por `https://www.tiktok.com/@caamilinbombin` |
    | `ENLACE_PINTEREST`           | Pie de página | ✅ Ya reemplazado por `https://pin.it/1aLr42f5K` |
-   | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" | ✅ Ya reemplazado por `https://wa.me/qr/FK23F4HUZ2RAF1` |
+   | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" y botones de los planes | ✅ Ya reemplazado por `https://wa.me/56931360094` (con mensaje predefinido distinto según el botón) |
    | `CORREO_PROFESIONAL`         | Botón "Escribir por correo" y pie de página | ✅ Ya reemplazado por `camiipublicista@gmail.com` |
    | `ENLACE_PUBLICO_GUMROAD`     | Botón "Comprar plantilla 369" | ✅ Ya reemplazado por `https://camicrea.gumroad.com/l/twxfh` |
    | `ENLACE_COMUNIDAD`           | Sección "Comunidad" (por ahora el botón dice "Próximamente" y está desactivado a propósito, hasta que exista el enlace real) | Pendiente |
@@ -203,7 +203,7 @@ Antes de publicar el sitio, esto es lo que falta por definir o reemplazar:
 - [x] Enlace real de Instagram (`https://www.instagram.com/cvmilapazz/`)
 - [x] Enlace real de TikTok (`https://www.tiktok.com/@caamilinbombin`)
 - [x] Enlace real de Pinterest (`https://pin.it/1aLr42f5K`)
-- [x] Enlace real de WhatsApp (`https://wa.me/qr/FK23F4HUZ2RAF1`)
+- [x] Enlace real de WhatsApp (`https://wa.me/56931360094`, con mensaje predefinido distinto según el botón)
 - [x] Correo profesional real (`camiipublicista@gmail.com`)
 - [x] Enlace público del producto en Gumroad (`https://camicrea.gumroad.com/l/twxfh`)
 - [ ] Enlace de la comunidad (cuando exista)
