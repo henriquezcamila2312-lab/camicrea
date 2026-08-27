@@ -712,6 +712,60 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 .creando-juntas p { color: var(--color-cafe-suave); }
 
+.regalo-bloque { margin-top: var(--espacio-md); }
+
+.suscripcion-bloque {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  padding: var(--espacio-lg);
+  max-width: 640px;
+  margin-top: var(--espacio-md);
+}
+
+.suscripcion-titulo {
+  font-size: 1.4rem;
+  margin-top: var(--espacio-sm);
+}
+
+.suscripcion-descripcion {
+  color: var(--color-cafe-suave);
+  margin-bottom: var(--espacio-md);
+}
+
+.suscripcion-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-md);
+}
+
+.suscripcion-privacidad {
+  font-size: 0.82rem;
+  color: var(--color-cafe-suave);
+  margin-top: var(--espacio-md);
+  margin-bottom: 0;
+}
+.suscripcion-privacidad a { text-decoration: underline; }
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--color-cafe);
+  cursor: pointer;
+  line-height: 1.45;
+}
+.checkbox-label input[type="checkbox"] {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-frambuesa);
+}
+
 /* =================== PRODUCTOS =================== */
 .producto-destacado {
   display: grid;
@@ -1147,6 +1201,67 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   flex-wrap: wrap;
   gap: var(--espacio-sm);
 }
+
+/* =================== MI PROCESO (CHECK-INS DE 30 DÍAS) =================== */
+.proceso-progreso {
+  background-color: var(--color-rosa-palido);
+  border-radius: var(--radio-borde);
+  padding: var(--espacio-md);
+  text-align: center;
+  margin-bottom: var(--espacio-lg);
+}
+.proceso-progreso-numero {
+  font-family: var(--fuente-serif);
+  font-weight: 700;
+  color: var(--color-burdeos);
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+.proceso-progreso-barra {
+  width: 100%;
+  height: 10px;
+  background-color: var(--color-rosa-pastel);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.proceso-progreso-relleno {
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-frambuesa);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .proceso-progreso-relleno { transition: none; }
+}
+
+.proceso-dias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.6rem;
+}
+.proceso-dia {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radio-borde-sm);
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-blanco);
+  color: var(--color-burdeos);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background-color var(--transicion), color var(--transicion), transform var(--transicion);
+}
+.proceso-dia:hover { transform: translateY(-2px); }
+.proceso-dia.is-completado {
+  background-color: var(--color-frambuesa);
+  border-color: var(--color-frambuesa);
+  color: var(--color-blanco);
+}
+
+.proceso-controles { margin-top: var(--espacio-lg); }
 
 /* =================== RESPONSIVE GENERAL =================== */
 @media (max-width: 760px) {

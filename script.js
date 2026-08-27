@@ -100,4 +100,114 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Formulario de suscripción (plantilla gratuita) ----------
+     Este formulario está preparado para el embed oficial de Kit, pero
+     todavía NO está conectado a ningún proveedor real. Por eso no
+     simulamos una suscripción exitosa ni el mensaje de confirmación de
+     Kit: solo mostramos un aviso honesto. No se guarda el nombre ni el
+     correo en ningún lugar (ni siquiera en localStorage). */
+  var formSuscripcion = document.getElementById('formSuscripcion');
+  var suscripcionAviso = document.getElementById('suscripcionAviso');
+
+  if (formSuscripcion && suscripcionAviso) {
+    formSuscripcion.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (!formSuscripcion.checkValidity()) {
+        formSuscripcion.reportValidity();
+        return;
+      }
+
+      suscripcionAviso.hidden = false;
+      suscripcionAviso.textContent = 'Esta suscripción todavía no está conectada a Kit, así que por ahora no podemos enviarte la plantilla por este medio. Mientras se activa, puedes escribir por WhatsApp o correo (sección Contacto) para pedirla directamente.';
+      suscripcionAviso.setAttribute('tabindex', '-1');
+      suscripcionAviso.focus();
+    });
+  }
+
+  /* ---------- "Mi proceso": check-ins de 30 días (solo en mi-proceso.html) ----------
+     Guarda únicamente qué días se marcaron (números del 1 al 30) en
+     localStorage, en un espacio de nombres propio y separado de la
+     suscripción por correo. No se guarda ningún texto ni nota personal:
+     el check-in es solo "marcado" o "no marcado". */
+  var procesoDiasGrid = document.getElementById('procesoDiasGrid');
+
+  if (procesoDiasGrid) {
+    var PROCESO_STORAGE_KEY = 'camicrea_mi_proceso_dias';
+    var PROCESO_TOTAL_DIAS = 30;
+    var procesoContador = document.getElementById('procesoContador');
+    var procesoRelleno = document.getElementById('procesoRelleno');
+    var procesoBarra = document.getElementById('procesoBarra');
+    var procesoReiniciar = document.getElementById('procesoReiniciar');
+
+    var cargarDiasProceso = function () {
+      try {
+        var guardado = window.localStorage.getItem(PROCESO_STORAGE_KEY);
+        if (!guardado) { return []; }
+        var datos = JSON.parse(guardado);
+        if (!Array.isArray(datos)) { return []; }
+        return datos.filter(function (dia) {
+          return Number.isInteger(dia) && dia >= 1 && dia <= PROCESO_TOTAL_DIAS;
+        });
+      } catch (error) {
+        return [];
+      }
+    };
+
+    var guardarDiasProceso = function (dias) {
+      try {
+        window.localStorage.setItem(PROCESO_STORAGE_KEY, JSON.stringify(dias));
+      } catch (error) {
+        // localStorage no disponible (modo privado, cuota llena, etc.): no se persiste, sin romper la página.
+      }
+    };
+
+    var actualizarProgresoProceso = function (dias) {
+      var total = dias.length;
+      if (procesoContador) { procesoContador.textContent = String(total); }
+      if (procesoRelleno) { procesoRelleno.style.width = Math.round((total / PROCESO_TOTAL_DIAS) * 100) + '%'; }
+      if (procesoBarra) { procesoBarra.setAttribute('aria-valuenow', String(total)); }
+    };
+
+    var aplicarEstadoProceso = function (dias) {
+      procesoDiasGrid.querySelectorAll('.proceso-dia').forEach(function (boton) {
+        var dia = parseInt(boton.getAttribute('data-dia'), 10);
+        var completado = dias.indexOf(dia) !== -1;
+        boton.classList.toggle('is-completado', completado);
+        boton.setAttribute('aria-pressed', String(completado));
+      });
+      actualizarProgresoProceso(dias);
+    };
+
+    var diasCompletadosProceso = cargarDiasProceso();
+    aplicarEstadoProceso(diasCompletadosProceso);
+
+    procesoDiasGrid.addEventListener('click', function (event) {
+      var boton = event.target.closest('.proceso-dia');
+      if (!boton) { return; }
+
+      var dia = parseInt(boton.getAttribute('data-dia'), 10);
+      var indice = diasCompletadosProceso.indexOf(dia);
+
+      if (indice === -1) {
+        diasCompletadosProceso.push(dia);
+      } else {
+        diasCompletadosProceso.splice(indice, 1);
+      }
+
+      guardarDiasProceso(diasCompletadosProceso);
+      aplicarEstadoProceso(diasCompletadosProceso);
+    });
+
+    if (procesoReiniciar) {
+      procesoReiniciar.addEventListener('click', function () {
+        var confirmado = window.confirm('¿Quieres reiniciar tu proceso? Esto borrará los días marcados en este navegador.');
+        if (!confirmado) { return; }
+        diasCompletadosProceso = [];
+        guardarDiasProceso(diasCompletadosProceso);
+        aplicarEstadoProceso(diasCompletadosProceso);
+      });
+    }
+  }
+
 });
