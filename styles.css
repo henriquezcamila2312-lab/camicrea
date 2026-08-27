@@ -971,6 +971,22 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   margin-bottom: var(--espacio-sm);
 }
 
+.detalle-proyecto-resultado {
+  text-align: center;
+  background-color: var(--color-rosa-palido);
+  border-radius: var(--radio-borde);
+  padding: var(--espacio-lg) var(--espacio-md);
+}
+.detalle-proyecto-resultado p:last-child { margin-bottom: 0; color: var(--color-cafe-suave); }
+
+.detalle-proyecto-stat {
+  font-family: var(--fuente-serif);
+  font-weight: 700;
+  color: var(--color-burdeos);
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  margin-bottom: 0.4rem;
+}
+
 .detalle-proyecto-cta { padding-bottom: var(--espacio-xl); }
 .detalle-proyecto-botones {
   display: flex;
