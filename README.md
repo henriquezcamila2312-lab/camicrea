@@ -158,7 +158,7 @@ Si no te sientes segura haciendo este paso, puedes pedir ayuda para hacerlo — 
 
 ## 8. Cómo completar el portafolio
 
-La sección "Portafolio" (`id="portafolio"` en `index.html`) ya tiene 6 tarjetas preparadas, incluyendo los nombres de proyectos que mencionaste (Medical Store, Siempre estuvieron ahí, Oncomamás - DateColor, Bless, KitKat, y una tarjeta libre para un próximo proyecto).
+La sección "Portafolio" (`id="portafolio"` en `index.html`) ya tiene 6 tarjetas preparadas, incluyendo los nombres de proyectos que mencionaste (Medical Store, Siempre estuvieron ahí, Oncomamás — "10 años bajo un mismo paraguas", Bless, KitKat, y una tarjeta libre para un próximo proyecto). KitKat y Oncomamás ya tienen su propia página de detalle (`proyecto-kitkat.html` y `proyecto-oncomamas.html`).
 
 Cada tarjeta tiene campos marcados como `[Pendiente de completar]`. Para completarlos:
 

@@ -51,7 +51,7 @@ para conectarla en el HTML.
 - **Archivos sugeridos:**
   - `proyecto-medical-store.jpg` — Medical Store y Ortopedia & Uniformes Pro
   - `proyecto-siempre-estuvieron-ahi.jpg` — Siempre estuvieron ahí
-  - `proyecto-oncomamas-datecolor.jpg` — Oncomamás — DateColor
+  - `proyecto-oncomamas.jpg` — Oncomamás — 10 años bajo un mismo paraguas
   - `proyecto-bless.jpg` — Bless
   - `proyecto-kitkat.jpg` — KitKat
   - `proyecto-06.jpg` — próximo proyecto a definir
@@ -69,7 +69,18 @@ para conectarla en el HTML.
 - **Medidas sugeridas:** portada 1600 × 900 px aprox.; piezas de galería 800 × 600 px aprox. (proporción 4:3, igual que el marcador actual)
 - **Dónde aparece:** `proyecto-kitkat.html`, secciones "Portada" (`.detalle-proyecto-visual`) y "Galería" (`.galeria-proyecto-item`)
 - **Texto alternativo sugerido:** portada "Campaña KitKat — La vida te da un wate… cuando necesitas un break"; piezas de galería "Pieza de la campaña KitKat — [breve descripción, por ejemplo: publicación para Instagram / mockup de afiche / video de campaña]"
-- Este mismo patrón de página (`proyecto-<nombre>.html`) puede reutilizarse para los demás casos del portafolio (Bless, Oncomamás, etc.) cuando tengas su información y piezas.
+- Este mismo patrón de página (`proyecto-<nombre>.html`) puede reutilizarse para los demás casos del portafolio (Bless, etc.) cuando tengas su información y piezas.
+
+---
+
+## 8. Página de detalle — Oncomamás (`proyecto-oncomamas.html`)
+
+- **Archivos sugeridos:**
+  - `oncomamas-portada.jpg` — imagen o pieza principal de la campaña (reemplaza el marcador de degradado en la portada)
+  - `oncomamas-pieza-01.jpg`, `oncomamas-pieza-02.jpg`, `oncomamas-pieza-03.jpg`, `oncomamas-pieza-04.jpg` — piezas, mockups o capturas de la campaña para la galería
+- **Medidas sugeridas:** portada 1600 × 900 px aprox.; piezas de galería 800 × 600 px aprox. (proporción 4:3, igual que el marcador actual)
+- **Dónde aparece:** `proyecto-oncomamas.html`, secciones "Portada" (`.detalle-proyecto-visual`) y "Galería" (`.galeria-proyecto-item`)
+- **Texto alternativo sugerido:** portada "Campaña Oncomamás — 10 años bajo un mismo paraguas"; piezas de galería "Pieza de la campaña Oncomamás — [breve descripción]"
 
 ---
 
