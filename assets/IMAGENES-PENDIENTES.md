@@ -84,6 +84,18 @@ para conectarla en el HTML.
 
 ---
 
+## 9. Página de detalle — ADA Vestuario (`proyecto-ada-vestuario.html`)
+
+- **Archivos sugeridos:**
+  - `ada-vestuario-portada.jpg` — imagen o pieza principal (reemplaza el marcador de degradado suave en la portada)
+  - `ada-vestuario-pieza-01.jpg`, `ada-vestuario-pieza-02.jpg`, `ada-vestuario-pieza-03.jpg` — piezas o fotografías del vestuario para la galería (se puede agregar o quitar tarjetas)
+- **Medidas sugeridas:** portada 1600 × 900 px aprox.; piezas de galería 900 × 1200 px aprox. (proporción 3:4, igual que el marcador actual — pensado para fotografías verticales de vestuario)
+- **Dónde aparece:** `proyecto-ada-vestuario.html`, secciones "Portada" (`.detalle-proyecto-visual`) y "Galería" (`.galeria-proyecto-item`)
+- **Texto alternativo sugerido:** portada "ADA Vestuario — vestuario de hadas"; piezas de galería "Pieza de ADA Vestuario — [breve descripción, por ejemplo: vestido de hada para niña / diseño para adultos]"
+- Esta página trata una historia personal y sensible (la marca nace como homenaje a la hija de su creadora). Al agregar fotografías, prioriza imágenes cálidas y respetuosas del vestuario en sí, evitando cualquier tratamiento que sensacionalice la historia.
+
+---
+
 ## Recursos gráficos de marca (opcional)
 
 Si más adelante defines elementos gráficos propios de CAMICREA (patrones,
