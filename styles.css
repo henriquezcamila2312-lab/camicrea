@@ -719,17 +719,14 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 .sobre-mi-imagen {
-  aspect-ratio: 3 / 4;
+  width: 100%;
+  aspect-ratio: 2 / 3;
   border-radius: var(--radio-borde);
-  background: linear-gradient(160deg, var(--color-rosa-pastel), var(--color-rosa-palido));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--color-burdeos);
-  font-family: var(--fuente-serif);
-  font-size: 1.4rem;
-  font-weight: 700;
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+  background-color: var(--color-rosa-palido);
+  object-fit: cover;
+  object-position: center top;
 }
 
 .etiqueta-persona {

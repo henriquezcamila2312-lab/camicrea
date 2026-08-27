@@ -18,12 +18,12 @@ para conectarla en el HTML.
 - **Texto alternativo usado:** "CamiCrea Estudio Creativo"
 - Si más adelante quieres reemplazarlo por otra versión, guarda el nuevo archivo con el mismo nombre (`logo-camicrea.png`) dentro de `assets/` y listo — no hace falta tocar el HTML.
 
-## 2. Fotografía de Camila (sección "Sobre mí")
+## 2. Fotografía de Camila (sección "Sobre mí") — ✅ agregada
 
-- **Archivo sugerido:** `camila-fundadora.jpg`
-- **Medidas sugeridas:** 900 × 1200 px (formato vertical, proporción 3:4)
-- **Dónde aparece:** Sección "Hola, soy Camila" (`.sobre-mi-imagen`), en reemplazo del marcador "Foto de Camila"
-- **Texto alternativo sugerido:** "Camila Henríquez, publicista y fundadora de CAMICREA"
+- **Archivo:** `assets/sobre-mi/camila-henriquez.jpg` (900 × 1350 px, proporción 2:3, optimizada a ~240 KB)
+- **Dónde aparece:** Sección "Hola, soy Camila" (`.sobre-mi-imagen`)
+- **Texto alternativo usado:** "Camila Henríquez, publicista y creadora de CamiCrea"
+- Si más adelante quieres reemplazarla por otra fotografía, guarda el nuevo archivo con el mismo nombre dentro de `assets/sobre-mi/` y listo — no hace falta tocar el HTML. Mantén una proporción cercana a 2:3 (más alta que ancha) para que se vea igual de bien sin recortes forzados.
 
 ## 3. Portada del Método 369
 
