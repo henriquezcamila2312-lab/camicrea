@@ -120,10 +120,10 @@ Para reemplazarlos:
    | Marcador                    | Dónde se usa                              | Estado |
    |------------------------------|--------------------------------------------|--------|
    | `ENLACE_INSTAGRAM`          | "Seguir el proceso", "Sobre mí", pie de página, contacto | ✅ Ya reemplazado por `https://www.instagram.com/cvmilapazz/` |
-   | `ENLACE_TIKTOK`              | Pie de página | Pendiente |
-   | `ENLACE_PINTEREST`           | Pie de página | Pendiente |
-   | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" | Pendiente |
-   | `CORREO_PROFESIONAL`         | Botón "Escribir por correo" y pie de página | Pendiente |
+   | `ENLACE_TIKTOK`              | Pie de página | ✅ Ya reemplazado por `https://www.tiktok.com/@caamilinbombin` |
+   | `ENLACE_PINTEREST`           | Pie de página | ✅ Ya reemplazado por `https://pin.it/1aLr42f5K` |
+   | `ENLACE_WHATSAPP`            | Botón "Contactar por WhatsApp" | ✅ Ya reemplazado por `https://wa.me/qr/FK23F4HUZ2RAF1` |
+   | `CORREO_PROFESIONAL`         | Botón "Escribir por correo" y pie de página | ✅ Ya reemplazado por `camiipublicista@gmail.com` |
    | `ENLACE_PUBLICO_GUMROAD`     | Botón "Comprar plantilla 369" | ✅ Ya reemplazado por `https://camicrea.gumroad.com/l/twxfh` |
    | `ENLACE_COMUNIDAD`           | Sección "Comunidad" (por ahora el botón dice "Próximamente" y está desactivado a propósito, hasta que exista el enlace real) | Pendiente |
 
@@ -201,10 +201,10 @@ Si usas otro proveedor de formularios (Netlify Forms, Web3Forms, etc.), sigue su
 Antes de publicar el sitio, esto es lo que falta por definir o reemplazar:
 
 - [x] Enlace real de Instagram (`https://www.instagram.com/cvmilapazz/`)
-- [ ] Enlace real de TikTok
-- [ ] Enlace real de Pinterest
-- [ ] Enlace real de WhatsApp (con el número correcto)
-- [ ] Correo profesional real
+- [x] Enlace real de TikTok (`https://www.tiktok.com/@caamilinbombin`)
+- [x] Enlace real de Pinterest (`https://pin.it/1aLr42f5K`)
+- [x] Enlace real de WhatsApp (`https://wa.me/qr/FK23F4HUZ2RAF1`)
+- [x] Correo profesional real (`camiipublicista@gmail.com`)
 - [x] Enlace público del producto en Gumroad (`https://camicrea.gumroad.com/l/twxfh`)
 - [ ] Enlace de la comunidad (cuando exista)
 - [ ] Conectar el formulario de contacto (ver punto 9)
