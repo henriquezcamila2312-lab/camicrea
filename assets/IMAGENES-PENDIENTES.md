@@ -61,6 +61,18 @@ para conectarla en el HTML.
 
 ---
 
+## 7. Página de detalle — KitKat (`proyecto-kitkat.html`)
+
+- **Archivos sugeridos:**
+  - `kitkat-portada.jpg` — imagen o pieza principal de la campaña (reemplaza el marcador de degradado en la portada)
+  - `kitkat-pieza-01.jpg`, `kitkat-pieza-02.jpg`, `kitkat-pieza-03.jpg`, `kitkat-pieza-04.jpg` — piezas, mockups o capturas de la campaña para la galería (se puede agregar o quitar tarjetas según cuántas imágenes tengas)
+- **Medidas sugeridas:** portada 1600 × 900 px aprox.; piezas de galería 800 × 600 px aprox. (proporción 4:3, igual que el marcador actual)
+- **Dónde aparece:** `proyecto-kitkat.html`, secciones "Portada" (`.detalle-proyecto-visual`) y "Galería" (`.galeria-proyecto-item`)
+- **Texto alternativo sugerido:** portada "Campaña KitKat — La vida te da un wate… cuando necesitas un break"; piezas de galería "Pieza de la campaña KitKat — [breve descripción, por ejemplo: publicación para Instagram / mockup de afiche / video de campaña]"
+- Este mismo patrón de página (`proyecto-<nombre>.html`) puede reutilizarse para los demás casos del portafolio (Bless, Oncomamás, etc.) cuando tengas su información y piezas.
+
+---
+
 ## Recursos gráficos de marca (opcional)
 
 Si más adelante defines elementos gráficos propios de CAMICREA (patrones,
