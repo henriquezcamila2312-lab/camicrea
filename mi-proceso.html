@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi proceso | CamiCrea</title>
+  <meta name="description" content="Tu espacio personal para acompañar tu proceso de 30 días: marca tus avances día a día, a tu propio ritmo. Tu progreso se guarda solo en este navegador.">
+  <meta name="theme-color" content="#FFF8F2">
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon provisional (creado con SVG propio, sin descargas externas) -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <!-- ======================= ENCABEZADO ======================= -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img class="logo-img" src="./assets/logo-camicrea.png" alt="CamiCrea Estudio Creativo">
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="index.html#estudio" class="nav-link">Estudio Creativo</a></li>
+          <li><a href="index.html#planes" class="nav-link">Planes</a></li>
+          <li><a href="index.html#journaling" class="nav-link">Journaling y autocuidado</a></li>
+          <li><a href="index.html#productos" class="nav-link">Productos</a></li>
+          <li><a href="index.html#portafolio" class="nav-link">Portafolio</a></li>
+          <li><a href="index.html#sobre-mi" class="nav-link">Sobre mí</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+        <a href="index.html#presentacion" class="btn btn-primary nav-cta">Explorar CamiCrea</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido-principal">
+
+    <!-- ======================= PORTADA ======================= -->
+    <section class="detalle-proyecto-hero" id="portada">
+      <div class="container">
+        <a href="index.html#journaling" class="detalle-proyecto-volver reveal">← Volver al sitio</a>
+
+        <span class="section-tag reveal">Mi proceso</span>
+        <h1 class="section-title reveal">Tu acompañamiento de 30 días</h1>
+        <p class="section-lead reveal">Este es tu espacio personal para ir marcando tus avances, día a día y a tu propio ritmo.</p>
+      </div>
+    </section>
+
+    <!-- ======================= CÓMO FUNCIONA ======================= -->
+    <section class="detalle-proyecto-seccion">
+      <div class="container">
+        <span class="section-tag reveal">Cómo funciona</span>
+        <p class="section-text reveal">No se trata de completar los 30 días seguidos ni de hacerlo perfecto. Cada vez que avances en tu práctica con la Plantilla Método 369 (o en lo que sea que estés trabajando estos días), vuelve aquí y marca el día correspondiente. Puedes saltarte días, retomar cuando quieras y marcarlos fuera de orden.</p>
+        <p class="section-text reveal">Tu progreso se guarda únicamente en este navegador (localStorage), de forma local y privada. No se envía a ningún servidor ni se relaciona con tu suscripción por correo: este registro es independiente de la plantilla y de los correos que recibas de CamiCrea. Este espacio tampoco guarda textos ni notas personales, solo el registro de qué días marcaste.</p>
+      </div>
+    </section>
+
+    <!-- ======================= PROGRESO ======================= -->
+    <section class="detalle-proyecto-seccion">
+      <div class="container">
+        <div class="proceso-progreso reveal">
+          <p class="proceso-progreso-numero"><span id="procesoContador">0</span> de 30 días</p>
+          <div class="proceso-progreso-barra" role="progressbar" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0" id="procesoBarra">
+            <div class="proceso-progreso-relleno" id="procesoRelleno"></div>
+          </div>
+        </div>
+
+        <div class="proceso-dias-grid reveal" id="procesoDiasGrid" role="group" aria-label="Días de tu proceso">
+          <button type="button" class="proceso-dia" data-dia="1" aria-pressed="false">1</button>
+          <button type="button" class="proceso-dia" data-dia="2" aria-pressed="false">2</button>
+          <button type="button" class="proceso-dia" data-dia="3" aria-pressed="false">3</button>
+          <button type="button" class="proceso-dia" data-dia="4" aria-pressed="false">4</button>
+          <button type="button" class="proceso-dia" data-dia="5" aria-pressed="false">5</button>
+          <button type="button" class="proceso-dia" data-dia="6" aria-pressed="false">6</button>
+          <button type="button" class="proceso-dia" data-dia="7" aria-pressed="false">7</button>
+          <button type="button" class="proceso-dia" data-dia="8" aria-pressed="false">8</button>
+          <button type="button" class="proceso-dia" data-dia="9" aria-pressed="false">9</button>
+          <button type="button" class="proceso-dia" data-dia="10" aria-pressed="false">10</button>
+          <button type="button" class="proceso-dia" data-dia="11" aria-pressed="false">11</button>
+          <button type="button" class="proceso-dia" data-dia="12" aria-pressed="false">12</button>
+          <button type="button" class="proceso-dia" data-dia="13" aria-pressed="false">13</button>
+          <button type="button" class="proceso-dia" data-dia="14" aria-pressed="false">14</button>
+          <button type="button" class="proceso-dia" data-dia="15" aria-pressed="false">15</button>
+          <button type="button" class="proceso-dia" data-dia="16" aria-pressed="false">16</button>
+          <button type="button" class="proceso-dia" data-dia="17" aria-pressed="false">17</button>
+          <button type="button" class="proceso-dia" data-dia="18" aria-pressed="false">18</button>
+          <button type="button" class="proceso-dia" data-dia="19" aria-pressed="false">19</button>
+          <button type="button" class="proceso-dia" data-dia="20" aria-pressed="false">20</button>
+          <button type="button" class="proceso-dia" data-dia="21" aria-pressed="false">21</button>
+          <button type="button" class="proceso-dia" data-dia="22" aria-pressed="false">22</button>
+          <button type="button" class="proceso-dia" data-dia="23" aria-pressed="false">23</button>
+          <button type="button" class="proceso-dia" data-dia="24" aria-pressed="false">24</button>
+          <button type="button" class="proceso-dia" data-dia="25" aria-pressed="false">25</button>
+          <button type="button" class="proceso-dia" data-dia="26" aria-pressed="false">26</button>
+          <button type="button" class="proceso-dia" data-dia="27" aria-pressed="false">27</button>
+          <button type="button" class="proceso-dia" data-dia="28" aria-pressed="false">28</button>
+          <button type="button" class="proceso-dia" data-dia="29" aria-pressed="false">29</button>
+          <button type="button" class="proceso-dia" data-dia="30" aria-pressed="false">30</button>
+        </div>
+
+        <div class="proceso-controles reveal">
+          <button type="button" class="btn btn-outline" id="procesoReiniciar">Reiniciar mi proceso</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PLANTILLA ======================= -->
+    <section class="detalle-proyecto-seccion detalle-proyecto-cta">
+      <div class="container detalle-proyecto-botones">
+        <a href="index.html#productos" class="btn btn-primary">Ver la Plantilla Método 369</a>
+        <a href="index.html#journaling" class="btn btn-outline">Volver al sitio</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= PIE DE PÁGINA ======================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-marca">
+        <img class="footer-logo-img" src="./assets/logo-camicrea.png" alt="CamiCrea Estudio Creativo">
+        <p class="footer-tagline">Un espacio para crear tus ideas, tu marca y una vida más tuya.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navegación del pie de página">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#estudio">Estudio Creativo</a>
+        <a href="index.html#planes">Planes</a>
+        <a href="index.html#journaling">Journaling y autocuidado</a>
+        <a href="index.html#productos">Productos</a>
+        <a href="index.html#portafolio">Portafolio</a>
+        <a href="index.html#sobre-mi">Sobre mí</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="footer-social">
+        <a href="https://www.instagram.com/cvmilapazz/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.tiktok.com/@caamilinbombin" target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a href="https://pin.it/1aLr42f5K" target="_blank" rel="noopener noreferrer">Pinterest</a>
+        <a href="mailto:camiipublicista@gmail.com">camiipublicista@gmail.com</a>
+      </div>
+
+      <p class="footer-derechos">© <span id="anioActual">2026</span> CamiCrea. Todos los derechos reservados.</p>
+
+      <p class="footer-aviso">Los contenidos y productos de journaling, manifestación y bienestar son herramientas de reflexión personal. No reemplazan atención psicológica, médica, financiera ni profesional y no garantizan resultados externos.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

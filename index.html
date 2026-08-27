@@ -365,6 +365,67 @@
           <p>Camila comparte los métodos, herramientas y hábitos que está probando en su propia vida: lo que funciona, lo que cuesta y todo lo que va aprendiendo en el proceso.</p>
           <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Seguir el proceso</a>
         </div>
+
+        <div class="creando-juntas regalo-bloque reveal">
+          <h3>Un regalo para comenzar</h3>
+          <p>Descarga gratis tu plantilla al suscribirte a la comunidad de CamiCrea y recibe acompañamiento durante tu proceso de 30 días.</p>
+          <a href="#suscripcion" class="btn btn-primary">Quiero comenzar</a>
+        </div>
+
+        <div class="suscripcion-bloque reveal" id="suscripcion">
+          <span class="section-tag">Un regalo para ti</span>
+          <h3 class="suscripcion-titulo">Recibe tu plantilla gratuita y comienza tu proceso 🌸</h3>
+          <p class="suscripcion-descripcion">Suscríbete a la comunidad de CamiCrea para descargar tu plantilla, registrar tus avances y recibir acompañamiento durante los próximos 30 días.</p>
+
+          <!--
+            INTEGRACIÓN CON KIT (kit.com, antes ConvertKit) — PENDIENTE DE CONECTAR.
+            Este formulario está preparado para recibir el formulario oficial de Kit,
+            pero todavía no envía datos a ningún lugar: no existe conexión real, así
+            que no simula una suscripción exitosa (ver el aviso honesto en script.js).
+
+            Para activarlo, reemplaza el <form id="formSuscripcion">...</form> completo
+            por el código de embed que entrega Kit (dentro de Kit: Grow → Landing Pages
+            & Forms → tu formulario → Publish → Embed → HTML), o adapta este formulario
+            con el action y los nombres de campo (fields[...]) que indique Kit.
+
+            Mensaje de confirmación sugerido para configurar dentro de Kit (pantalla de
+            "éxito" del formulario, ya que Kit maneja esa confirmación una vez conectado):
+            "¡Ya casi está! Revisa tu correo y confirma tu suscripción para recibir la
+            plantilla y comenzar tu proceso."
+          -->
+          <form class="suscripcion-form" id="formSuscripcion" novalidate>
+            <div class="form-field">
+              <label for="suscripcionNombre">Nombre</label>
+              <input type="text" id="suscripcionNombre" name="nombre" autocomplete="name" required>
+            </div>
+
+            <div class="form-field">
+              <label for="suscripcionCorreo">Correo electrónico</label>
+              <input type="email" id="suscripcionCorreo" name="correo" autocomplete="email" required>
+            </div>
+
+            <div class="form-field">
+              <label class="checkbox-label">
+                <input type="checkbox" name="consentimiento" id="suscripcionConsentimiento" required>
+                <span>Quiero recibir la plantilla, los correos del proceso de 30 días y novedades de CamiCrea. Podré cancelar mi suscripción cuando quiera.</span>
+              </label>
+            </div>
+
+            <div class="form-field">
+              <label class="checkbox-label">
+                <input type="checkbox" name="mayor_edad" id="suscripcionMayorEdad" required>
+                <span>Declaro que soy mayor de 18 años.</span>
+              </label>
+            </div>
+
+            <div class="form-field">
+              <button type="submit" class="btn btn-primary">Quiero mi plantilla</button>
+              <p class="form-aviso" id="suscripcionAviso" role="status" hidden></p>
+            </div>
+          </form>
+
+          <p class="suscripcion-privacidad">Utilizaremos tu nombre y correo únicamente para enviarte la plantilla, acompañar tu proceso y compartir novedades de CamiCrea. Podrás cancelar tu suscripción cuando quieras. <a href="privacidad.html">Política de privacidad</a>.</p>
+        </div>
       </div>
     </section>
 
