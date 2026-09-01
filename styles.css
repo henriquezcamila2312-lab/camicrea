@@ -548,25 +548,10 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   .cursor-punto { display: none; }
 }
 
-/* Flores/botones que se agrupan (animación de una sola vez en Inicio) */
-.flor-animada {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  opacity: 0;
-  transition: transform 1.1s cubic-bezier(.2,.8,.2,1), opacity 0.6s ease;
-  pointer-events: none;
-}
-.flor-animada.esta-lista { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .flor-animada { transition: none; opacity: 1; transform: none !important; }
-}
-
 @media (max-width: 640px) {
   /* En celulares se reducen los acentos decorativos flotantes para no saturar la lectura */
   .deco-brillo,
-  .deco-lazo,
-  .flor-animada {
+  .deco-lazo {
     display: none;
   }
 }
@@ -819,20 +804,37 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   box-shadow: var(--sombra-suave);
 }
 
-.flores-animadas {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  z-index: 0;
-  pointer-events: none;
+/* Video real de flores (enviado por Camila), en una pequeña tarjeta
+   tipo Polaroid con cinta, junto al CTA "Explora mi trabajo". */
+.video-flores {
+  position: relative;
+  width: 116px;
+  margin: 0 auto var(--espacio-lg);
+  border-radius: var(--radio-borde-sm);
+  overflow: hidden;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-gris-claro);
 }
-.flores-animadas .flor-animada { top: 0; left: 0; }
+.video-flores-clip {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+.video-flores-cinta {
+  top: -10px;
+  left: 50%;
+  width: 64px;
+  height: 20px;
+  transform: translateX(-50%) rotate(-4deg);
+  z-index: 3;
+}
 
 @media (max-width: 640px) {
   .escritorio-fotos { gap: var(--espacio-md); }
   .escritorio-foto { width: 130px; }
+  .video-flores { width: 92px; }
 }
 
 /* =================== CONCEPTOS / CHIPS =================== */

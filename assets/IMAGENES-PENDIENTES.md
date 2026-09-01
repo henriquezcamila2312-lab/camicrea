@@ -119,6 +119,12 @@ se agregó son las tipografías de Google Fonts (Fraunces, Work Sans y
 Caveat), cargadas por enlace en el `<head>` de cada página — no son
 imágenes ni se descargan archivos al proyecto.
 
+## 11. Video de flores en Inicio — ✅ agregado
+
+- **Archivo en uso:** `animaciones/flores-01.mp4` (video real enviado por Camila, 1080 × 1920 px, vertical)
+- **Dónde aparece:** ventana Inicio, tarjeta `.video-flores` junto al botón "Explora mi trabajo". Se reproduce en loop, silenciado y sin controles; no se reproduce automáticamente si la persona prefiere menos movimiento o está en una pantalla angosta (queda pausado en el primer cuadro).
+- **Archivo guardado sin usar todavía:** `animaciones/flores-02.mp4` (segundo video enviado por Camila, mismas medidas). No se usa junto al primero para respetar la regla de no reproducir varios videos a la vez; queda disponible en la carpeta por si se quiere usar en otra ventana o momento del sitio. Avísame dónde te gustaría usarlo y lo conecto.
+
 ## 10. Proyecto "LOOKBOOK 247" — pendiente de fotografías reales
 
 Se pidió agregar este proyecto al portafolio con una presentación

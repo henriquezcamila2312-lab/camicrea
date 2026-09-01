@@ -71,12 +71,21 @@
 
         <div class="hero-cta-wrap">
           <a href="#portafolio" class="btn btn-primary hero-cta-portafolio reveal">Explora mi trabajo</a>
-          <div class="flores-animadas" aria-hidden="true" id="floresAnimadas">
-            <span class="flor-animada deco-flor" data-inicio-x="-120" data-inicio-y="-50"></span>
-            <span class="flor-animada deco-flor--verde" data-inicio-x="110" data-inicio-y="-60"></span>
-            <span class="flor-animada deco-flor" data-inicio-x="-90" data-inicio-y="55"></span>
-            <span class="flor-animada deco-flor--verde" data-inicio-x="95" data-inicio-y="60"></span>
-          </div>
+        </div>
+
+        <!--
+          Animación de flores: video real enviado por Camila (no una
+          recreación con CSS). Se reproduce en loop, silenciado y sin
+          controles. No se reproduce automáticamente si la persona
+          prefiere menos movimiento ni en pantallas angostas (se queda
+          pausado en el primer cuadro para cuidar datos y evitar
+          movimiento innecesario); ver script.js. El segundo archivo
+          enviado por Camila (flores-02.mp4) queda guardado en
+          assets/animaciones/ por si se quiere usar en otro lugar.
+        -->
+        <div class="video-flores reveal" aria-hidden="true">
+          <span class="deco-cinta video-flores-cinta" aria-hidden="true"></span>
+          <video class="video-flores-clip" id="videoFloresInicio" src="./assets/animaciones/flores-01.mp4" muted loop playsinline preload="metadata"></video>
         </div>
 
         <!--

@@ -114,39 +114,25 @@ document.addEventListener('DOMContentLoaded', function () {
     manejarHash();
   }
 
-  /* ---------- Flores que se agrupan (animación única, solo en Inicio) ----------
-     Aparecen separadas y se desplazan suavemente hasta formar un pequeño
-     racimo decorativo. Se ejecuta una sola vez al cargar la página; se
-     omite con prefers-reduced-motion y en pantallas angostas. */
-  var floresAnimadas = document.getElementById('floresAnimadas');
-  if (floresAnimadas) {
-    var prefiereMenosMovimientoFlores = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var esPantallaAngostaFlores = window.matchMedia('(max-width: 640px)').matches;
+  /* ---------- Video de flores (Inicio) ----------
+     Reproduce en loop y silenciado el video real de flores enviado por
+     Camila. No se reproduce automáticamente si la persona prefiere
+     menos movimiento ni en pantallas angostas (se queda pausado en el
+     primer cuadro, para cuidar datos y evitar movimiento innecesario). */
+  var videoFloresInicio = document.getElementById('videoFloresInicio');
+  if (videoFloresInicio) {
+    var prefiereMenosMovimientoVideo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var esPantallaAngostaVideo = window.matchMedia('(max-width: 640px)').matches;
 
-    if (!prefiereMenosMovimientoFlores && !esPantallaAngostaFlores) {
-      var flores = floresAnimadas.querySelectorAll('.flor-animada');
-      var posicionesFinales = [
-        { x: -26, y: -18 },
-        { x: 24, y: -22 },
-        { x: -18, y: 20 },
-        { x: 20, y: 22 }
-      ];
-
-      flores.forEach(function (flor) {
-        var inicioX = flor.getAttribute('data-inicio-x') || '0';
-        var inicioY = flor.getAttribute('data-inicio-y') || '0';
-        flor.style.transition = 'none';
-        flor.style.transform = 'translate(' + inicioX + 'px, ' + inicioY + 'px)';
-      });
-
-      window.setTimeout(function () {
-        flores.forEach(function (flor, indice) {
-          var destino = posicionesFinales[indice] || { x: 0, y: 0 };
-          flor.style.transition = '';
-          flor.style.transform = 'translate(' + destino.x + 'px, ' + destino.y + 'px)';
-          flor.classList.add('esta-lista');
+    if (!prefiereMenosMovimientoVideo && !esPantallaAngostaVideo) {
+      videoFloresInicio.setAttribute('autoplay', '');
+      var intentoReproduccion = videoFloresInicio.play();
+      if (intentoReproduccion && typeof intentoReproduccion.catch === 'function') {
+        intentoReproduccion.catch(function () {
+          // El navegador bloqueó la reproducción automática: el video
+          // queda pausado en su primer cuadro, sin romper la página.
         });
-      }, 700);
+      }
     }
   }
 
