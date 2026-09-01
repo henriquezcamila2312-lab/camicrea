@@ -38,6 +38,82 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Navegación por ventanas ----------
+     El sitio se organiza en ventanas (una por ítem del menú principal:
+     Inicio, Estudio Creativo, Portafolio, Journaling, Sobre CamiCrea y
+     Contacto). Solo una ventana está visible a la vez, sin recargar la
+     página. Los anchors internos que antes apuntaban a secciones propias
+     (por ejemplo #planes, #productos, #comunidad, #presentacion o
+     #suscripcion) siguen funcionando: siguen existiendo como ids dentro
+     de la ventana que ahora los contiene, así que ningún enlace externo
+     (de otras páginas del sitio) necesita cambiar. */
+  var siteWindows = document.querySelectorAll('.site-window');
+
+  if (siteWindows.length) {
+    var mostrarVentana = function (ventana, elementoDestino) {
+      siteWindows.forEach(function (win) {
+        if (win !== ventana) {
+          win.classList.remove('ventana-activa');
+          win.hidden = true;
+        }
+      });
+
+      ventana.hidden = false;
+
+      // El contenido de la ventana debe verse desde el principio,
+      // sin depender del scroll para activar su animación de aparición.
+      ventana.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+
+      window.requestAnimationFrame(function () {
+        ventana.classList.add('ventana-activa');
+      });
+
+      document.querySelectorAll('.nav-link').forEach(function (link) {
+        var linkHash = (link.getAttribute('href') || '').split('#')[1];
+        link.classList.toggle('esta-activo', linkHash === ventana.id);
+      });
+
+      var prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var comportamientoScroll = prefiereMenosMovimiento ? 'auto' : 'smooth';
+      window.requestAnimationFrame(function () {
+        if (elementoDestino && elementoDestino !== ventana) {
+          elementoDestino.scrollIntoView({ behavior: comportamientoScroll, block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: comportamientoScroll });
+        }
+      });
+    };
+
+    var manejarHash = function () {
+      var rawHash = window.location.hash ? window.location.hash.substring(1) : '';
+
+      if (!rawHash) {
+        mostrarVentana(document.getElementById('inicio'), null);
+        return;
+      }
+
+      var elementoDestino = document.getElementById(rawHash);
+      if (!elementoDestino) {
+        mostrarVentana(document.getElementById('inicio'), null);
+        return;
+      }
+
+      var ventana = elementoDestino.closest('.site-window');
+      if (!ventana) {
+        // No pertenece al sistema de ventanas (por ejemplo, el enlace
+        // "Saltar al contenido principal"): no se fuerza ningún cambio.
+        return;
+      }
+
+      mostrarVentana(ventana, elementoDestino);
+    };
+
+    window.addEventListener('hashchange', manejarHash);
+    manejarHash();
+  }
+
   /* ---------- Año automático en el pie de página ---------- */
   var anioActual = document.getElementById('anioActual');
   if (anioActual) {
