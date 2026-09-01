@@ -1,5 +1,5 @@
 /* =========================================================
-   CAMICREA — Interacciones del sitio
+   camicrea — Interacciones del sitio
    Menú móvil, scroll suave, animaciones al aparecer,
    año automático y manejo seguro del formulario de contacto.
    ========================================================= */
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Navegación por ventanas ----------
      El sitio se organiza en ventanas (una por ítem del menú principal:
-     Inicio, Estudio Creativo, Portafolio, Journaling, Sobre CAMICREA y
+     Inicio, Estudio Creativo, Portafolio, Journaling, Sobre camicrea y
      Contacto). Solo una ventana está visible a la vez, sin recargar la
      página. Los anchors internos que antes apuntaban a secciones propias
      (por ejemplo #planes, #productos, #comunidad, #presentacion o
