@@ -8,6 +8,8 @@ El sitio reúne en un solo lugar sus dos caminos:
 1. **CAMICREA Estudio Creativo** — servicios profesionales de estrategia, contenido y creatividad para marcas.
 2. **Journaling, autocuidado y más** — contenido, productos digitales y comunidad.
 
+El sitio se organiza en **ventanas** (Inicio, Estudio Creativo, Portafolio, Journaling autocuidado y más, Sobre CAMICREA y Contacto): al elegir un ítem del menú se muestra esa sección y se ocultan las demás, sin recargar la página. Sigue siendo un único archivo `index.html`; el cambio de ventana lo controla `script.js` según el enlace (`#estudio`, `#portafolio`, etc.) que aparece en la URL.
+
 Este README está escrito para alguien **sin conocimientos avanzados de programación**. Sigue los pasos con calma, uno a la vez.
 
 ---
@@ -16,7 +18,7 @@ Este README está escrito para alguien **sin conocimientos avanzados de programa
 
 ```
 camicrea/
-├── index.html                     → Todo el contenido y la estructura del sitio (una sola página)
+├── index.html                     → Todo el contenido y la estructura del sitio (organizado en ventanas de navegación)
 ├── styles.css                     → Todos los colores, tipografías y estilos visuales
 ├── script.js                      → El menú móvil, las animaciones y el formulario
 ├── README.md                      → Este archivo
@@ -37,7 +39,7 @@ La forma más simple:
 2. Haz doble clic sobre él.
 3. Se abrirá automáticamente en tu navegador (Chrome, Safari, Edge, etc.).
 
-Con esto ya puedes ver el sitio completo, navegar por las secciones y probar el menú en el celular (achicando la ventana del navegador).
+Con esto ya puedes ver el sitio completo, navegar por las ventanas del menú (Inicio, Estudio Creativo, Portafolio, Journaling, Sobre CAMICREA y Contacto) y probar el menú en el celular (achicando la ventana del navegador).
 
 ---
 

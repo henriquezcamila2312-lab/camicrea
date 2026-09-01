@@ -290,6 +290,36 @@ textarea:focus-visible {
 /* =================== SECCIONES GENERALES =================== */
 section { padding: var(--espacio-xl) 0; position: relative; }
 
+/* =================== NAVEGACIÓN POR VENTANAS ===================
+   El sitio se organiza en "ventanas" (una por ítem del menú principal).
+   Solo una ventana está visible a la vez; script.js controla el cambio
+   según el hash de la URL, sin recargar la página. */
+.site-window[hidden] { display: none; }
+
+.site-window {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.site-window.ventana-activa { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-window { transition: none; }
+}
+
+/* Cuando dos secciones antiguas se unen dentro de una misma ventana,
+   cada bloque conserva su propio ancho de contenedor y se separa del
+   siguiente con una línea sutil, en vez de fundirse sin límites. */
+.ventana-bloque + .ventana-bloque {
+  margin-top: var(--espacio-xl);
+  padding-top: var(--espacio-xl);
+  border-top: 1px solid var(--color-borde);
+}
+
+.nav-link.esta-activo {
+  color: var(--color-burdeos);
+  border-bottom-color: var(--color-burdeos);
+}
+
 .section-tag {
   display: inline-block;
   background-color: var(--color-rosa-pastel);

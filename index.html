@@ -41,14 +41,12 @@
         <ul class="nav-list">
           <li><a href="#inicio" class="nav-link">Inicio</a></li>
           <li><a href="#estudio" class="nav-link">Estudio Creativo</a></li>
-          <li><a href="#planes" class="nav-link">Planes</a></li>
-          <li><a href="#journaling" class="nav-link">Journaling y autocuidado</a></li>
-          <li><a href="#productos" class="nav-link">Productos</a></li>
           <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
-          <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+          <li><a href="#journaling" class="nav-link">Journaling, autocuidado y más</a></li>
+          <li><a href="#sobre-mi" class="nav-link">Sobre CamiCrea</a></li>
           <li><a href="#contacto" class="nav-link">Contacto</a></li>
         </ul>
-        <a href="#presentacion" class="btn btn-primary nav-cta">Explorar CamiCrea</a>
+        <a href="#estudio" class="btn btn-primary nav-cta">Explorar CamiCrea</a>
       </nav>
     </div>
   </header>
@@ -56,7 +54,7 @@
   <main id="contenido-principal">
 
     <!-- ======================= PORTADA PRINCIPAL ======================= -->
-    <section class="hero" id="inicio">
+    <section class="hero site-window ventana-activa" id="inicio">
       <div class="hero-blob hero-blob--uno" aria-hidden="true"></div>
       <div class="hero-blob hero-blob--dos" aria-hidden="true"></div>
 
@@ -84,25 +82,9 @@
       </div>
     </section>
 
-    <!-- ======================= PRESENTACIÓN CAMICREA ======================= -->
-    <section class="presentacion" id="presentacion">
-      <div class="container">
-        <span class="section-tag section-tag--marca reveal">CamiCrea</span>
-        <h2 class="section-title reveal">Crear también es una forma de avanzar</h2>
-        <p class="section-text reveal">Este espacio nació para reunir dos partes de una misma historia: la publicista que transforma ideas en estrategias y la creadora que busca herramientas para vivir con mayor intención. Aquí puedes encontrar apoyo para hacer crecer tu marca y también recursos para conectar contigo.</p>
-
-        <ul class="concept-chips reveal" role="list">
-          <li>Crear ideas</li>
-          <li>Crear contenido</li>
-          <li>Crear hábitos</li>
-          <li>Crear comunidad</li>
-          <li>Crear una vida más tuya</li>
-        </ul>
-      </div>
-    </section>
-
     <!-- ======================= CAMICREA ESTUDIO CREATIVO ======================= -->
-    <section class="estudio" id="estudio">
+    <section class="estudio site-window" id="estudio" hidden>
+      <div class="ventana-bloque">
       <div class="container">
         <span class="section-tag section-tag--marca reveal">CamiCrea Estudio Creativo</span>
         <h2 class="section-title reveal">Tu marca tiene algo que decir. Hagamos que se note.</h2>
@@ -162,10 +144,10 @@
 
         <a href="#contacto" class="btn btn-primary reveal">Cuéntame sobre tu marca</a>
       </div>
-    </section>
+      </div>
 
-    <!-- ======================= PLANES DE GESTIÓN DE REDES SOCIALES ======================= -->
-    <section class="planes" id="planes">
+      <!-- ======================= PLANES DE GESTIÓN DE REDES SOCIALES ======================= -->
+      <div class="ventana-bloque planes" id="planes">
       <div class="container">
         <span class="section-tag reveal">Community Manager en Chile</span>
         <h2 class="section-title reveal">Planes de gestión de redes sociales</h2>
@@ -250,26 +232,22 @@
 
         <p class="nota-servicios reveal">Los valores publicados son referenciales. La producción presencial, los traslados, la inversión publicitaria y los requerimientos adicionales se evalúan y cotizan según cada proyecto.</p>
       </div>
+      </div>
     </section>
 
     <!-- ======================= PORTAFOLIO ======================= -->
-    <section class="portafolio" id="portafolio">
+    <section class="portafolio site-window" id="portafolio" hidden>
       <div class="container">
         <span class="section-tag reveal">Portafolio</span>
         <h2 class="section-title reveal">Ideas que ya tomaron forma</h2>
         <p class="section-text reveal">Una muestra de proyectos en los que Camila ha trabajado. Esta sección se irá completando con imágenes, objetivos y resultados de cada caso.</p>
 
         <div class="portafolio-grid">
-          <!-- MARCADOR PROVISIONAL: completar con imagen, objetivo, rol, trabajo realizado y resultado verificable -->
           <article class="proyecto-card reveal">
             <div class="proyecto-imagen" aria-hidden="true"><span>Medical Store &amp; Ortopedia y Uniformes Pro</span></div>
             <div class="proyecto-info">
               <h3>Medical Store y Ortopedia &amp; Uniformes Pro</h3>
-              <p class="proyecto-meta">Marca / cliente: Medical Store y Ortopedia &amp; Uniformes Pro</p>
-              <p class="proyecto-dato"><strong>Objetivo:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Mi participación:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Trabajo realizado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Resultado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
+              <p class="proyecto-meta">Medical Store y Ortopedia &amp; Uniformes Pro</p>
               <button type="button" class="btn btn-outline is-disabled" disabled>Próximamente</button>
             </div>
           </article>
@@ -278,11 +256,7 @@
             <div class="proyecto-imagen" aria-hidden="true"><span>Siempre estuvieron ahí</span></div>
             <div class="proyecto-info">
               <h3>Siempre estuvieron ahí</h3>
-              <p class="proyecto-meta">Marca / cliente: Siempre estuvieron ahí</p>
-              <p class="proyecto-dato"><strong>Objetivo:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Mi participación:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Trabajo realizado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Resultado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
+              <p class="proyecto-meta">Siempre estuvieron ahí</p>
               <button type="button" class="btn btn-outline is-disabled" disabled>Próximamente</button>
             </div>
           </article>
@@ -291,11 +265,7 @@
             <div class="proyecto-imagen" aria-hidden="true"><span>10 años bajo un mismo paraguas</span></div>
             <div class="proyecto-info">
               <h3>10 años bajo un mismo paraguas</h3>
-              <p class="proyecto-meta">Marca / cliente: Oncomamás</p>
-              <p class="proyecto-dato"><strong>Objetivo:</strong> Conectar con la comunidad, reconocer la historia de Oncomamás y motivar a las personas a participar y aportar en su campaña de recaudación.</p>
-              <p class="proyecto-dato"><strong>Mi participación:</strong> Redactora creativa, Community Manager y apoyo en cuentas.</p>
-              <p class="proyecto-dato"><strong>Trabajo realizado:</strong> Desarrollo comunicacional de la campaña, redacción de contenidos, adaptación de mensajes para redes sociales y apoyo en la coordinación del proyecto.</p>
-              <p class="proyecto-dato"><strong>Resultado:</strong> La campaña logró recaudar más de $40 millones para Oncomamás.</p>
+              <p class="proyecto-meta">Oncomamás</p>
               <a href="proyecto-oncomamas.html" class="btn btn-outline">Ver proyecto</a>
             </div>
           </article>
@@ -304,11 +274,7 @@
             <div class="proyecto-imagen" aria-hidden="true"><span>Bless</span></div>
             <div class="proyecto-info">
               <h3>Bless</h3>
-              <p class="proyecto-meta">Marca / cliente: Bless</p>
-              <p class="proyecto-dato"><strong>Objetivo:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Mi participación:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Trabajo realizado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Resultado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
+              <p class="proyecto-meta">Bless</p>
               <button type="button" class="btn btn-outline is-disabled" disabled>Próximamente</button>
             </div>
           </article>
@@ -317,11 +283,7 @@
             <div class="proyecto-imagen" aria-hidden="true"><span>KitKat</span></div>
             <div class="proyecto-info">
               <h3>KitKat</h3>
-              <p class="proyecto-meta">Marca / cliente: KitKat</p>
-              <p class="proyecto-dato"><strong>Objetivo:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Mi participación:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Trabajo realizado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Resultado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
+              <p class="proyecto-meta">KitKat</p>
               <a href="proyecto-kitkat.html" class="btn btn-outline">Ver proyecto</a>
             </div>
           </article>
@@ -330,11 +292,7 @@
             <div class="proyecto-imagen" aria-hidden="true"><span>ADA Vestuario</span></div>
             <div class="proyecto-info">
               <h3>ADA Vestuario</h3>
-              <p class="proyecto-meta">Marca / cliente: ADA Vestuario</p>
-              <p class="proyecto-dato"><strong>Objetivo:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
-              <p class="proyecto-dato"><strong>Mi participación:</strong> Apoyo en la planificación y creación de contenido.</p>
-              <p class="proyecto-dato"><strong>Trabajo realizado:</strong> Apoyó la planificación y creación de contenido para ADA Vestuario, desarrollando piezas que buscaban comunicar sus productos y transmitir el carácter mágico, cercano y significativo de la marca.</p>
-              <p class="proyecto-dato"><strong>Resultado:</strong> <span class="pendiente">[Pendiente de completar]</span></p>
+              <p class="proyecto-meta">ADA Vestuario</p>
               <a href="proyecto-ada-vestuario.html" class="btn btn-outline">Ver proyecto</a>
             </div>
           </article>
@@ -343,7 +301,8 @@
     </section>
 
     <!-- ======================= JOURNALING, AUTOCUIDADO Y MÁS ======================= -->
-    <section class="journaling" id="journaling">
+    <section class="journaling site-window" id="journaling" hidden>
+      <div class="ventana-bloque">
       <div class="container">
         <span class="section-tag reveal">Journaling, autocuidado y más</span>
         <h2 class="section-title reveal">Journaling, autocuidado y más</h2>
@@ -427,10 +386,10 @@
           <p class="suscripcion-privacidad">Utilizaremos tu nombre y correo únicamente para enviarte la plantilla, acompañar tu proceso y compartir novedades de CamiCrea. Podrás cancelar tu suscripción cuando quieras. <a href="privacidad.html">Política de privacidad</a>.</p>
         </div>
       </div>
-    </section>
+      </div>
 
-    <!-- ======================= PRODUCTOS DIGITALES ======================= -->
-    <section class="productos" id="productos">
+      <!-- ======================= PRODUCTOS DIGITALES ======================= -->
+      <div class="ventana-bloque productos" id="productos">
       <div class="container">
         <span class="section-tag reveal">Productos digitales</span>
         <h2 class="section-title reveal">Herramientas bonitas para intenciones reales</h2>
@@ -490,10 +449,10 @@
           </article>
         </div>
       </div>
-    </section>
+      </div>
 
-    <!-- ======================= COMUNIDAD ======================= -->
-    <section class="comunidad" id="comunidad">
+      <!-- ======================= COMUNIDAD ======================= -->
+      <div class="ventana-bloque comunidad" id="comunidad">
       <div class="container">
         <span class="section-tag reveal">Comunidad</span>
         <h2 class="section-title reveal">Un espacio para avanzar acompañadas</h2>
@@ -512,10 +471,28 @@
         <!-- Enlace de comunidad aún no existe: se muestra como "Próximamente" y no dirige a ninguna parte -->
         <button type="button" class="btn btn-primary is-disabled reveal" disabled title="Enlace provisional: aún no existe, se activará cuando la comunidad esté disponible">Próximamente</button>
       </div>
+      </div>
     </section>
 
-    <!-- ======================= SOBRE CAMILA ======================= -->
-    <section class="sobre-mi" id="sobre-mi">
+    <!-- ======================= SOBRE CAMICREA ======================= -->
+    <section class="sobre-mi site-window" id="sobre-mi" hidden>
+      <div class="ventana-bloque presentacion" id="presentacion">
+        <div class="container">
+          <span class="section-tag section-tag--marca reveal">CamiCrea</span>
+          <h2 class="section-title reveal">Crear también es una forma de avanzar</h2>
+          <p class="section-text reveal">Este espacio nació para reunir dos partes de una misma historia: la publicista que transforma ideas en estrategias y la creadora que busca herramientas para vivir con mayor intención. Aquí puedes encontrar apoyo para hacer crecer tu marca y también recursos para conectar contigo.</p>
+
+          <ul class="concept-chips reveal" role="list">
+            <li>Crear ideas</li>
+            <li>Crear contenido</li>
+            <li>Crear hábitos</li>
+            <li>Crear comunidad</li>
+            <li>Crear una vida más tuya</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ventana-bloque">
       <div class="container sobre-mi-inner">
         <img class="sobre-mi-imagen reveal" src="./assets/sobre-mi/camila-henriquez.jpg" alt="Camila Henríquez, publicista y creadora de CamiCrea">
         <div class="sobre-mi-texto reveal">
@@ -530,10 +507,11 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- ======================= CONTACTO ======================= -->
-    <section class="contacto" id="contacto">
+    <section class="contacto site-window" id="contacto" hidden>
       <div class="container">
         <span class="section-tag reveal">Contacto</span>
         <h2 class="section-title reveal">Cuéntame qué quieres crear</h2>
@@ -627,11 +605,9 @@
       <nav class="footer-nav" aria-label="Navegación del pie de página">
         <a href="#inicio">Inicio</a>
         <a href="#estudio">Estudio Creativo</a>
-        <a href="#planes">Planes</a>
-        <a href="#journaling">Journaling y autocuidado</a>
-        <a href="#productos">Productos</a>
         <a href="#portafolio">Portafolio</a>
-        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#journaling">Journaling, autocuidado y más</a>
+        <a href="#sobre-mi">Sobre CamiCrea</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
