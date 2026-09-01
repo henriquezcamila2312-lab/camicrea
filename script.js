@@ -114,28 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
     manejarHash();
   }
 
-  /* ---------- Video de flores (Inicio) ----------
-     Reproduce en loop y silenciado el video real de flores enviado por
-     Camila. No se reproduce automáticamente si la persona prefiere
-     menos movimiento ni en pantallas angostas (se queda pausado en el
-     primer cuadro, para cuidar datos y evitar movimiento innecesario). */
-  var videoFloresInicio = document.getElementById('videoFloresInicio');
-  if (videoFloresInicio) {
-    var prefiereMenosMovimientoVideo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var esPantallaAngostaVideo = window.matchMedia('(max-width: 640px)').matches;
-
-    if (!prefiereMenosMovimientoVideo && !esPantallaAngostaVideo) {
-      videoFloresInicio.setAttribute('autoplay', '');
-      var intentoReproduccion = videoFloresInicio.play();
-      if (intentoReproduccion && typeof intentoReproduccion.catch === 'function') {
-        intentoReproduccion.catch(function () {
-          // El navegador bloqueó la reproducción automática: el video
-          // queda pausado en su primer cuadro, sin romper la página.
-        });
-      }
-    }
-  }
-
   /* ---------- Cursor personalizado discreto ----------
      Solo en escritorio con puntero preciso (mouse/trackpad) y sin
      prefers-reduced-motion. En pantallas táctiles no se activa. */
