@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Navegación por ventanas ----------
      El sitio se organiza en ventanas (una por ítem del menú principal:
-     Inicio, Estudio Creativo, Portafolio, Journaling, Sobre CamiCrea y
+     Inicio, Estudio Creativo, Portafolio, Journaling, Sobre CAMICREA y
      Contacto). Solo una ventana está visible a la vez, sin recargar la
      página. Los anchors internos que antes apuntaban a secciones propias
      (por ejemplo #planes, #productos, #comunidad, #presentacion o
@@ -112,6 +112,69 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('hashchange', manejarHash);
     manejarHash();
+  }
+
+  /* ---------- Flores que se agrupan (animación única, solo en Inicio) ----------
+     Aparecen separadas y se desplazan suavemente hasta formar un pequeño
+     racimo decorativo. Se ejecuta una sola vez al cargar la página; se
+     omite con prefers-reduced-motion y en pantallas angostas. */
+  var floresAnimadas = document.getElementById('floresAnimadas');
+  if (floresAnimadas) {
+    var prefiereMenosMovimientoFlores = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var esPantallaAngostaFlores = window.matchMedia('(max-width: 640px)').matches;
+
+    if (!prefiereMenosMovimientoFlores && !esPantallaAngostaFlores) {
+      var flores = floresAnimadas.querySelectorAll('.flor-animada');
+      var posicionesFinales = [
+        { x: -26, y: -18 },
+        { x: 24, y: -22 },
+        { x: -18, y: 20 },
+        { x: 20, y: 22 }
+      ];
+
+      flores.forEach(function (flor) {
+        var inicioX = flor.getAttribute('data-inicio-x') || '0';
+        var inicioY = flor.getAttribute('data-inicio-y') || '0';
+        flor.style.transition = 'none';
+        flor.style.transform = 'translate(' + inicioX + 'px, ' + inicioY + 'px)';
+      });
+
+      window.setTimeout(function () {
+        flores.forEach(function (flor, indice) {
+          var destino = posicionesFinales[indice] || { x: 0, y: 0 };
+          flor.style.transition = '';
+          flor.style.transform = 'translate(' + destino.x + 'px, ' + destino.y + 'px)';
+          flor.classList.add('esta-lista');
+        });
+      }, 700);
+    }
+  }
+
+  /* ---------- Cursor personalizado discreto ----------
+     Solo en escritorio con puntero preciso (mouse/trackpad) y sin
+     prefers-reduced-motion. En pantallas táctiles no se activa. */
+  var puedeUsarCursorPersonalizado = window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (puedeUsarCursorPersonalizado) {
+    var cursorPunto = document.createElement('div');
+    cursorPunto.className = 'cursor-punto';
+    cursorPunto.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cursorPunto);
+
+    document.addEventListener('mousemove', function (event) {
+      cursorPunto.style.transform = 'translate(' + event.clientX + 'px, ' + event.clientY + 'px) translate(-50%, -50%)';
+      cursorPunto.classList.add('esta-activo');
+    });
+
+    document.addEventListener('mouseover', function (event) {
+      var esInteractivo = event.target.closest && event.target.closest('a, button, input, select, textarea, .proceso-dia');
+      cursorPunto.classList.toggle('esta-sobre-enlace', !!esInteractivo);
+    });
+
+    document.addEventListener('mouseleave', function () {
+      cursorPunto.classList.remove('esta-activo');
+    });
   }
 
   /* ---------- Año automático en el pie de página ---------- */

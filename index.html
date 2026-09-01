@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CamiCrea ✿ | Publicidad, creatividad, journaling y autocuidado</title>
-  <meta name="description" content="CamiCrea es el espacio de Camila Henríquez: estrategia y contenido para marcas a través del estudio creativo, y journaling, autocuidado y productos digitales para conectar contigo.">
+  <title>CAMICREA ✿ | Publicidad, creatividad, journaling y autocuidado</title>
+  <meta name="description" content="CAMICREA es el espacio de Camila Henríquez: estrategia y contenido para marcas a través del estudio creativo, y journaling, autocuidado y productos digitales para conectar contigo.">
   <meta name="theme-color" content="#FFF8F2">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CamiCrea">
-  <meta property="og:title" content="CamiCrea ✿ | Un espacio para crear tus ideas, tu marca y una vida más tuya">
+  <meta property="og:site_name" content="CAMICREA">
+  <meta property="og:title" content="CAMICREA ✿ | Publicidad, creatividad, journaling y autocuidado">
   <meta property="og:description" content="Estrategia, contenido y creatividad para marcas con personalidad, y journaling, autocuidado y herramientas para conectar contigo.">
   <meta property="og:image" content="assets/og-camicrea.jpg">
   <meta property="og:locale" content="es_CL">
 
   <!-- Favicon provisional (creado con SVG propio, sin descargas externas) -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Tipografías: Fraunces (serif editorial), Work Sans (sans funcional), Caveat (manuscrita, solo detalles puntuales) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,7 +33,7 @@
   <header class="site-header" id="header">
     <div class="container header-inner">
       <a class="logo" href="#inicio">
-        <img class="logo-img" src="./assets/logo-camicrea.png" alt="CamiCrea Estudio Creativo">
+        <img class="logo-img" src="./assets/logo-camicrea.png" alt="CAMICREA Estudio Creativo">
       </a>
 
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
@@ -43,10 +48,10 @@
           <li><a href="#estudio" class="nav-link">Estudio Creativo</a></li>
           <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
           <li><a href="#journaling" class="nav-link">Journaling, autocuidado y más</a></li>
-          <li><a href="#sobre-mi" class="nav-link">Sobre CamiCrea</a></li>
+          <li><a href="#sobre-mi" class="nav-link">Sobre CAMICREA</a></li>
           <li><a href="#contacto" class="nav-link">Contacto</a></li>
         </ul>
-        <a href="#estudio" class="btn btn-primary nav-cta">Explorar CamiCrea</a>
+        <a href="#estudio" class="btn btn-primary nav-cta">Explorar CAMICREA</a>
       </nav>
     </div>
   </header>
@@ -61,8 +66,50 @@
       <div class="container hero-inner">
         <p class="eyebrow reveal">Creado por Camila Henríquez, publicista y creadora de contenido.</p>
         <h1 class="hero-title reveal">¿Qué quieres crear hoy?</h1>
-        <p class="hero-lead reveal"><span class="marca-camicrea">CamiCrea</span> es un espacio para transformar ideas en contenido, proyectos y pequeñas acciones que te acerquen a lo que quieres.</p>
+        <p class="hero-lead reveal"><span class="marca-camicrea">CAMICREA</span> es un espacio para transformar ideas en contenido, proyectos y pequeñas acciones que te acerquen a lo que quieres.</p>
         <p class="hero-subtext reveal">Publicidad, creatividad, journaling, autocuidado y vida real, todo en un mismo lugar.</p>
+
+        <div class="hero-cta-wrap">
+          <a href="#portafolio" class="btn btn-primary hero-cta-portafolio reveal">Explora mi trabajo</a>
+          <div class="flores-animadas" aria-hidden="true" id="floresAnimadas">
+            <span class="flor-animada deco-flor" data-inicio-x="-120" data-inicio-y="-50"></span>
+            <span class="flor-animada deco-flor--verde" data-inicio-x="110" data-inicio-y="-60"></span>
+            <span class="flor-animada deco-flor" data-inicio-x="-90" data-inicio-y="55"></span>
+            <span class="flor-animada deco-flor--verde" data-inicio-x="95" data-inicio-y="60"></span>
+          </div>
+        </div>
+
+        <!--
+          Escritorio de fotografías: por ahora usa marcos-placeholder honestos
+          (sin fotos inventadas ni de stock) para los 3 proyectos reales del
+          portafolio. Cuando existan fotografías reales, reemplaza el
+          <div class="marco-foto">...</div> de cada tarjeta por una <img>
+          real con su alt correspondiente, conservando el marco y su
+          aspect-ratio para no generar saltos de layout.
+        -->
+        <div class="escritorio-fotos reveal" aria-label="Fotografías de proyectos del portafolio">
+          <a href="proyecto-oncomamas.html" class="escritorio-foto leve-giro-1">
+            <span class="deco-cinta escritorio-foto-cinta" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
+            <span class="escritorio-foto-nombre">Oncomamás</span>
+          </a>
+          <a href="proyecto-kitkat.html" class="escritorio-foto leve-giro-2">
+            <span class="deco-clip escritorio-foto-clip" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
+            <span class="escritorio-foto-nombre">KitKat</span>
+          </a>
+          <a href="proyecto-ada-vestuario.html" class="escritorio-foto leve-giro-3">
+            <span class="deco-pin deco-pin--verde escritorio-foto-pin" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
+            <span class="escritorio-foto-nombre">ADA Vestuario</span>
+          </a>
+        </div>
 
         <div class="hero-paths">
           <article class="path-card path-card--estudio reveal">
@@ -79,6 +126,12 @@
             <a href="#journaling" class="btn btn-secondary">Explorar este espacio</a>
           </article>
         </div>
+
+        <nav class="accesos-carpetas reveal" aria-label="Accesos rápidos a otras ventanas">
+          <a href="#portafolio" class="acceso-carpeta">Portafolio</a>
+          <a href="#sobre-mi" class="acceso-carpeta">Sobre CAMICREA</a>
+          <a href="#contacto" class="acceso-carpeta">Contacto</a>
+        </nav>
       </div>
     </section>
 
@@ -86,43 +139,43 @@
     <section class="estudio site-window" id="estudio" hidden>
       <div class="ventana-bloque">
       <div class="container">
-        <span class="section-tag section-tag--marca reveal">CamiCrea Estudio Creativo</span>
+        <span class="section-tag section-tag--marca reveal">CAMICREA Estudio Creativo</span>
         <h2 class="section-title reveal">Tu marca tiene algo que decir. Hagamos que se note.</h2>
-        <p class="section-lead reveal">Estrategia, contenido y creatividad para marcas con personalidad.</p>
+        <p class="section-lead reveal">Estrategia, contenido y creatividad para marcas con <mark class="destacador reveal">personalidad</mark>.</p>
         <p class="section-text reveal">En el estudio creativo unimos estrategia, organización, creatividad y criterio visual para construir contenido que tenga sentido para tu marca y conecte con las personas correctas.</p>
 
         <div class="servicios-grid">
-          <article class="servicio-card reveal">
+          <article class="servicio-card reveal"><span class="deco-clip" aria-hidden="true"></span>
             <span class="servicio-numero">01</span>
             <h3>Estrategia y planificación</h3>
             <p>Definimos objetivos, líneas de contenido y calendarios editoriales que ordenan la comunicación de tu marca sin perder su personalidad.</p>
           </article>
 
-          <article class="servicio-card reveal">
+          <article class="servicio-card reveal"><span class="deco-clip" aria-hidden="true"></span>
             <span class="servicio-numero">02</span>
             <h3>Community management</h3>
             <p>Gestión de tus redes sociales día a día: publicaciones, interacción con tu comunidad y seguimiento cercano de lo que está pasando.</p>
           </article>
 
-          <article class="servicio-card reveal">
+          <article class="servicio-card reveal"><span class="deco-clip" aria-hidden="true"></span>
             <span class="servicio-numero">03</span>
             <h3>Creación de contenido</h3>
             <p>Piezas, fotografías, formatos y contenido audiovisual pensados para redes sociales, adaptados a la identidad de tu marca.</p>
           </article>
 
-          <article class="servicio-card reveal">
+          <article class="servicio-card reveal"><span class="deco-clip" aria-hidden="true"></span>
             <span class="servicio-numero">04</span>
             <h3>Copies y guiones</h3>
             <p>Redacción de textos y guiones para Reels, TikTok y publicaciones, cuidando el tono de voz y la intención de cada mensaje.</p>
           </article>
 
-          <article class="servicio-card reveal">
+          <article class="servicio-card reveal"><span class="deco-clip" aria-hidden="true"></span>
             <span class="servicio-numero">05</span>
             <h3>Campañas e ideas creativas</h3>
             <p>Conceptos y campañas puntuales para lanzamientos, fechas clave o necesidades específicas de tu marca.</p>
           </article>
 
-          <article class="servicio-card reveal">
+          <article class="servicio-card reveal"><span class="deco-clip" aria-hidden="true"></span>
             <span class="servicio-numero">06</span>
             <h3>Auditorías y métricas orgánicas</h3>
             <p>Revisión del estado actual de tus redes y análisis de métricas orgánicas para entender qué está funcionando y qué se puede mejorar.</p>
@@ -171,7 +224,7 @@
               <li>Una reunión mensual</li>
               <li>Reporte de métricas orgánicas</li>
             </ul>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Contenido%20en%20la%20p%C3%A1gina%20de%20CamiCrea%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Contenido%20en%20la%20p%C3%A1gina%20de%20CAMICREA%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
           </article>
 
           <article class="plan-card plan-card--destacado reveal">
@@ -194,7 +247,7 @@
               <li>Reporte y análisis de métricas orgánicas</li>
               <li>Recomendaciones para el mes siguiente</li>
             </ul>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Gesti%C3%B3n%20en%20la%20p%C3%A1gina%20de%20CamiCrea%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-primary plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Gesti%C3%B3n%20en%20la%20p%C3%A1gina%20de%20CAMICREA%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-primary plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
           </article>
 
           <article class="plan-card reveal">
@@ -212,7 +265,7 @@
               <li>Auditoría de redes sociales</li>
               <li>Informes personalizados</li>
             </ul>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20CamiCrea%20y%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20personalizada." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Solicitar cotización</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20CAMICREA%20y%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20personalizada." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Solicitar cotización</a>
           </article>
         </div>
 
@@ -244,7 +297,10 @@
 
         <div class="portafolio-grid">
           <article class="proyecto-card reveal">
-            <div class="proyecto-imagen" aria-hidden="true"><span>Medical Store &amp; Ortopedia y Uniformes Pro</span></div>
+            <span class="deco-clip" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
             <div class="proyecto-info">
               <h3>Medical Store y Ortopedia &amp; Uniformes Pro</h3>
               <p class="proyecto-meta">Medical Store y Ortopedia &amp; Uniformes Pro</p>
@@ -253,7 +309,10 @@
           </article>
 
           <article class="proyecto-card reveal">
-            <div class="proyecto-imagen" aria-hidden="true"><span>Siempre estuvieron ahí</span></div>
+            <span class="deco-pin" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
             <div class="proyecto-info">
               <h3>Siempre estuvieron ahí</h3>
               <p class="proyecto-meta">Siempre estuvieron ahí</p>
@@ -262,7 +321,10 @@
           </article>
 
           <article class="proyecto-card reveal">
-            <div class="proyecto-imagen" aria-hidden="true"><span>10 años bajo un mismo paraguas</span></div>
+            <span class="deco-clip" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
             <div class="proyecto-info">
               <h3>10 años bajo un mismo paraguas</h3>
               <p class="proyecto-meta">Oncomamás</p>
@@ -271,7 +333,10 @@
           </article>
 
           <article class="proyecto-card reveal">
-            <div class="proyecto-imagen" aria-hidden="true"><span>Bless</span></div>
+            <span class="deco-pin deco-pin--verde" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
             <div class="proyecto-info">
               <h3>Bless</h3>
               <p class="proyecto-meta">Bless</p>
@@ -280,7 +345,10 @@
           </article>
 
           <article class="proyecto-card reveal">
-            <div class="proyecto-imagen" aria-hidden="true"><span>KitKat</span></div>
+            <span class="deco-clip" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
             <div class="proyecto-info">
               <h3>KitKat</h3>
               <p class="proyecto-meta">KitKat</p>
@@ -289,7 +357,10 @@
           </article>
 
           <article class="proyecto-card reveal">
-            <div class="proyecto-imagen" aria-hidden="true"><span>ADA Vestuario</span></div>
+            <span class="deco-pin" aria-hidden="true"></span>
+            <div class="marco-foto" aria-hidden="true">
+              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            </div>
             <div class="proyecto-info">
               <h3>ADA Vestuario</h3>
               <p class="proyecto-meta">ADA Vestuario</p>
@@ -320,21 +391,23 @@
         </ul>
 
         <div class="creando-juntas reveal">
+          <span class="deco-flor" aria-hidden="true"></span>
           <h3>Lo estamos creando juntas</h3>
           <p>Camila comparte los métodos, herramientas y hábitos que está probando en su propia vida: lo que funciona, lo que cuesta y todo lo que va aprendiendo en el proceso.</p>
           <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Seguir el proceso</a>
         </div>
 
         <div class="creando-juntas regalo-bloque reveal">
+          <span class="deco-flor deco-flor--verde" aria-hidden="true"></span>
           <h3>Un regalo para comenzar</h3>
-          <p>Descarga gratis tu plantilla al suscribirte a la comunidad de CamiCrea y recibe acompañamiento durante tu proceso de 30 días.</p>
+          <p>Descarga gratis tu plantilla al suscribirte a la comunidad de CAMICREA y recibe acompañamiento durante tu proceso de 30 días.</p>
           <a href="#suscripcion" class="btn btn-primary">Quiero comenzar</a>
         </div>
 
         <div class="suscripcion-bloque reveal" id="suscripcion">
           <span class="section-tag">Un regalo para ti</span>
           <h3 class="suscripcion-titulo">Recibe tu plantilla gratuita y comienza tu proceso 🌸</h3>
-          <p class="suscripcion-descripcion">Suscríbete a la comunidad de CamiCrea para descargar tu plantilla, registrar tus avances y recibir acompañamiento durante los próximos 30 días.</p>
+          <p class="suscripcion-descripcion">Suscríbete a la comunidad de CAMICREA para descargar tu plantilla, registrar tus avances y recibir acompañamiento durante los próximos 30 días.</p>
 
           <!--
             INTEGRACIÓN CON KIT (kit.com, antes ConvertKit) — PENDIENTE DE CONECTAR.
@@ -366,7 +439,7 @@
             <div class="form-field">
               <label class="checkbox-label">
                 <input type="checkbox" name="consentimiento" id="suscripcionConsentimiento" required>
-                <span>Quiero recibir la plantilla, los correos del proceso de 30 días y novedades de CamiCrea. Podré cancelar mi suscripción cuando quiera.</span>
+                <span>Quiero recibir la plantilla, los correos del proceso de 30 días y novedades de CAMICREA. Podré cancelar mi suscripción cuando quiera.</span>
               </label>
             </div>
 
@@ -383,7 +456,7 @@
             </div>
           </form>
 
-          <p class="suscripcion-privacidad">Utilizaremos tu nombre y correo únicamente para enviarte la plantilla, acompañar tu proceso y compartir novedades de CamiCrea. Podrás cancelar tu suscripción cuando quieras. <a href="privacidad.html">Política de privacidad</a>.</p>
+          <p class="suscripcion-privacidad">Utilizaremos tu nombre y correo únicamente para enviarte la plantilla, acompañar tu proceso y compartir novedades de CAMICREA. Podrás cancelar tu suscripción cuando quieras. <a href="privacidad.html">Política de privacidad</a>.</p>
         </div>
       </div>
       </div>
@@ -478,7 +551,7 @@
     <section class="sobre-mi site-window" id="sobre-mi" hidden>
       <div class="ventana-bloque presentacion" id="presentacion">
         <div class="container">
-          <span class="section-tag section-tag--marca reveal">CamiCrea</span>
+          <span class="section-tag section-tag--marca reveal">CAMICREA</span>
           <h2 class="section-title reveal">Crear también es una forma de avanzar</h2>
           <p class="section-text reveal">Este espacio nació para reunir dos partes de una misma historia: la publicista que transforma ideas en estrategias y la creadora que busca herramientas para vivir con mayor intención. Aquí puedes encontrar apoyo para hacer crecer tu marca y también recursos para conectar contigo.</p>
 
@@ -493,17 +566,23 @@
       </div>
 
       <div class="ventana-bloque">
-      <div class="container sobre-mi-inner">
-        <img class="sobre-mi-imagen reveal" src="./assets/sobre-mi/camila-henriquez.jpg" alt="Camila Henríquez, publicista y creadora de CamiCrea">
-        <div class="sobre-mi-texto reveal">
-          <span class="etiqueta-persona">Publicista y creadora</span>
-          <h2 class="section-title">Hola, soy Camila</h2>
-          <p>Soy Camila Henríquez, publicista, creadora de contenido y fundadora de <span class="marca-camicrea">CamiCrea</span>. Me gusta transformar ideas en mensajes claros, estrategias ordenadas y contenido con personalidad.</p>
-          <p>También estoy aprendiendo a construir una vida más consciente, organizada y conectada conmigo. De ese proceso nacen las herramientas de journaling, autocuidado y bienestar que comparto aquí.</p>
-          <p>Este espacio reúne esas dos partes de mí: la publicista que ayuda a las marcas a comunicar lo que las hace especiales y la creadora que comparte herramientas para que otras mujeres también puedan avanzar hacia lo que desean.</p>
-          <div class="sobre-mi-botones">
-            <a href="#portafolio" class="btn btn-primary">Conoce mi trabajo</a>
-            <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Sígueme en Instagram</a>
+      <div class="container">
+        <div class="portapapeles reveal">
+          <span class="deco-sujetador" aria-hidden="true"></span>
+          <span class="deco-lazo" aria-hidden="true"></span>
+          <div class="portapapeles-hoja sobre-mi-inner">
+            <img class="sobre-mi-imagen" src="./assets/sobre-mi/camila-henriquez.jpg" alt="Camila Henríquez, publicista y creadora de CAMICREA" loading="lazy">
+            <div class="sobre-mi-texto">
+              <span class="etiqueta-persona">Publicista y creadora</span>
+              <h2 class="section-title">Hola, soy Camila</h2>
+              <p>Soy Camila Henríquez, publicista, creadora de contenido y fundadora de <span class="marca-camicrea">CAMICREA</span>. Me gusta transformar ideas en mensajes claros, estrategias ordenadas y contenido con personalidad.</p>
+              <p>También estoy aprendiendo a construir una vida más consciente, organizada y conectada conmigo. De ese proceso nacen las herramientas de journaling, autocuidado y bienestar que comparto aquí.</p>
+              <p>Este espacio reúne esas dos partes de mí: la publicista que ayuda a las marcas a comunicar lo que las hace especiales y la creadora que comparte herramientas para que otras mujeres también puedan avanzar hacia lo que desean.</p>
+              <div class="sobre-mi-botones">
+                <a href="#portafolio" class="btn btn-primary">Conoce mi trabajo</a>
+                <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Sígueme en Instagram</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -523,6 +602,7 @@
             Ver README.md, sección "Cómo conectar el formulario", para integrarlo con Formspree, correo o WhatsApp.
           -->
           <form class="contacto-form reveal" id="contactoForm" novalidate>
+            <span class="deco-clip" aria-hidden="true"></span>
             <div class="form-field">
               <label for="nombre">Nombre</label>
               <input type="text" id="nombre" name="nombre" autocomplete="name" required>
@@ -584,7 +664,7 @@
 
           <div class="contacto-directo reveal">
             <h3>O escríbeme directamente</h3>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20tu%20p%C3%A1gina%20de%20CamiCrea%20y%20me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios." class="btn btn-outline btn-contacto" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20tu%20p%C3%A1gina%20de%20CAMICREA%20y%20me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios." class="btn btn-outline btn-contacto" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
             <a href="mailto:camiipublicista@gmail.com" class="btn btn-outline btn-contacto">Escribir por correo</a>
             <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-outline btn-contacto" target="_blank" rel="noopener noreferrer">Visitar Instagram</a>
           </div>
@@ -598,8 +678,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-marca">
-        <img class="footer-logo-img" src="./assets/logo-camicrea.png" alt="CamiCrea Estudio Creativo">
-        <p class="footer-tagline">Un espacio para crear tus ideas, tu marca y una vida más tuya.</p>
+        <img class="footer-logo-img" src="./assets/logo-camicrea.png" alt="CAMICREA Estudio Creativo">
+        <p class="footer-tagline">Publicidad, creatividad, journaling, autocuidado y vida real, todo en un mismo lugar.</p>
       </div>
 
       <nav class="footer-nav" aria-label="Navegación del pie de página">
@@ -607,7 +687,7 @@
         <a href="#estudio">Estudio Creativo</a>
         <a href="#portafolio">Portafolio</a>
         <a href="#journaling">Journaling, autocuidado y más</a>
-        <a href="#sobre-mi">Sobre CamiCrea</a>
+        <a href="#sobre-mi">Sobre CAMICREA</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
@@ -618,7 +698,7 @@
         <a href="mailto:camiipublicista@gmail.com">camiipublicista@gmail.com</a>
       </div>
 
-      <p class="footer-derechos">© <span id="anioActual">2026</span> CamiCrea. Todos los derechos reservados.</p>
+      <p class="footer-derechos">© <span id="anioActual">2026</span> CAMICREA. Todos los derechos reservados.</p>
 
       <p class="footer-aviso">Los contenidos y productos de journaling, manifestación y bienestar son herramientas de reflexión personal. No reemplazan atención psicológica, médica, financiera ni profesional y no garantizan resultados externos.</p>
     </div>
