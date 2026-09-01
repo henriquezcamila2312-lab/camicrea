@@ -54,10 +54,16 @@ para conectarla en el HTML.
   - `proyecto-oncomamas.jpg` — Oncomamás — 10 años bajo un mismo paraguas
   - `proyecto-bless.jpg` — Bless
   - `proyecto-kitkat.jpg` — KitKat
-  - `proyecto-06.jpg` — próximo proyecto a definir
-- **Medidas sugeridas:** 1000 × 625 px aprox. (proporción 16:10, igual que el marcador actual)
-- **Dónde aparece:** Sección "Portafolio" (`.proyecto-imagen`), una por cada tarjeta de proyecto
+  - `proyecto-ada-vestuario.jpg` — ADA Vestuario
+- **Medidas sugeridas:** 800 × 600 px aprox. (proporción 4:3, igual que el marcador actual)
+- **Dónde aparece:** Sección "Portafolio" (cada tarjeta usa `.marco-foto`, el marco-placeholder del archivador). Para conectar una foto real, dentro del `<div class="marco-foto" aria-hidden="true">...</div>` de la tarjeta correspondiente: quita `aria-hidden="true"` y el `<span class="marco-foto-etiqueta">`, y agrega adentro una `<img src="assets/proyecto-oncomamas.jpg" alt="...">` (con `loading="lazy"` si no es la primera imagen visible de la página). El marco (`.marco-foto`) ya reserva el espacio y el borde redondeado, así que no hace falta tocar el resto del HTML ni el CSS.
 - **Texto alternativo sugerido:** "Proyecto [nombre de la marca o cliente] — [breve descripción del trabajo realizado]"
+
+## 6.b Fotografías de Inicio ("escritorio creativo")
+
+- **Archivos sugeridos:** los mismos tres archivos de Oncomamás, KitKat y ADA Vestuario listados arriba (se reutilizan)
+- **Dónde aparece:** ventana "Inicio", bloque `.escritorio-fotos` (tres tarjetas apoyadas como fotos sobre un escritorio, con clip/cinta/chincheta decorativos)
+- Mismo patrón de reemplazo que el punto 6: cambia el `<div class="marco-foto">` de cada `.escritorio-foto` por una `<img>` real.
 
 ---
 
@@ -106,5 +112,20 @@ y referenciarlos desde `styles.css`.
 ---
 
 **Importante:** no se descargó ninguna imagen de internet para este sitio.
-Todos los marcadores visuales actuales están hechos solo con HTML y CSS
-(colores, degradados y texto), tal como se pidió.
+Todos los marcadores visuales actuales (marcos de foto, clips, chinchetas,
+cinta, flores, lazos) están hechos solo con HTML y CSS (colores, degradados,
+SVG en línea y texto), tal como se pidió. La única dependencia externa que
+se agregó son las tipografías de Google Fonts (Fraunces, Work Sans y
+Caveat), cargadas por enlace en el `<head>` de cada página — no son
+imágenes ni se descargan archivos al proyecto.
+
+## 10. Proyecto "LOOKBOOK 247" — pendiente de fotografías reales
+
+Se pidió agregar este proyecto al portafolio con una presentación
+editorial completa, usando fotografías originales de Camila (no imágenes
+tomadas de Behance). Como todavía no se recibieron esas fotografías ni la
+información de créditos (roles de Camila y Ruby), esta página **no se ha
+creado**. Cuando tengas las fotografías originales y los créditos, avisa
+para construir `proyecto-lookbook-247.html` siguiendo el mismo patrón que
+KitKat, Oncomamás y ADA Vestuario, y agregar su tarjeta al archivador de
+portafolio.
