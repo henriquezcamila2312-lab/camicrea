@@ -5,30 +5,29 @@
    ========================================================= */
 
 :root {
-  /* Paleta de color — alineada con el logo editorial de CAMICREA */
-  --color-marfil: #FFF8F2;
-  --color-rosa-palido: #FBE8EC;
-  --color-rosa-pastel: #F2C5D0;
-  --color-frambuesa: #C93F5B;
-  --color-burdeos: #8F2346;
-  --color-cafe: #3D3033;
-  --color-cafe-suave: rgba(61, 48, 51, 0.72);
+  /* Paleta de color — camicrea (rosado + verde hoja + café profundo) */
+  --color-marfil: #FFFDF5;
+  --color-rosa-palido: #FBE0E9;
+  --color-rosa-pastel: #F5B7CB;
+  --color-frambuesa: #EF9FBA;
+  --color-burdeos: #BD527A;
+  --color-cafe: #392A31;
+  --color-cafe-suave: rgba(57, 42, 49, 0.72);
   --color-blanco: #FFFFFF;
   --color-borde: var(--color-rosa-pastel);
 
   /* Paleta ampliada — escritorio creativo / scrapbook editorial */
-  --color-verde-suave: #DCE6D4;
-  --color-verde: #8FA888;
-  --color-verde-oscuro: #5E7856;
+  --color-verde-suave: #C9D9A8;
+  --color-verde: #667642;
+  --color-verde-oscuro: #4E5A32;
   --color-gris-claro: #E9E5DE;
   --color-gris: #B9B2A6;
-  --color-papel: #FFFDF9;
+  --color-papel: #FFFFFB;
   --color-destacador: #F6D77A;
 
   /* Tipografía */
-  --fuente-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
-  --fuente-sans: "Work Sans", "Segoe UI", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --fuente-manuscrita: "Caveat", "Segoe Script", cursive;
+  --fuente-serif: "Playfair Display", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+  --fuente-sans: "DM Sans", "Segoe UI", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Espaciado */
   --espacio-xs: 0.5rem;
@@ -57,7 +56,8 @@ html {
 body {
   margin: 0;
   background-color: var(--color-marfil);
-  background-image: linear-gradient(180deg, var(--color-rosa-palido) 0%, var(--color-marfil) 45%, var(--color-verde-suave) 100%);
+  background-image: radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
   color: var(--color-cafe);
   font-family: var(--fuente-sans);
   font-size: 16px;
@@ -69,9 +69,10 @@ img { max-width: 100%; display: block; }
 
 h1, h2, h3, h4 {
   font-family: var(--fuente-serif);
+  font-weight: 700;
   line-height: 1.15;
   margin: 0 0 var(--espacio-sm);
-  color: var(--color-burdeos);
+  color: var(--color-cafe);
 }
 
 p { margin: 0 0 var(--espacio-sm); }
@@ -151,8 +152,8 @@ textarea:focus-visible {
 }
 
 .btn-primary {
-  background-color: var(--color-frambuesa);
-  color: var(--color-blanco);
+  background-color: var(--color-cafe);
+  color: var(--color-marfil);
   box-shadow: var(--sombra-suave);
 }
 .btn-primary:hover { background-color: var(--color-burdeos); transform: translateY(-2px); }
@@ -161,14 +162,14 @@ textarea:focus-visible {
   background-color: var(--color-burdeos);
   color: var(--color-blanco);
 }
-.btn-secondary:hover { background-color: var(--color-frambuesa); transform: translateY(-2px); }
+.btn-secondary:hover { background-color: var(--color-cafe); transform: translateY(-2px); }
 
 .btn-outline {
   background-color: transparent;
-  color: var(--color-burdeos);
-  border-color: var(--color-burdeos);
+  color: var(--color-cafe);
+  border-color: var(--color-cafe);
 }
-.btn-outline:hover { background-color: var(--color-burdeos); color: var(--color-blanco); }
+.btn-outline:hover { background-color: var(--color-cafe); color: var(--color-blanco); }
 
 .btn.is-disabled,
 .btn:disabled {
@@ -328,6 +329,37 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border-top: 1px solid var(--color-borde);
 }
 
+/* Cinta de categorías: franja angosta que se desplaza en bucle con
+   los nombres reales de los servicios, a modo de encabezado decorativo
+   de la ventana Estudio Creativo. */
+.cinta-categorias {
+  overflow: hidden;
+  background-color: var(--color-burdeos);
+  color: var(--color-marfil);
+  padding: 0.55rem 0;
+}
+.cinta-categorias-track {
+  display: flex;
+  width: max-content;
+  animation: desplazar-cinta 28s linear infinite;
+}
+.cinta-categorias-track span {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-right: 0.4rem;
+}
+@keyframes desplazar-cinta {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinta-categorias-track { animation: none; }
+  .cinta-categorias { overflow-x: auto; }
+}
+
 .nav-link.esta-activo {
   color: var(--color-burdeos);
   border-bottom-color: var(--color-burdeos);
@@ -342,7 +374,6 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .deco,
 .deco-clip,
 .deco-pin,
-.deco-flor,
 .deco-lazo,
 .deco-brillo,
 .deco-sujetador {
@@ -362,31 +393,22 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .deco-pin {
   width: 19px;
   height: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%238F2346' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23C93F5B'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%23BD527A' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23EF9FBA'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
 }
 .deco-pin--verde {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%235E7856' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%238FA888'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
-}
-
-.deco-flor {
-  width: 30px;
-  height: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23F2C5D0'%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(72 16 16)'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(144 16 16)'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(216 16 16)'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(288 16 16)'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='3' fill='%23C93F5B'/%3E%3C/svg%3E");
-}
-.deco-flor--verde {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23DCE6D4'%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(72 16 16)'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(144 16 16)'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(216 16 16)'/%3E%3Cpath d='M16 16C13.5 11 13.5 5 16 2C18.5 5 18.5 11 16 16Z' transform='rotate(288 16 16)'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='3' fill='%238FA888'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%23667642' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23C9D9A8'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
 }
 
 .deco-lazo {
   width: 42px;
   height: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 34'%3E%3Cpath d='M26 15C20 8 10 5 5 8C2 10 2 15 5 17C10 20 20 18 26 15Z' fill='%238F2346'/%3E%3Cpath d='M26 15C32 8 42 5 47 8C50 10 50 15 47 17C42 20 32 18 26 15Z' fill='%238F2346'/%3E%3Cpath d='M14 9C16 11 17 13 17 15' stroke='%23C93F5B' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M38 9C36 11 35 13 35 15' stroke='%23C93F5B' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M26 15L24 26L26 24L28 26Z' fill='%238F2346'/%3E%3Ccircle cx='26' cy='15' r='4' fill='%23C93F5B'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 34'%3E%3Cpath d='M26 15C20 8 10 5 5 8C2 10 2 15 5 17C10 20 20 18 26 15Z' fill='%23BD527A'/%3E%3Cpath d='M26 15C32 8 42 5 47 8C50 10 50 15 47 17C42 20 32 18 26 15Z' fill='%23BD527A'/%3E%3Cpath d='M14 9C16 11 17 13 17 15' stroke='%23EF9FBA' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M38 9C36 11 35 13 35 15' stroke='%23EF9FBA' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M26 15L24 26L26 24L28 26Z' fill='%23BD527A'/%3E%3Ccircle cx='26' cy='15' r='4' fill='%23EF9FBA'/%3E%3C/svg%3E");
 }
 
 .deco-brillo {
   width: 16px;
   height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z' fill='%23F2C5D0'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z' fill='%23F5B7CB'/%3E%3C/svg%3E");
 }
 
 .deco-sujetador {
@@ -480,30 +502,30 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   border-radius: 6px 6px 0 0;
 }
 
-/* Portapapeles: ficha con sujetador metálico y lazo, para fichas breves */
-.portapapeles {
-  position: relative;
-  background-color: var(--color-rosa-pastel);
+/* Ventana de archivo: "sobre_mí.txt", con la misma barra de ventana
+   de navegador (puntos + etiqueta), para la ficha personal. */
+.ventana-archivo {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
   border-radius: var(--radio-borde);
-  padding: var(--espacio-lg) var(--espacio-md) var(--espacio-md);
   box-shadow: var(--sombra-suave);
+  overflow: hidden;
 }
-.portapapeles-hoja {
+.ventana-archivo-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.2rem;
   background-color: var(--color-papel);
-  border-radius: var(--radio-borde-sm);
+  border-bottom: 1px solid var(--color-borde);
+}
+.ventana-archivo-nombre {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--color-cafe-suave);
+}
+.ventana-archivo-contenido {
   padding: var(--espacio-lg) var(--espacio-md);
-  box-shadow: inset 0 0 0 1px rgba(143, 35, 70, 0.08);
-}
-.portapapeles .deco-sujetador {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.portapapeles .deco-lazo {
-  position: absolute;
-  top: var(--espacio-sm);
-  right: var(--espacio-md);
 }
 
 /* Nota sujeta con clip: para el formulario de contacto */
@@ -557,15 +579,6 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   }
 }
 
-/* Tipografía manuscrita: solo para detalles puntuales pequeños
-   (etiquetas cortas, notas breves). Nunca en párrafos, botones
-   esenciales ni textos pequeños de cuerpo. */
-.manuscrita {
-  font-family: var(--fuente-manuscrita);
-  font-weight: 600;
-  color: var(--color-burdeos);
-  line-height: 1.1;
-}
 
 /* Ligera variación de rotación para que las tarjetas se sientan
    apoyadas sobre un escritorio, no alineadas en cuadrícula perfecta. */
@@ -586,7 +599,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .section-tag {
   display: inline-block;
   background-color: var(--color-rosa-pastel);
-  color: var(--color-burdeos);
+  color: var(--color-cafe);
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.06em;
@@ -678,6 +691,11 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   margin: 0.25rem auto var(--espacio-sm);
   max-width: 900px;
 }
+.hero-title-acento {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-burdeos);
+}
 
 .hero-lead {
   font-size: 1.2rem;
@@ -721,7 +739,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   color: var(--color-burdeos);
 }
 
-.path-card--journaling .path-tag { color: var(--color-frambuesa); }
+.path-card--journaling .path-tag { color: var(--color-burdeos); }
 
 .path-card h2 { font-size: 1.5rem; }
 
@@ -731,6 +749,76 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   margin: 0 auto var(--espacio-lg);
 }
 .hero-cta-wrap .btn { position: relative; z-index: 1; }
+
+/* Ventana de navegador: composición decorativa del escritorio de Inicio,
+   con marcos de foto honestos (sin fotos inventadas) y una insignia. */
+.ventana-navegador {
+  position: relative;
+  max-width: 440px;
+  margin: 0 auto var(--espacio-lg);
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  overflow: hidden;
+  text-align: left;
+}
+.ventana-navegador-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--color-borde);
+  background-color: var(--color-papel);
+}
+.ventana-navegador-punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-rosa-pastel);
+}
+.ventana-navegador-punto:nth-child(2) { background-color: var(--color-verde-suave); }
+.ventana-navegador-punto:nth-child(3) { background-color: var(--color-burdeos); }
+.ventana-navegador-url {
+  margin-left: auto;
+  font-size: 0.76rem;
+  color: var(--color-cafe-suave);
+}
+.ventana-navegador-contenido {
+  position: relative;
+  padding: var(--espacio-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espacio-sm);
+}
+.ventana-navegador-contenido .marco-foto { aspect-ratio: 4 / 5; }
+.ventana-navegador-insignia {
+  position: absolute;
+  bottom: var(--espacio-sm);
+  right: var(--espacio-sm);
+  width: 92px;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--espacio-xs);
+  border-radius: 50%;
+  background-color: var(--color-burdeos);
+  color: var(--color-blanco);
+  font-family: var(--fuente-serif);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  box-shadow: var(--sombra-suave);
+  transform: rotate(-7deg);
+}
+@media (max-width: 520px) {
+  .ventana-navegador-contenido { grid-template-columns: 1fr; }
+  .ventana-navegador-insignia { position: static; margin: var(--espacio-sm) auto 0; transform: rotate(-3deg); }
+}
 
 .accesos-carpetas {
   display: flex;
@@ -788,32 +876,56 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 
 .servicio-card {
   position: relative;
+  margin-top: 24px;
   background-color: var(--color-papel);
-  border-radius: var(--radio-borde-sm);
+  border-radius: 4px var(--radio-borde-sm) var(--radio-borde-sm) var(--radio-borde-sm);
   padding: var(--espacio-md);
   border: 1px solid var(--color-borde);
   box-shadow: var(--sombra-papel);
   transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
 }
+.servicio-card--rosa { background-color: var(--color-rosa-palido); }
+.servicio-card--verde { background-color: var(--color-verde-suave); }
+.servicio-card--crema { background-color: var(--color-papel); }
+
 .servicio-card:nth-child(4n+1) { transform: rotate(-1.1deg); }
 .servicio-card:nth-child(4n+2) { transform: rotate(0.8deg); }
 .servicio-card:nth-child(4n+3) { transform: rotate(-0.6deg); }
 .servicio-card:nth-child(4n+4) { transform: rotate(1deg); }
 .servicio-card:hover { transform: rotate(0deg) translateY(-4px); box-shadow: var(--sombra-suave); }
-.servicio-card .deco-clip { top: -14px; left: var(--espacio-md); transform: rotate(-6deg); }
+
+/* Icono simple de línea/trazo plano por servicio (sustituye al clip
+   decorativo): un glifo pequeño en color café, sin fotografías ni
+   ilustraciones complejas. */
+.servicio-icono {
+  display: inline-flex;
+  color: var(--color-cafe);
+  margin-top: var(--espacio-sm);
+}
 @media (prefers-reduced-motion: reduce) {
   .servicio-card { transition: none; }
 }
 
-.servicio-numero {
-  display: inline-block;
-  font-family: var(--fuente-serif);
-  font-size: 1.4rem;
-  color: var(--color-frambuesa);
-  margin-bottom: 0.25rem;
+/* Pestaña de carpeta: número + nombre corto del servicio, en el
+   mismo tono que el cuerpo de la tarjeta (hereda su color de fondo). */
+.servicio-tab {
+  position: absolute;
+  top: -24px;
+  left: var(--espacio-md);
+  background-color: inherit;
+  border: 1px solid var(--color-borde);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 0.3rem 0.85rem;
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  color: var(--color-cafe);
+  white-space: nowrap;
 }
 
-.servicio-card h3 { font-size: 1.15rem; }
+.servicio-card h3 { font-size: 1.15rem; margin-top: var(--espacio-sm); }
 .servicio-card p { color: var(--color-cafe-suave); font-size: 0.95rem; margin: 0; }
 
 .metodologia {
@@ -940,7 +1052,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-frambuesa);
+  color: var(--color-burdeos);
   font-weight: 700;
 }
 
@@ -1064,7 +1176,6 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   box-shadow: var(--sombra-papel);
   max-width: 680px;
 }
-.creando-juntas .deco-flor { top: var(--espacio-sm); right: var(--espacio-md); }
 .creando-juntas p { color: var(--color-cafe-suave); }
 
 .regalo-bloque { margin-top: var(--espacio-md); }
@@ -1173,7 +1284,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   content: "✿";
   position: absolute;
   left: 0;
-  color: var(--color-frambuesa);
+  color: var(--color-burdeos);
   font-size: 0.85rem;
 }
 
@@ -1185,7 +1296,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 }
 .producto-tags li {
   background-color: var(--color-rosa-pastel);
-  color: var(--color-burdeos);
+  color: var(--color-cafe);
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1222,7 +1333,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .proximamente-badge {
   display: inline-block;
   background-color: var(--color-rosa-pastel);
-  color: var(--color-burdeos);
+  color: var(--color-cafe);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1305,6 +1416,14 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 }
 
 /* =================== CONTACTO =================== */
+.contacto-tagline {
+  font-family: var(--fuente-serif);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--color-cafe);
+  max-width: 640px;
+  margin-bottom: var(--espacio-sm);
+}
+
 .contacto-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -1361,7 +1480,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .form-aviso {
   margin-top: var(--espacio-sm);
   background-color: var(--color-rosa-palido);
-  color: var(--color-burdeos);
+  color: var(--color-cafe);
   padding: 0.85rem 1rem;
   border-radius: var(--radio-borde-sm);
   font-size: 0.9rem;
@@ -1384,6 +1503,51 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 }
 
 /* =================== PIE DE PÁGINA =================== */
+
+/* Cierre visual: última invitación antes del pie de página propiamente
+   dicho, con un fondo de manchas de color suaves (sin flores ni fotos
+   dibujadas, solo degradados abstractos) y el correo real de contacto. */
+.footer-cierre {
+  background-color: var(--color-marfil);
+  background-image:
+    radial-gradient(ellipse 420px 320px at 12% 25%, rgba(201, 217, 168, 0.4), transparent 70%),
+    radial-gradient(ellipse 460px 380px at 88% 20%, rgba(245, 183, 203, 0.45), transparent 70%),
+    radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
+  background-size: auto, auto, 24px 24px;
+  text-align: center;
+  padding: var(--espacio-xl) var(--espacio-md);
+}
+.footer-cierre-inner { max-width: 640px; margin: 0 auto; }
+.footer-cierre-eyebrow {
+  font-size: 1.05rem;
+  color: var(--color-cafe-suave);
+  margin: 0 0 var(--espacio-xs);
+}
+.footer-cierre-titulo {
+  font-family: var(--fuente-serif);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  color: var(--color-cafe);
+  line-height: 1.1;
+  margin: 0 0 var(--espacio-lg);
+}
+.footer-cierre-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-burdeos);
+  color: var(--color-marfil);
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--transicion), background-color var(--transicion);
+}
+.footer-cierre-boton:hover { background-color: var(--color-cafe); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .footer-cierre-boton { transition: none; }
+}
+
 .site-footer {
   background-color: var(--color-burdeos);
   color: var(--color-marfil);
@@ -1428,6 +1592,22 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   font-size: 0.9rem;
   opacity: 0.85;
 }
+
+.footer-firma {
+  color: var(--color-rosa-pastel);
+  font-style: italic;
+  font-size: 0.92rem;
+  margin: -0.4rem 0 0;
+}
+
+.footer-volver-arriba {
+  justify-self: start;
+  color: var(--color-marfil);
+  opacity: 0.85;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+.footer-volver-arriba:hover { opacity: 1; }
 
 .footer-aviso {
   font-size: 0.82rem;

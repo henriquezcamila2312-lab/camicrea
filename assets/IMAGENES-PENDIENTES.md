@@ -59,11 +59,11 @@ para conectarla en el HTML.
 - **Dónde aparece:** Sección "Portafolio" (cada tarjeta usa `.marco-foto`, el marco-placeholder del archivador). Para conectar una foto real, dentro del `<div class="marco-foto" aria-hidden="true">...</div>` de la tarjeta correspondiente: quita `aria-hidden="true"` y el `<span class="marco-foto-etiqueta">`, y agrega adentro una `<img src="assets/proyecto-oncomamas.jpg" alt="...">` (con `loading="lazy"` si no es la primera imagen visible de la página). El marco (`.marco-foto`) ya reserva el espacio y el borde redondeado, así que no hace falta tocar el resto del HTML ni el CSS.
 - **Texto alternativo sugerido:** "Proyecto [nombre de la marca o cliente] — [breve descripción del trabajo realizado]"
 
-## 6.b Fotografías de Inicio ("escritorio creativo")
+## 6.b Fotografías de Inicio (ventana de navegador)
 
-- **Archivos sugeridos:** los mismos tres archivos de Oncomamás, KitKat y ADA Vestuario listados arriba (se reutilizan)
-- **Dónde aparece:** ventana "Inicio", bloque `.escritorio-fotos` (tres tarjetas apoyadas como fotos sobre un escritorio, con clip/cinta/chincheta decorativos)
-- Mismo patrón de reemplazo que el punto 6: cambia el `<div class="marco-foto">` de cada `.escritorio-foto` por una `<img>` real.
+- **Archivos sugeridos:** fotografías reales de proyectos o del proceso creativo de camicrea (por ejemplo, las mismas de Oncomamás, KitKat o ADA Vestuario)
+- **Dónde aparece:** ventana "Inicio", `.ventana-navegador-contenido` (dos marcos dentro de una ventana estilo navegador, con la insignia "crear con intención")
+- Mismo patrón de reemplazo que el punto 6: cambia cada `<div class="marco-foto">` dentro de `.ventana-navegador-contenido` por una `<img>` real. Camila envió capturas de referencia donde esta ventana muestra fotografías reales de flores prensadas en capas; en cuanto existan fotografías reales del proyecto (no necesariamente flores), se conectan aquí siguiendo el mismo marco.
 
 ---
 
