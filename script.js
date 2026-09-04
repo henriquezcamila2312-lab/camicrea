@@ -288,19 +288,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     seleccionesIOS.forEach(function (span) {
       var claseColor = colorManijaDe(span);
+      var sinManijas = span.classList.contains('seleccion-ios--sin-manijas');
+      var soloFin = span.classList.contains('seleccion-ios--solo-fin');
 
-      var mangoInicio = document.createElement('span');
-      mangoInicio.className = 'seleccion-ios-mango' + (claseColor ? ' ' + claseColor : '');
-      mangoInicio.setAttribute('aria-hidden', 'true');
+      if (!sinManijas && !soloFin) {
+        var mangoInicio = document.createElement('span');
+        mangoInicio.className = 'seleccion-ios-mango' + (claseColor ? ' ' + claseColor : '');
+        mangoInicio.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(mangoInicio);
+        span._mangoInicio = mangoInicio;
+      }
 
-      var mangoFin = document.createElement('span');
-      mangoFin.className = 'seleccion-ios-mango' + (claseColor ? ' ' + claseColor : '');
-      mangoFin.setAttribute('aria-hidden', 'true');
-
-      document.body.appendChild(mangoInicio);
-      document.body.appendChild(mangoFin);
-      span._mangoInicio = mangoInicio;
-      span._mangoFin = mangoFin;
+      if (!sinManijas) {
+        var mangoFin = document.createElement('span');
+        mangoFin.className = 'seleccion-ios-mango' + (claseColor ? ' ' + claseColor : '');
+        mangoFin.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(mangoFin);
+        span._mangoFin = mangoFin;
+      }
     });
 
     posicionarSelecciones = function () {
@@ -312,20 +317,24 @@ document.addEventListener('DOMContentLoaded', function () {
         var scrollX = window.scrollX;
         var scrollY = window.scrollY;
 
-        span._mangoInicio.style.left = (primero.left + scrollX) + 'px';
-        span._mangoInicio.style.top = (primero.bottom + scrollY) + 'px';
-        span._mangoInicio.style.setProperty('--alto-linea', primero.height + 'px');
+        if (span._mangoInicio) {
+          span._mangoInicio.style.left = (primero.left + scrollX) + 'px';
+          span._mangoInicio.style.top = (primero.bottom + scrollY) + 'px';
+          span._mangoInicio.style.setProperty('--alto-linea', primero.height + 'px');
+        }
 
-        span._mangoFin.style.left = (ultimo.right + scrollX) + 'px';
-        span._mangoFin.style.top = (ultimo.bottom + scrollY) + 'px';
-        span._mangoFin.style.setProperty('--alto-linea', ultimo.height + 'px');
+        if (span._mangoFin) {
+          span._mangoFin.style.left = (ultimo.right + scrollX) + 'px';
+          span._mangoFin.style.top = (ultimo.bottom + scrollY) + 'px';
+          span._mangoFin.style.setProperty('--alto-linea', ultimo.height + 'px');
+        }
       });
     };
 
     var marcarSeleccionVisible = function (span) {
       span.classList.add('is-visible');
-      span._mangoInicio.classList.add('is-visible');
-      span._mangoFin.classList.add('is-visible');
+      if (span._mangoInicio) { span._mangoInicio.classList.add('is-visible'); }
+      if (span._mangoFin) { span._mangoFin.classList.add('is-visible'); }
       window.requestAnimationFrame(posicionarSelecciones);
     };
 
