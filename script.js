@@ -114,30 +114,53 @@ document.addEventListener('DOMContentLoaded', function () {
     manejarHash();
   }
 
-  /* ---------- Cursor personalizado discreto ----------
+  /* ---------- Cursor personalizado: flecha pixelada + hilo burdeos ----------
      Solo en escritorio con puntero preciso (mouse/trackpad) y sin
      prefers-reduced-motion. En pantallas táctiles no se activa. */
   var puedeUsarCursorPersonalizado = window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (puedeUsarCursorPersonalizado) {
-    var cursorPunto = document.createElement('div');
-    cursorPunto.className = 'cursor-punto';
-    cursorPunto.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(cursorPunto);
+    document.body.classList.add('cursor-personalizado-activo');
+
+    var cursorFlecha = document.createElement('div');
+    cursorFlecha.className = 'cursor-flecha';
+    cursorFlecha.setAttribute('aria-hidden', 'true');
+    cursorFlecha.innerHTML = '<svg viewBox="0 0 14 14" width="18" height="18" shape-rendering="crispEdges"><polygon points="1,1 1,11 4,8.3 5.8,12 7.6,11.1 5.8,7.4 10,7.4" fill="#211C1E" stroke="#FFFDF9" stroke-width="1"/></svg>';
+
+    var cursorHilo = document.createElement('div');
+    cursorHilo.className = 'cursor-hilo';
+    cursorHilo.setAttribute('aria-hidden', 'true');
+    cursorHilo.innerHTML = '<svg viewBox="0 0 40 20" width="40" height="20"><path d="M1 2C10 2 8 18 20 14C28 11 30 6 38 8" fill="none" stroke="#8D2949" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/></svg>';
+
+    var cursorAccento = document.createElement('div');
+    cursorAccento.className = 'cursor-accento';
+    cursorAccento.setAttribute('aria-hidden', 'true');
+    cursorAccento.innerHTML = '<svg viewBox="0 0 30 30" width="16" height="16"><path d="M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z" fill="#8D2949"/></svg>';
+
+    document.body.appendChild(cursorHilo);
+    document.body.appendChild(cursorFlecha);
+    document.body.appendChild(cursorAccento);
 
     document.addEventListener('mousemove', function (event) {
-      cursorPunto.style.transform = 'translate(' + event.clientX + 'px, ' + event.clientY + 'px) translate(-50%, -50%)';
-      cursorPunto.classList.add('esta-activo');
+      var x = event.clientX;
+      var y = event.clientY;
+      cursorFlecha.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+      cursorHilo.style.transform = 'translate(' + (x - 6) + 'px, ' + (y + 2) + 'px)';
+      cursorAccento.style.transform = 'translate(' + (x + 16) + 'px, ' + (y + 16) + 'px)';
+      cursorFlecha.classList.add('esta-activo');
+      cursorHilo.classList.add('esta-activo');
     });
 
     document.addEventListener('mouseover', function (event) {
       var esInteractivo = event.target.closest && event.target.closest('a, button, input, select, textarea, .proceso-dia');
-      cursorPunto.classList.toggle('esta-sobre-enlace', !!esInteractivo);
+      cursorAccento.classList.toggle('esta-visible', !!esInteractivo);
     });
 
     document.addEventListener('mouseleave', function () {
-      cursorPunto.classList.remove('esta-activo');
+      cursorFlecha.classList.remove('esta-activo');
+      cursorHilo.classList.remove('esta-activo');
+      cursorAccento.classList.remove('esta-visible');
     });
   }
 

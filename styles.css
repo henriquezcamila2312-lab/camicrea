@@ -684,33 +684,42 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   transform: rotate(-8deg);
 }
 
-/* Cursor personalizado discreto (solo escritorio con puntero preciso) */
-.cursor-punto {
+/* Cursor personalizado: flecha pixelada moderna + un hilo fino burdeos
+   que la acompaña, y un pequeño brillo que aparece sobre enlaces y
+   botones. Reemplaza el cursor nativo solo en escritorio con puntero
+   preciso; se desactiva por completo en táctil y con menos movimiento. */
+body.cursor-personalizado-activo,
+body.cursor-personalizado-activo a,
+body.cursor-personalizado-activo button {
+  cursor: none;
+}
+
+.cursor-flecha,
+.cursor-hilo,
+.cursor-accento {
   position: fixed;
   top: 0;
   left: 0;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-burdeos);
   pointer-events: none;
   z-index: 2000;
-  transform: translate(-50%, -50%);
-  transition: width 0.18s ease, height 0.18s ease, background-color 0.18s ease;
-  mix-blend-mode: multiply;
   opacity: 0;
 }
-.cursor-punto.esta-activo { opacity: 1; }
-.cursor-punto.esta-sobre-enlace {
-  width: 32px;
-  height: 32px;
-  background-color: rgba(141, 41, 73, 0.14);
-}
+.cursor-flecha { transition: opacity 0.15s ease; }
+.cursor-hilo { transition: transform 0.15s ease-out, opacity 0.15s ease; }
+.cursor-accento { transition: transform 0.15s ease-out, opacity 0.2s ease; }
+
+.cursor-flecha.esta-activo,
+.cursor-hilo.esta-activo { opacity: 1; }
+.cursor-accento.esta-visible { opacity: 1; }
+
 @media (hover: none), (pointer: coarse) {
-  .cursor-punto { display: none; }
+  .cursor-flecha, .cursor-hilo, .cursor-accento { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cursor-punto { display: none; }
+  .cursor-flecha, .cursor-hilo, .cursor-accento { display: none; }
+  body.cursor-personalizado-activo,
+  body.cursor-personalizado-activo a,
+  body.cursor-personalizado-activo button { cursor: auto; }
 }
 
 @media (max-width: 640px) {
