@@ -50,14 +50,17 @@ para conectarla en el HTML.
 
 - **Archivos sugeridos:**
   - `proyecto-medical-store.jpg` — Medical Store y Ortopedia & Uniformes Pro
+  - `proyecto-247.jpg` — 247 (ver también sección 10, más abajo)
   - `proyecto-siempre-estuvieron-ahi.jpg` — Siempre estuvieron ahí
+  - `proyecto-datecolor.jpg` — DateColor
+  - `proyecto-reino-de-los-dientes.jpg` — El Reino de los Dientes
   - `proyecto-oncomamas.jpg` — Oncomamás — 10 años bajo un mismo paraguas
-  - `proyecto-bless.jpg` — Bless
   - `proyecto-kitkat.jpg` — KitKat
   - `proyecto-ada-vestuario.jpg` — ADA Vestuario
 - **Medidas sugeridas:** 800 × 600 px aprox. (proporción 4:3, igual que el marcador actual)
-- **Dónde aparece:** Sección "Portafolio" (cada tarjeta usa `.marco-foto`, el marco-placeholder del archivador). Para conectar una foto real, dentro del `<div class="marco-foto" aria-hidden="true">...</div>` de la tarjeta correspondiente: quita `aria-hidden="true"` y el `<span class="marco-foto-etiqueta">`, y agrega adentro una `<img src="assets/proyecto-oncomamas.jpg" alt="...">` (con `loading="lazy"` si no es la primera imagen visible de la página). El marco (`.marco-foto`) ya reserva el espacio y el borde redondeado, así que no hace falta tocar el resto del HTML ni el CSS.
+- **Dónde aparece:** Sección "Portafolio" (cada tarjeta es una carpeta del archivador y usa `.marco-foto`, el marco-placeholder). Para conectar una foto real, dentro del `<div class="marco-foto" aria-hidden="true">...</div>` de la tarjeta correspondiente: quita `aria-hidden="true"` y el `<span class="marco-foto-etiqueta">`, y agrega adentro una `<img src="assets/proyecto-oncomamas.jpg" alt="...">` (con `loading="lazy"` si no es la primera imagen visible de la página). El marco (`.marco-foto`) ya reserva el espacio y el borde redondeado, así que no hace falta tocar el resto del HTML ni el CSS.
 - **Texto alternativo sugerido:** "Proyecto [nombre de la marca o cliente] — [breve descripción del trabajo realizado]"
+- Nota: "Bless" salió de esta lista (no estaba entre los proyectos que Camila pidió preparar en la última ronda de instrucciones) y no tenía contenido real todavía, así que no se perdió nada al quitarlo. Si Bless sigue vigente, avísame y lo repongo.
 
 ## 6.b Fotografías de Inicio (ventana de navegador)
 

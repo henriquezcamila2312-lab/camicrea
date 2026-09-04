@@ -147,6 +147,16 @@ document.addEventListener('DOMContentLoaded', function () {
     anioActual.textContent = String(new Date().getFullYear());
   }
 
+  /* ---------- Fecha automática en la nota "Desde mi escritorio" ---------- */
+  var notaFecha = document.getElementById('notaFecha');
+  if (notaFecha) {
+    try {
+      notaFecha.textContent = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (error) {
+      notaFecha.textContent = '';
+    }
+  }
+
   /* ---------- Animaciones discretas al aparecer secciones ---------- */
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealElements = document.querySelectorAll('.reveal');
@@ -164,6 +174,77 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     revealElements.forEach(function (el) { observer.observe(el); });
+  }
+
+  /* ---------- Selector Social Media / Community Management ---------- */
+  var tabSocialMedia = document.getElementById('tabSocialMedia');
+  var tabCommunity = document.getElementById('tabCommunity');
+  var panelSocialMedia = document.getElementById('panelSocialMedia');
+  var panelCommunity = document.getElementById('panelCommunity');
+
+  if (tabSocialMedia && tabCommunity && panelSocialMedia && panelCommunity) {
+    var mostrarPanelServicios = function (tabActivo) {
+      var esSocialMedia = tabActivo === tabSocialMedia;
+
+      tabSocialMedia.classList.toggle('is-activo', esSocialMedia);
+      tabSocialMedia.setAttribute('aria-selected', String(esSocialMedia));
+      tabSocialMedia.tabIndex = esSocialMedia ? 0 : -1;
+
+      tabCommunity.classList.toggle('is-activo', !esSocialMedia);
+      tabCommunity.setAttribute('aria-selected', String(!esSocialMedia));
+      tabCommunity.tabIndex = esSocialMedia ? -1 : 0;
+
+      panelSocialMedia.hidden = !esSocialMedia;
+      panelCommunity.hidden = esSocialMedia;
+
+      // El panel recién mostrado debe verse desde el principio, sin
+      // depender de que el scroll vuelva a cruzar su umbral de aparición.
+      var panelVisible = esSocialMedia ? panelSocialMedia : panelCommunity;
+      panelVisible.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    };
+
+    tabSocialMedia.addEventListener('click', function () { mostrarPanelServicios(tabSocialMedia); });
+    tabCommunity.addEventListener('click', function () { mostrarPanelServicios(tabCommunity); });
+  }
+
+  /* ---------- "¿Cómo trabajamos?": checklist que se marca sola al hacer scroll ---------- */
+  var metodologiaLista = document.getElementById('metodologiaLista');
+  var metodologiaFinal = document.getElementById('metodologiaFinal');
+
+  if (metodologiaLista && metodologiaFinal) {
+    var itemsMetodologia = metodologiaLista.querySelectorAll('.metodologia-item');
+
+    var marcarChecklist = function () {
+      if (prefersReducedMotion) {
+        itemsMetodologia.forEach(function (item) { item.classList.add('is-checked'); });
+        metodologiaFinal.classList.add('is-visible');
+        return;
+      }
+      itemsMetodologia.forEach(function (item, index) {
+        window.setTimeout(function () {
+          item.classList.add('is-checked');
+          if (index === itemsMetodologia.length - 1) {
+            window.setTimeout(function () { metodologiaFinal.classList.add('is-visible'); }, 300);
+          }
+        }, index * 260);
+      });
+    };
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      marcarChecklist();
+    } else {
+      var metodologiaObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            marcarChecklist();
+            metodologiaObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      metodologiaObserver.observe(metodologiaLista);
+    }
   }
 
   /* ---------- "Conocer la plantilla" (Método 369): despliega detalle ---------- */
