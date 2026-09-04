@@ -220,29 +220,50 @@ textarea:focus-visible {
   display: block;
 }
 
+/* Botón de menú: una única carpeta principal ("Explorar Camicrea"),
+   para que se entienda de inmediato que se puede tocar y no quede un
+   bloque vacío esperando interacción. */
 .nav-toggle {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  background: transparent;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-borde-sm);
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  background-color: var(--color-rosa-pastel);
+  border: 1.5px solid var(--color-burdeos);
+  border-radius: 4px 16px 16px 16px;
+  color: var(--color-cafe);
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: var(--sombra-papel);
+  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco), background-color var(--transicion-deco);
+  animation: brillo-toggle 3s ease-in-out infinite;
 }
-.nav-toggle-bar {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-burdeos);
-  border-radius: 2px;
-  transition: transform var(--transicion), opacity var(--transicion);
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-suave);
+  background-color: var(--color-rosa-principal, var(--color-rosa-pastel));
 }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle-carpeta { display: inline-flex; flex-shrink: 0; }
+.nav-toggle-flecha {
+  display: inline-flex;
+  margin-left: 0.15rem;
+  transition: transform var(--transicion-deco);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-flecha { transform: rotate(180deg); }
+@keyframes brillo-toggle {
+  0%, 100% { box-shadow: var(--sombra-papel); }
+  50% { box-shadow: var(--sombra-papel), 0 0 0 4px rgba(243, 175, 195, 0.35); }
+}
+@media (max-width: 420px) {
+  .nav-toggle-texto { display: none; }
+  .nav-toggle { padding: 0.6rem; border-radius: 4px 14px 14px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle { animation: none; transition: none; }
+  .nav-toggle-flecha { transition: none; }
+}
 
 .primary-nav {
   display: flex;
@@ -298,6 +319,13 @@ textarea:focus-visible {
 .carpeta-nav-item {
   position: relative;
   transition: margin var(--transicion-deco);
+  opacity: 0;
+  transform: translateY(-14px);
+  transition: margin var(--transicion-deco), opacity 0.3s ease, transform 0.3s ease;
+}
+.carpeta-nav-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 .carpeta-nav-item + .carpeta-nav-item { margin-top: -22px; }
 .carpeta-nav-item:hover,
@@ -425,6 +453,17 @@ textarea:focus-visible {
 /* =================== SECCIONES GENERALES =================== */
 section { padding: var(--espacio-xl) 0; position: relative; }
 
+/* Las ventanas que empiezan con una franja animada a sangre (Estudio
+   Creativo, Crear también es cuidarse) no deben heredar el padding
+   superior de .section: la franja debe quedar pegada al encabezado,
+   sin un bloque en blanco antes. El espacio se recupera después de la
+   franja, sobre el primer bloque de contenido. */
+.estudio, .journaling { padding-top: 0; }
+.estudio > .ventana-bloque:first-of-type,
+.journaling > .ventana-bloque:first-of-type {
+  padding-top: var(--espacio-xl);
+}
+
 /* =================== NAVEGACIÓN POR VENTANAS ===================
    El sitio se organiza en "ventanas" (una por ítem del menú principal).
    Solo una ventana está visible a la vez; script.js controla el cambio
@@ -524,7 +563,8 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .deco-pin,
 .deco-lazo,
 .deco-brillo,
-.deco-sujetador {
+.deco-sujetador,
+.deco-boton-costura {
   position: absolute;
   pointer-events: none;
   background-repeat: no-repeat;
@@ -563,6 +603,15 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   width: 52px;
   height: 34px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 42'%3E%3Cpath d='M23 15C23 9 27 5 30 5C33 5 37 9 37 15' fill='none' stroke='%23B9B2A6' stroke-width='3'/%3E%3Cpath d='M15 15L45 15L39 30L21 30Z' fill='%23B9B2A6'/%3E%3Cpath d='M12 15L20 15L14 24Z' fill='%238C8578'/%3E%3Cpath d='M48 15L40 15L46 24Z' fill='%238C8578'/%3E%3C/svg%3E");
+}
+
+/* Botón de costura: pequeño detalle circular tipo botón cosido, para
+   variar los acentos de esquina de las notas sin repetir siempre el
+   mismo clip. */
+.deco-boton-costura {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%238D2949' stroke-width='2.5'/%3E%3Ccircle cx='12' cy='12' r='1.6' fill='%238D2949'/%3E%3Ccircle cx='20' cy='12' r='1.6' fill='%238D2949'/%3E%3Ccircle cx='12' cy='20' r='1.6' fill='%238D2949'/%3E%3Ccircle cx='20' cy='20' r='1.6' fill='%238D2949'/%3E%3C/svg%3E");
 }
 
 .deco-cinta {
@@ -643,27 +692,76 @@ section { padding: var(--espacio-xl) 0; position: relative; }
     linear-gradient(155deg, var(--color-papel), var(--color-verde-suave) 65%, var(--color-rosa-palido));
 }
 
-/* Bloque destacado: reemplaza el resaltado amarillo por un bloque de
-   rosado claro con texto en negro o burdeos, para frases que necesitan
-   protagonismo sin usar un color ajeno a la paleta. */
-.bloque-destacado {
+/* =================== SELECCIÓN ESTILO iOS/iPAD ===================
+   Componente reutilizable que imita la selección de texto de
+   iPhone/iPad: una franja de color translúcida detrás del texto (con
+   esquinas suaves, nunca una caja sólida) y dos manijas circulares —
+   una al inicio, otra al final — unidas al destacado por una línea
+   vertical fina. Las manijas se posicionan por JS (ver script.js,
+   posicionarSelecciones) a partir de getClientRects(), así que
+   funcionan igual si el texto ocupa una o varias líneas. Aparece
+   progresivamente al entrar en pantalla (helper .seleccion-ios en
+   script.js), sin nunca ocultar las letras. */
+.seleccion-ios {
+  position: relative;
   display: inline;
-  background-color: var(--color-rosa-palido);
-  color: var(--color-cafe);
-  padding: 0.1em 0.3em;
-  border-radius: 6px;
+  border-radius: 5px;
+  padding: 0.02em 0.06em;
+  margin: 0 -0.02em;
+  background-color: transparent;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  transition: background-color 0.45s ease;
+  transition-delay: calc(var(--indice, 0) * 0.16s);
+}
+.seleccion-ios--rosa.is-visible { background-color: rgba(243, 175, 195, 0.4); }
+.seleccion-ios--verde.is-visible { background-color: rgba(201, 215, 167, 0.48); }
+.seleccion-ios--negro.is-visible { background-color: rgba(255, 253, 249, 0.18); }
+
+.seleccion-ios-mango {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-burdeos);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  transition-delay: calc(var(--indice, 0) * 0.16s + 0.15s);
+}
+.seleccion-ios-mango::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 2px;
+  height: var(--alto-linea, 14px);
+  transform: translateX(-50%);
+  background-color: inherit;
+  border-radius: 1px;
+}
+.seleccion-ios-mango.is-visible { opacity: 1; }
+.seleccion-ios-mango--verde { background-color: var(--color-verde); }
+.seleccion-ios-mango--negro { background-color: var(--color-marfil); }
+
+/* Cursor de texto: puede quedar al final de una frase destacada, como
+   si todavía se pudiera seguir escribiendo. */
+.cursor-texto-final {
+  display: inline-block;
+  width: 2px;
+  height: 0.95em;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  background-color: var(--color-burdeos);
+  animation: parpadeo-cursor 1s step-end infinite;
 }
 
-/* Subrayado tipo Marcación de iPhone/Apple Pencil: solo para palabras
-   puntuales dentro de un párrafo, nunca para el texto completo. */
-.subrayado-marcador {
-  text-decoration: underline;
-  text-decoration-color: var(--color-burdeos);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 4px;
-  text-decoration-skip-ink: none;
+@media (prefers-reduced-motion: reduce) {
+  .seleccion-ios,
+  .seleccion-ios-mango { transition: none; }
+  .cursor-texto-final { animation: none; }
 }
 
 /* Carpeta con pestaña: para las tarjetas del archivador de portafolio */
@@ -735,42 +833,34 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   transform: rotate(-8deg);
 }
 
-/* Cursor personalizado: flecha pixelada moderna + un hilo fino burdeos
-   que la acompaña, y un pequeño brillo que aparece sobre enlaces y
-   botones. Reemplaza el cursor nativo solo en escritorio con puntero
-   preciso; se desactiva por completo en táctil y con menos movimiento. */
-body.cursor-personalizado-activo,
-body.cursor-personalizado-activo a,
-body.cursor-personalizado-activo button {
-  cursor: none;
-}
-
-.cursor-flecha,
-.cursor-hilo,
-.cursor-accento {
+/* Cursor: se mantiene la flecha normal del sistema (precisa y
+   funcional) y se agrega solo un rastro corto de brillos delicados que
+   se desvanecen con opacity + scale. Nunca forma una línea: cada
+   partícula es independiente y desaparece en menos de un segundo.
+   Máximo 5 partículas a la vez; se desactiva en táctil y con
+   prefers-reduced-motion. */
+.cursor-brillo {
   position: fixed;
   top: 0;
   left: 0;
+  border-radius: 50%;
   pointer-events: none;
   z-index: 2000;
-  opacity: 0;
+  opacity: 0.85;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 0 5px rgba(141, 41, 73, 0.2);
 }
-.cursor-flecha { transition: opacity 0.15s ease; }
-.cursor-hilo { transition: transform 0.15s ease-out, opacity 0.15s ease; }
-.cursor-accento { transition: transform 0.15s ease-out, opacity 0.2s ease; }
-
-.cursor-flecha.esta-activo,
-.cursor-hilo.esta-activo { opacity: 1; }
-.cursor-accento.esta-visible { opacity: 1; }
+.cursor-brillo--desvanece {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.25);
+}
 
 @media (hover: none), (pointer: coarse) {
-  .cursor-flecha, .cursor-hilo, .cursor-accento { display: none; }
+  .cursor-brillo { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cursor-flecha, .cursor-hilo, .cursor-accento { display: none; }
-  body.cursor-personalizado-activo,
-  body.cursor-personalizado-activo a,
-  body.cursor-personalizado-activo button { cursor: auto; }
+  .cursor-brillo { display: none; }
 }
 
 @media (max-width: 640px) {
@@ -1023,10 +1113,15 @@ body.cursor-personalizado-activo button {
   position: relative;
   margin-top: 24px;
   background-color: var(--color-papel);
+  background-image: radial-gradient(circle, rgba(33, 28, 30, 0.07) 1px, transparent 1px);
+  background-size: 12px 12px;
   border-radius: 4px var(--radio-borde-sm) var(--radio-borde-sm) var(--radio-borde-sm);
   padding: var(--espacio-md);
   border: 1px solid var(--color-borde);
-  box-shadow: var(--sombra-papel);
+  box-shadow:
+    var(--sombra-papel),
+    6px 7px 0 -4px rgba(251, 233, 239, 0.7),
+    11px 13px 0 -7px rgba(201, 215, 167, 0.5);
   transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
 }
 .servicio-card--rosa { background-color: var(--color-rosa-palido); }
@@ -1037,7 +1132,43 @@ body.cursor-personalizado-activo button {
 .servicio-card:nth-child(4n+2) { transform: rotate(0.8deg); }
 .servicio-card:nth-child(4n+3) { transform: rotate(-0.6deg); }
 .servicio-card:nth-child(4n+4) { transform: rotate(1deg); }
-.servicio-card:hover { transform: rotate(0deg) translateY(-4px); box-shadow: var(--sombra-suave); }
+.servicio-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow:
+    var(--sombra-suave),
+    6px 7px 0 -4px rgba(251, 233, 239, 0.7),
+    11px 13px 0 -7px rgba(201, 215, 167, 0.5);
+}
+
+/* Barra superior delgada, tipo nota de iPad: controles pequeños +
+   un ícono (lápiz, selección o "+") que varía entre tarjetas. */
+.servicio-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: -0.2rem 0 var(--espacio-sm);
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(33, 28, 30, 0.12);
+}
+.servicio-barra-punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-rosa-pastel);
+}
+.servicio-barra-punto:nth-child(2) { background-color: var(--color-verde-suave); }
+.servicio-barra-punto:nth-child(3) { background-color: var(--color-burdeos); }
+.servicio-barra-control {
+  margin-left: auto;
+  display: inline-flex;
+  color: var(--color-cafe-suave);
+}
+
+/* Pequeños detalles de esquina, alternados entre tarjetas para que no
+   todas se vean idénticas. */
+.servicio-card .deco-clip { top: -18px; right: var(--espacio-md); left: auto; transform: rotate(10deg); z-index: 3; }
+.servicio-card .deco-boton-costura { top: var(--espacio-sm); right: var(--espacio-sm); }
+.servicio-card .deco-brillo { top: var(--espacio-sm); right: var(--espacio-md); }
 
 /* Icono simple de línea/trazo plano por servicio (sustituye al clip
    decorativo): un glifo pequeño en color café, sin fotografías ni
