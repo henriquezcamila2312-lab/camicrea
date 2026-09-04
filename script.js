@@ -114,30 +114,53 @@ document.addEventListener('DOMContentLoaded', function () {
     manejarHash();
   }
 
-  /* ---------- Cursor personalizado discreto ----------
+  /* ---------- Cursor personalizado: flecha pixelada + hilo burdeos ----------
      Solo en escritorio con puntero preciso (mouse/trackpad) y sin
      prefers-reduced-motion. En pantallas táctiles no se activa. */
   var puedeUsarCursorPersonalizado = window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (puedeUsarCursorPersonalizado) {
-    var cursorPunto = document.createElement('div');
-    cursorPunto.className = 'cursor-punto';
-    cursorPunto.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(cursorPunto);
+    document.body.classList.add('cursor-personalizado-activo');
+
+    var cursorFlecha = document.createElement('div');
+    cursorFlecha.className = 'cursor-flecha';
+    cursorFlecha.setAttribute('aria-hidden', 'true');
+    cursorFlecha.innerHTML = '<svg viewBox="0 0 14 14" width="18" height="18" shape-rendering="crispEdges"><polygon points="1,1 1,11 4,8.3 5.8,12 7.6,11.1 5.8,7.4 10,7.4" fill="#211C1E" stroke="#FFFDF9" stroke-width="1"/></svg>';
+
+    var cursorHilo = document.createElement('div');
+    cursorHilo.className = 'cursor-hilo';
+    cursorHilo.setAttribute('aria-hidden', 'true');
+    cursorHilo.innerHTML = '<svg viewBox="0 0 40 20" width="40" height="20"><path d="M1 2C10 2 8 18 20 14C28 11 30 6 38 8" fill="none" stroke="#8D2949" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/></svg>';
+
+    var cursorAccento = document.createElement('div');
+    cursorAccento.className = 'cursor-accento';
+    cursorAccento.setAttribute('aria-hidden', 'true');
+    cursorAccento.innerHTML = '<svg viewBox="0 0 30 30" width="16" height="16"><path d="M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z" fill="#8D2949"/></svg>';
+
+    document.body.appendChild(cursorHilo);
+    document.body.appendChild(cursorFlecha);
+    document.body.appendChild(cursorAccento);
 
     document.addEventListener('mousemove', function (event) {
-      cursorPunto.style.transform = 'translate(' + event.clientX + 'px, ' + event.clientY + 'px) translate(-50%, -50%)';
-      cursorPunto.classList.add('esta-activo');
+      var x = event.clientX;
+      var y = event.clientY;
+      cursorFlecha.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+      cursorHilo.style.transform = 'translate(' + (x - 6) + 'px, ' + (y + 2) + 'px)';
+      cursorAccento.style.transform = 'translate(' + (x + 16) + 'px, ' + (y + 16) + 'px)';
+      cursorFlecha.classList.add('esta-activo');
+      cursorHilo.classList.add('esta-activo');
     });
 
     document.addEventListener('mouseover', function (event) {
       var esInteractivo = event.target.closest && event.target.closest('a, button, input, select, textarea, .proceso-dia');
-      cursorPunto.classList.toggle('esta-sobre-enlace', !!esInteractivo);
+      cursorAccento.classList.toggle('esta-visible', !!esInteractivo);
     });
 
     document.addEventListener('mouseleave', function () {
-      cursorPunto.classList.remove('esta-activo');
+      cursorFlecha.classList.remove('esta-activo');
+      cursorHilo.classList.remove('esta-activo');
+      cursorAccento.classList.remove('esta-visible');
     });
   }
 
@@ -145,6 +168,16 @@ document.addEventListener('DOMContentLoaded', function () {
   var anioActual = document.getElementById('anioActual');
   if (anioActual) {
     anioActual.textContent = String(new Date().getFullYear());
+  }
+
+  /* ---------- Fecha automática en la nota "Desde mi escritorio" ---------- */
+  var notaFecha = document.getElementById('notaFecha');
+  if (notaFecha) {
+    try {
+      notaFecha.textContent = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (error) {
+      notaFecha.textContent = '';
+    }
   }
 
   /* ---------- Animaciones discretas al aparecer secciones ---------- */
@@ -164,6 +197,77 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     revealElements.forEach(function (el) { observer.observe(el); });
+  }
+
+  /* ---------- Selector Social Media / Community Management ---------- */
+  var tabSocialMedia = document.getElementById('tabSocialMedia');
+  var tabCommunity = document.getElementById('tabCommunity');
+  var panelSocialMedia = document.getElementById('panelSocialMedia');
+  var panelCommunity = document.getElementById('panelCommunity');
+
+  if (tabSocialMedia && tabCommunity && panelSocialMedia && panelCommunity) {
+    var mostrarPanelServicios = function (tabActivo) {
+      var esSocialMedia = tabActivo === tabSocialMedia;
+
+      tabSocialMedia.classList.toggle('is-activo', esSocialMedia);
+      tabSocialMedia.setAttribute('aria-selected', String(esSocialMedia));
+      tabSocialMedia.tabIndex = esSocialMedia ? 0 : -1;
+
+      tabCommunity.classList.toggle('is-activo', !esSocialMedia);
+      tabCommunity.setAttribute('aria-selected', String(!esSocialMedia));
+      tabCommunity.tabIndex = esSocialMedia ? -1 : 0;
+
+      panelSocialMedia.hidden = !esSocialMedia;
+      panelCommunity.hidden = esSocialMedia;
+
+      // El panel recién mostrado debe verse desde el principio, sin
+      // depender de que el scroll vuelva a cruzar su umbral de aparición.
+      var panelVisible = esSocialMedia ? panelSocialMedia : panelCommunity;
+      panelVisible.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    };
+
+    tabSocialMedia.addEventListener('click', function () { mostrarPanelServicios(tabSocialMedia); });
+    tabCommunity.addEventListener('click', function () { mostrarPanelServicios(tabCommunity); });
+  }
+
+  /* ---------- "¿Cómo trabajamos?": checklist que se marca sola al hacer scroll ---------- */
+  var metodologiaLista = document.getElementById('metodologiaLista');
+  var metodologiaFinal = document.getElementById('metodologiaFinal');
+
+  if (metodologiaLista && metodologiaFinal) {
+    var itemsMetodologia = metodologiaLista.querySelectorAll('.metodologia-item');
+
+    var marcarChecklist = function () {
+      if (prefersReducedMotion) {
+        itemsMetodologia.forEach(function (item) { item.classList.add('is-checked'); });
+        metodologiaFinal.classList.add('is-visible');
+        return;
+      }
+      itemsMetodologia.forEach(function (item, index) {
+        window.setTimeout(function () {
+          item.classList.add('is-checked');
+          if (index === itemsMetodologia.length - 1) {
+            window.setTimeout(function () { metodologiaFinal.classList.add('is-visible'); }, 300);
+          }
+        }, index * 260);
+      });
+    };
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      marcarChecklist();
+    } else {
+      var metodologiaObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            marcarChecklist();
+            metodologiaObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      metodologiaObserver.observe(metodologiaLista);
+    }
   }
 
   /* ---------- "Conocer la plantilla" (Método 369): despliega detalle ---------- */

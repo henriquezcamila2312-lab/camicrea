@@ -6,28 +6,30 @@
 
 :root {
   /* Paleta de color — camicrea (rosado + verde hoja + café profundo) */
-  --color-marfil: #FFFDF5;
-  --color-rosa-palido: #FBE0E9;
-  --color-rosa-pastel: #F5B7CB;
-  --color-frambuesa: #EF9FBA;
-  --color-burdeos: #BD527A;
-  --color-cafe: #392A31;
-  --color-cafe-suave: rgba(57, 42, 49, 0.72);
+  --color-marfil: #FFFDF9;
+  --color-rosa-palido: #FBE9EF;
+  --color-rosa-pastel: #F3AFC3;
+  --color-frambuesa: #F3AFC3;
+  --color-burdeos: #8D2949;
+  --color-cafe: #211C1E;
+  --color-cafe-suave: rgba(33, 28, 30, 0.72);
   --color-blanco: #FFFFFF;
   --color-borde: var(--color-rosa-pastel);
 
   /* Paleta ampliada — escritorio creativo / scrapbook editorial */
-  --color-verde-suave: #C9D9A8;
-  --color-verde: #667642;
+  --color-verde-suave: #C9D7A7;
+  --color-verde: #68734A;
   --color-verde-oscuro: #4E5A32;
   --color-gris-claro: #E9E5DE;
   --color-gris: #B9B2A6;
   --color-papel: #FFFFFB;
-  --color-destacador: #F6D77A;
 
   /* Tipografía */
   --fuente-serif: "Playfair Display", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
   --fuente-sans: "DM Sans", "Segoe UI", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Manuscrita: solo para notas personales, firmas y pequeños detalles,
+     nunca para párrafos largos (queda difícil de leer en bloques). */
+  --fuente-manuscrita: "Caveat", "Segoe Script", cursive;
 
   /* Espaciado */
   --espacio-xs: 0.5rem;
@@ -39,8 +41,8 @@
   /* Otros */
   --radio-borde: 20px;
   --radio-borde-sm: 12px;
-  --sombra-suave: 0 10px 26px rgba(143, 35, 70, 0.10);
-  --sombra-papel: 0 6px 16px rgba(61, 48, 51, 0.14);
+  --sombra-suave: 0 10px 26px rgba(141, 41, 73, 0.10);
+  --sombra-papel: 0 6px 16px rgba(33, 28, 30, 0.14);
   --transicion: 0.25s ease;
   --transicion-deco: 0.45s ease;
   --ancho-maximo: 1180px;
@@ -93,6 +95,14 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--fuente-serif);
   font-style: italic;
   color: var(--color-burdeos);
+}
+
+/* Manuscrita: para notas personales, firmas y pequeños detalles
+   puntuales. No se usa en párrafos largos: a ese tamaño de bloque
+   pierde legibilidad. */
+.manuscrita {
+  font-family: var(--fuente-manuscrita);
+  font-weight: 600;
 }
 
 .container {
@@ -185,7 +195,7 @@ textarea:focus-visible {
   position: sticky;
   top: 0;
   z-index: 500;
-  background-color: rgba(255, 248, 242, 0.92);
+  background-color: rgba(255, 253, 249, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-borde);
 }
@@ -240,65 +250,176 @@ textarea:focus-visible {
   gap: var(--espacio-md);
 }
 
-.nav-list {
-  display: flex;
-  gap: var(--espacio-md);
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  color: var(--color-cafe);
-  font-weight: 500;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--transicion), color var(--transicion);
-}
-.nav-link:hover,
-.nav-link:focus-visible {
-  color: var(--color-burdeos);
-  border-bottom-color: var(--color-frambuesa);
-}
-
-.nav-cta { white-space: nowrap; }
-
-@media (max-width: 900px) {
-  .nav-toggle { display: flex; }
-
-  .primary-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    background-color: var(--color-marfil);
-    border-bottom: 1px solid var(--color-borde);
-    padding: var(--espacio-md);
-    gap: var(--espacio-md);
-    transform: translateY(-8px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: transform var(--transicion), opacity var(--transicion);
-  }
-
-  .primary-nav.is-open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .nav-list {
-    flex-direction: column;
-    gap: var(--espacio-sm);
-  }
-
-  .nav-cta { text-align: center; justify-content: center; }
-}
-
+/* =================== NAVEGACIÓN COMO PILA VERTICAL DE ARCHIVOS ===================
+   El botón de menú abre un panel desplegable (en todos los anchos, no
+   solo en móvil) con las 5 carpetas de sección apiladas de arriba hacia
+   abajo: cada una tapa a la siguiente y asoma su pestaña por el costado
+   superior. Al pasar el cursor o el foco, la carpeta se adelanta hacia
+   la derecha, se inclina, aumenta su sombra y revela una franja de
+   textura más completa; las carpetas de abajo se separan levemente. */
+.nav-toggle { display: flex; }
 @media (min-width: 901px) {
-  .nav-toggle { display: none; }
+  .nav-toggle { display: flex; }
+}
+
+.primary-nav {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: min(420px, 100vw);
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--color-marfil);
+  border: 1px solid var(--color-borde);
+  border-top: none;
+  box-shadow: var(--sombra-suave);
+  padding: var(--espacio-lg) var(--espacio-md);
+  max-height: calc(100vh - 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--transicion), opacity var(--transicion);
+}
+.primary-nav.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.carpetas-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.carpeta-nav-item {
+  position: relative;
+  transition: margin var(--transicion-deco);
+}
+.carpeta-nav-item + .carpeta-nav-item { margin-top: -22px; }
+.carpeta-nav-item:hover,
+.carpeta-nav-item:focus-within { z-index: 20; }
+.carpeta-nav-item:hover ~ .carpeta-nav-item,
+.carpeta-nav-item:focus-within ~ .carpeta-nav-item { margin-top: -6px; }
+
+.carpeta-nav {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 76px;
+  margin-top: 22px;
+  border-radius: 4px 20px 20px 20px;
+  border: 1.5px solid var(--color-cafe);
+  box-shadow: var(--sombra-papel);
+  overflow: visible;
+  text-decoration: none;
+  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
+}
+.carpeta-nav-item:first-child .carpeta-nav { margin-top: 0; }
+.carpeta-nav:hover,
+.carpeta-nav:focus-visible {
+  transform: translateX(14px) rotate(-1.2deg);
+  box-shadow: var(--sombra-suave);
+  outline: none;
+}
+
+/* Pestaña: sobresale por la parte superior izquierda, como una carpeta
+   colgante real, siempre visible por encima de la carpeta siguiente. */
+.carpeta-nav-pestana {
+  position: absolute;
+  top: -20px;
+  left: var(--espacio-md);
+  background-color: var(--color-cafe);
+  color: var(--color-marfil);
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px 8px 0 0;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.carpeta-nav-vista {
+  flex: 0 0 96px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cafe);
+  border-radius: 3px 0 0 20px;
+  overflow: hidden;
+}
+.carpeta-nav-vista::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(33, 28, 30, 0.1) 1px, transparent 1px);
+  background-size: 11px 11px;
+}
+.carpeta-nav-vista svg { position: relative; z-index: 1; }
+
+.carpeta-nav-cuerpo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  background-color: var(--color-papel);
+  border-radius: 0 20px 20px 0;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--color-cafe);
+}
+.carpeta-nav-flecha {
+  flex-shrink: 0;
+  opacity: 0.45;
+  transition: transform var(--transicion-deco), opacity var(--transicion-deco);
+}
+.carpeta-nav:hover .carpeta-nav-flecha,
+.carpeta-nav:focus-visible .carpeta-nav-flecha { opacity: 1; transform: translateX(4px); }
+
+.carpeta-nav--rosa .carpeta-nav-vista { background-color: var(--color-rosa-pastel); }
+.carpeta-nav--verde .carpeta-nav-vista { background-color: var(--color-verde-suave); }
+.carpeta-nav--negro .carpeta-nav-vista { background-color: var(--color-cafe); color: var(--color-rosa-palido); }
+.carpeta-nav--negro .carpeta-nav-vista::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
+.carpeta-nav--papel .carpeta-nav-vista { background-color: var(--color-papel); border-right: 1.5px solid var(--color-cafe); }
+.carpeta-nav--papel { border-width: 2px; }
+.carpeta-nav--burdeos .carpeta-nav-vista { background-color: var(--color-burdeos); color: var(--color-rosa-palido); }
+.carpeta-nav--burdeos .carpeta-nav-vista::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
+.carpeta-nav--burdeos .carpeta-nav-pestana { background-color: var(--color-burdeos); }
+
+/* Carpeta activa: destacada en burdeos, con un pequeño botón de
+   costura junto a su nombre. */
+.carpeta-nav.esta-activo {
+  border-color: var(--color-burdeos);
+  box-shadow: 0 0 0 2px var(--color-burdeos), var(--sombra-papel);
+}
+.carpeta-nav.esta-activo .carpeta-nav-cuerpo { color: var(--color-burdeos); }
+.carpeta-nav.esta-activo .carpeta-nav-cuerpo::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-burdeos);
+  box-shadow: 0 0 0 1.5px var(--color-rosa-pastel);
+}
+
+@media (max-width: 520px) {
+  .primary-nav { width: 100vw; right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carpeta-nav-item,
+  .carpeta-nav,
+  .carpeta-nav-flecha { transition: none; }
 }
 
 /* =================== SECCIONES GENERALES =================== */
@@ -351,19 +472,46 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   text-transform: uppercase;
   padding-right: 0.4rem;
 }
+.cinta-categorias:hover .cinta-categorias-track,
+.cinta-categorias:focus-within .cinta-categorias-track { animation-play-state: paused; }
 @keyframes desplazar-cinta {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+/* Franjas animadas adicionales: mismo mecanismo de bucle continuo que
+   .cinta-categorias, en distintos tonos de la paleta, para marcar ritmo
+   entre secciones. Se detienen al pasar el cursor o el foco. */
+.franja-ticker {
+  overflow: hidden;
+  padding: 0.6rem 0;
+}
+.franja-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: desplazar-cinta 24s linear infinite;
+}
+.franja-ticker-track span {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding-right: 0.5rem;
+}
+.franja-ticker:hover .franja-ticker-track,
+.franja-ticker:focus-within .franja-ticker-track { animation-play-state: paused; }
+.franja-ticker--rosa { background-color: var(--color-rosa-pastel); color: var(--color-cafe); }
+.franja-ticker--negro { background-color: var(--color-cafe); color: var(--color-rosa-pastel); }
+.franja-ticker--verde { background-color: var(--color-verde-suave); color: var(--color-burdeos); }
 @media (prefers-reduced-motion: reduce) {
-  .cinta-categorias-track { animation: none; }
-  .cinta-categorias { overflow-x: auto; }
+  .cinta-categorias-track,
+  .franja-ticker-track { animation: none; }
+  .cinta-categorias,
+  .franja-ticker { overflow-x: auto; }
 }
 
-.nav-link.esta-activo {
-  color: var(--color-burdeos);
-  border-bottom-color: var(--color-burdeos);
-}
+/* El estado activo real de la navegación lo resuelve .carpeta-nav.esta-activo
+   (ver =================== NAVEGACIÓN COMO PILA DE CARPETAS ===================). */
 
 /* =================== VOCABULARIO DECORATIVO ===================
    Piezas visuales de escritorio creativo (clip, chincheta, cinta,
@@ -393,22 +541,22 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .deco-pin {
   width: 19px;
   height: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%23BD527A' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23EF9FBA'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%238D2949' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23F3AFC3'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
 }
 .deco-pin--verde {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%23667642' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23C9D9A8'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 42'%3E%3Cellipse cx='16' cy='30' rx='3' ry='1.4' fill='%23000' opacity='0.12'/%3E%3Cline x1='16' y1='22' x2='16' y2='31' stroke='%2368734A' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M16 4C22 4 26 8 26 13C26 17 23 19.5 16 22C9 19.5 6 17 6 13C6 8 10 4 16 4Z' fill='%23C9D7A7'/%3E%3Cpath d='M10 8C11.5 6 14 5 16 5C13 6.5 11 9 10.5 12C10 10.5 9.7 9 10 8Z' fill='%23fff' opacity='0.35'/%3E%3C/svg%3E");
 }
 
 .deco-lazo {
   width: 42px;
   height: 30px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 34'%3E%3Cpath d='M26 15C20 8 10 5 5 8C2 10 2 15 5 17C10 20 20 18 26 15Z' fill='%23BD527A'/%3E%3Cpath d='M26 15C32 8 42 5 47 8C50 10 50 15 47 17C42 20 32 18 26 15Z' fill='%23BD527A'/%3E%3Cpath d='M14 9C16 11 17 13 17 15' stroke='%23EF9FBA' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M38 9C36 11 35 13 35 15' stroke='%23EF9FBA' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M26 15L24 26L26 24L28 26Z' fill='%23BD527A'/%3E%3Ccircle cx='26' cy='15' r='4' fill='%23EF9FBA'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 34'%3E%3Cpath d='M26 15C20 8 10 5 5 8C2 10 2 15 5 17C10 20 20 18 26 15Z' fill='%238D2949'/%3E%3Cpath d='M26 15C32 8 42 5 47 8C50 10 50 15 47 17C42 20 32 18 26 15Z' fill='%238D2949'/%3E%3Cpath d='M14 9C16 11 17 13 17 15' stroke='%23F3AFC3' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M38 9C36 11 35 13 35 15' stroke='%23F3AFC3' stroke-width='1' fill='none' opacity='0.5'/%3E%3Cpath d='M26 15L24 26L26 24L28 26Z' fill='%238D2949'/%3E%3Ccircle cx='26' cy='15' r='4' fill='%23F3AFC3'/%3E%3C/svg%3E");
 }
 
 .deco-brillo {
   width: 16px;
   height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z' fill='%23F5B7CB'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z' fill='%23F3AFC3'/%3E%3C/svg%3E");
 }
 
 .deco-sujetador {
@@ -421,7 +569,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   position: absolute;
   background: repeating-linear-gradient(45deg, rgba(255,255,255,0.55) 0 6px, transparent 6px 12px), var(--color-verde-suave);
   opacity: 0.9;
-  box-shadow: 0 2px 6px rgba(61, 48, 51, 0.12);
+  box-shadow: 0 2px 6px rgba(33, 28, 30, 0.12);
   pointer-events: none;
   z-index: 2;
 }
@@ -450,35 +598,72 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   justify-content: center;
   overflow: hidden;
 }
-.marco-foto-etiqueta {
-  font-family: var(--fuente-sans);
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: var(--color-burdeos);
-  text-align: center;
-  padding: 0 1rem;
-  opacity: 0.7;
-}
 .marco-foto img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Destacador animado: se "dibuja" de izquierda a derecha al aparecer.
-   Reutiliza el mismo disparador que .reveal (la clase .is-visible que
-   agrega script.js), pero anula su fundido/desplazamiento propio para
-   animar solo el color de fondo, no el texto. */
-mark.destacador {
-  background-color: transparent;
-  background-image: linear-gradient(var(--destacador-color, var(--color-destacador)), var(--destacador-color, var(--color-destacador)));
-  background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 0% 55%;
-  color: inherit;
-  padding: 0 0.15em;
-  transition: background-size 0.7s ease 0.15s;
+/* Composición abstracta: reemplaza cualquier aviso de "foto pendiente"
+   por un bloque editorial con textura de papel y un acento circular,
+   sin texto. El espacio queda reservado y se ve intencional, no vacío. */
+.marco-foto--abstracto {
+  background:
+    radial-gradient(circle at 26% 22%, rgba(255, 253, 249, 0.6), transparent 55%),
+    linear-gradient(155deg, var(--color-rosa-palido), var(--color-rosa-pastel) 60%, var(--color-verde-suave));
 }
-mark.destacador.reveal { opacity: 1; transform: none; }
-mark.destacador.is-visible { background-size: 100% 55%; }
-@media (prefers-reduced-motion: reduce) {
-  mark.destacador { transition: none; background-size: 100% 55%; }
+.marco-foto--abstracto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(33, 28, 30, 0.09) 1px, transparent 1px);
+  background-size: 13px 13px;
+}
+.marco-foto--abstracto::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(33, 28, 30, 0.2);
+  border-radius: 50%;
+}
+.portafolio-grid .proyecto-card:nth-child(4n+2) .marco-foto--abstracto {
+  background:
+    radial-gradient(circle at 74% 78%, rgba(255, 253, 249, 0.55), transparent 55%),
+    linear-gradient(155deg, var(--color-verde-suave), var(--color-papel) 55%, var(--color-rosa-pastel));
+}
+.portafolio-grid .proyecto-card:nth-child(4n+3) .marco-foto--abstracto {
+  background:
+    radial-gradient(circle at 30% 75%, rgba(243, 175, 195, 0.35), transparent 55%),
+    linear-gradient(155deg, var(--color-cafe), var(--color-burdeos) 75%);
+}
+.portafolio-grid .proyecto-card:nth-child(4n+3) .marco-foto--abstracto::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
+.portafolio-grid .proyecto-card:nth-child(4n+3) .marco-foto--abstracto::after { border-color: rgba(255, 253, 249, 0.35); }
+.portafolio-grid .proyecto-card:nth-child(4n+4) .marco-foto--abstracto {
+  background:
+    radial-gradient(circle at 70% 24%, rgba(141, 41, 73, 0.16), transparent 55%),
+    linear-gradient(155deg, var(--color-papel), var(--color-verde-suave) 65%, var(--color-rosa-palido));
+}
+
+/* Bloque destacado: reemplaza el resaltado amarillo por un bloque de
+   rosado claro con texto en negro o burdeos, para frases que necesitan
+   protagonismo sin usar un color ajeno a la paleta. */
+.bloque-destacado {
+  display: inline;
+  background-color: var(--color-rosa-palido);
+  color: var(--color-cafe);
+  padding: 0.1em 0.3em;
+  border-radius: 6px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Subrayado tipo Marcación de iPhone/Apple Pencil: solo para palabras
+   puntuales dentro de un párrafo, nunca para el texto completo. */
+.subrayado-marcador {
+  text-decoration: underline;
+  text-decoration-color: var(--color-burdeos);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
 }
 
 /* Carpeta con pestaña: para las tarjetas del archivador de portafolio */
@@ -519,6 +704,14 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   background-color: var(--color-papel);
   border-bottom: 1px solid var(--color-borde);
 }
+.ventana-navegador-punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-rosa-pastel);
+}
+.ventana-navegador-punto:nth-child(2) { background-color: var(--color-verde-suave); }
+.ventana-navegador-punto:nth-child(3) { background-color: var(--color-burdeos); }
 .ventana-archivo-nombre {
   margin-left: auto;
   font-size: 0.8rem;
@@ -542,33 +735,42 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   transform: rotate(-8deg);
 }
 
-/* Cursor personalizado discreto (solo escritorio con puntero preciso) */
-.cursor-punto {
+/* Cursor personalizado: flecha pixelada moderna + un hilo fino burdeos
+   que la acompaña, y un pequeño brillo que aparece sobre enlaces y
+   botones. Reemplaza el cursor nativo solo en escritorio con puntero
+   preciso; se desactiva por completo en táctil y con menos movimiento. */
+body.cursor-personalizado-activo,
+body.cursor-personalizado-activo a,
+body.cursor-personalizado-activo button {
+  cursor: none;
+}
+
+.cursor-flecha,
+.cursor-hilo,
+.cursor-accento {
   position: fixed;
   top: 0;
   left: 0;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-burdeos);
   pointer-events: none;
   z-index: 2000;
-  transform: translate(-50%, -50%);
-  transition: width 0.18s ease, height 0.18s ease, background-color 0.18s ease;
-  mix-blend-mode: multiply;
   opacity: 0;
 }
-.cursor-punto.esta-activo { opacity: 1; }
-.cursor-punto.esta-sobre-enlace {
-  width: 32px;
-  height: 32px;
-  background-color: rgba(201, 63, 91, 0.14);
-}
+.cursor-flecha { transition: opacity 0.15s ease; }
+.cursor-hilo { transition: transform 0.15s ease-out, opacity 0.15s ease; }
+.cursor-accento { transition: transform 0.15s ease-out, opacity 0.2s ease; }
+
+.cursor-flecha.esta-activo,
+.cursor-hilo.esta-activo { opacity: 1; }
+.cursor-accento.esta-visible { opacity: 1; }
+
 @media (hover: none), (pointer: coarse) {
-  .cursor-punto { display: none; }
+  .cursor-flecha, .cursor-hilo, .cursor-accento { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cursor-punto { display: none; }
+  .cursor-flecha, .cursor-hilo, .cursor-accento { display: none; }
+  body.cursor-personalizado-activo,
+  body.cursor-personalizado-activo a,
+  body.cursor-personalizado-activo button { cursor: auto; }
 }
 
 @media (max-width: 640px) {
@@ -678,14 +880,6 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 
 .hero-inner { position: relative; z-index: 1; text-align: center; }
 
-.eyebrow {
-  font-weight: 600;
-  color: var(--color-burdeos);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.85rem;
-}
-
 .hero-title {
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   margin: 0.25rem auto var(--espacio-sm);
@@ -705,29 +899,31 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   color: var(--color-cafe-suave);
 }
 
-.hero-subtext {
-  font-family: var(--fuente-serif);
-  font-style: italic;
-  color: var(--color-burdeos);
-  max-width: 560px;
-  margin: 0 auto var(--espacio-lg);
+.hero-cta-wrap {
+  position: relative;
+  display: inline-block;
+  margin: var(--espacio-lg) auto 0;
 }
+.hero-cta-wrap .btn { position: relative; z-index: 1; }
 
-.hero-paths {
+/* =================== CAMINOS PRINCIPALES (INICIO) ===================
+   Dos caminos tras la pregunta de portada: crear para la marca (que se
+   abre en dos modalidades de trabajo) y crear para una misma. */
+.caminos-principales {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--espacio-md);
   text-align: left;
   margin-top: var(--espacio-lg);
 }
 
-.path-card {
+.camino-card {
   background-color: var(--color-blanco);
   border-radius: var(--radio-borde);
   padding: var(--espacio-lg) var(--espacio-md);
   box-shadow: var(--sombra-suave);
   border: 1px solid var(--color-borde);
 }
+.camino-card > p { color: var(--color-cafe-suave); }
 
 .path-tag {
   display: inline-block;
@@ -739,130 +935,79 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   color: var(--color-burdeos);
 }
 
-.path-card--journaling .path-tag { color: var(--color-burdeos); }
+.camino-card h2 { font-size: 1.6rem; }
 
-.path-card h2 { font-size: 1.5rem; }
-
-.hero-cta-wrap {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto var(--espacio-lg);
-}
-.hero-cta-wrap .btn { position: relative; z-index: 1; }
-
-/* Ventana de navegador: composición decorativa del escritorio de Inicio,
-   con marcos de foto honestos (sin fotos inventadas) y una insignia. */
-.ventana-navegador {
-  position: relative;
-  max-width: 440px;
-  margin: 0 auto var(--espacio-lg);
-  background-color: var(--color-blanco);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-borde);
-  box-shadow: var(--sombra-suave);
-  overflow: hidden;
-  text-align: left;
-}
-.ventana-navegador-barra {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 1rem;
-  border-bottom: 1px solid var(--color-borde);
-  background-color: var(--color-papel);
-}
-.ventana-navegador-punto {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--color-rosa-pastel);
-}
-.ventana-navegador-punto:nth-child(2) { background-color: var(--color-verde-suave); }
-.ventana-navegador-punto:nth-child(3) { background-color: var(--color-burdeos); }
-.ventana-navegador-url {
-  margin-left: auto;
-  font-size: 0.76rem;
-  color: var(--color-cafe-suave);
-}
-.ventana-navegador-contenido {
-  position: relative;
-  padding: var(--espacio-md);
+.modalidades-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--espacio-sm);
-}
-.ventana-navegador-contenido .marco-foto { aspect-ratio: 4 / 5; }
-.ventana-navegador-insignia {
-  position: absolute;
-  bottom: var(--espacio-sm);
-  right: var(--espacio-sm);
-  width: 92px;
-  height: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--espacio-xs);
-  border-radius: 50%;
-  background-color: var(--color-burdeos);
-  color: var(--color-blanco);
-  font-family: var(--fuente-serif);
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.25;
-  box-shadow: var(--sombra-suave);
-  transform: rotate(-7deg);
-}
-@media (max-width: 520px) {
-  .ventana-navegador-contenido { grid-template-columns: 1fr; }
-  .ventana-navegador-insignia { position: static; margin: var(--espacio-sm) auto 0; transform: rotate(-3deg); }
-}
-
-.accesos-carpetas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--espacio-sm);
-  margin-top: var(--espacio-lg);
-}
-
-.acceso-carpeta {
-  display: inline-flex;
-  align-items: center;
-  background-color: var(--color-papel);
-  border: 1px solid var(--color-borde);
-  border-radius: 4px 14px 14px 14px;
-  padding: 0.6rem 1.15rem;
-  font-weight: 600;
-  font-size: 0.92rem;
-  color: var(--color-burdeos);
-  box-shadow: var(--sombra-papel);
-  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
-}
-.acceso-carpeta:hover,
-.acceso-carpeta:focus-visible {
-  transform: translateY(-3px);
-  box-shadow: var(--sombra-suave);
-}
-
-
-/* =================== CONCEPTOS / CHIPS =================== */
-.concept-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--espacio-md);
   margin-top: var(--espacio-md);
 }
-.concept-chips li {
-  background-color: var(--color-blanco);
+
+.modalidad-card {
+  background-color: var(--color-marfil);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde-sm);
+  padding: var(--espacio-md);
+  display: flex;
+  flex-direction: column;
+}
+.modalidad-card h3 { font-size: 1.15rem; }
+.modalidad-card > p { color: var(--color-cafe-suave); font-size: 0.92rem; }
+
+.modalidad-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.4rem 0.6rem;
+  margin: var(--espacio-sm) 0 var(--espacio-md);
+}
+.modalidad-lista li {
+  font-size: 0.85rem;
+  color: var(--color-cafe);
+  padding-left: 1.1rem;
+  position: relative;
+}
+.modalidad-lista li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-burdeos);
+}
+
+.modalidad-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-sm);
+  margin-top: auto;
+}
+
+.modalidad-archivos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: var(--espacio-sm) 0 var(--espacio-md);
+}
+.modalidad-archivos li {
+  background-color: var(--color-papel);
   border: 1px solid var(--color-borde);
   border-radius: 999px;
-  padding: 0.6rem 1.2rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--color-burdeos);
-  box-shadow: var(--sombra-suave);
+  color: var(--color-cafe);
+}
+
+.modalidad-nota {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-cafe-suave);
+  margin-top: auto;
+  margin-bottom: 0;
+}
+.modalidad-nota a { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .camino-card { padding: var(--espacio-md); }
 }
 
 /* =================== ESTUDIO CREATIVO =================== */
@@ -928,37 +1073,104 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .servicio-card h3 { font-size: 1.15rem; margin-top: var(--espacio-sm); }
 .servicio-card p { color: var(--color-cafe-suave); font-size: 0.95rem; margin: 0; }
 
+/* "¿Cómo trabajamos?" como nota de checklist tipo iPad: barra superior
+   con controles + lápiz, y una lista que se va marcando sola al
+   hacer scroll (ver script.js), terminando en un mensaje con brillo. */
 .metodologia {
   background-color: var(--color-blanco);
   border-radius: var(--radio-borde);
-  padding: var(--espacio-lg) var(--espacio-md);
   margin-bottom: var(--espacio-md);
   border: 1px solid var(--color-borde);
+  overflow: hidden;
+  /* Dos hojas de papel translúcido asomando detrás, sin necesitar
+     overflow:visible (que rompería el redondeo de la barra interna). */
+  box-shadow:
+    7px 9px 0 -3px rgba(251, 233, 239, 0.75),
+    14px 18px 0 -6px rgba(201, 215, 167, 0.6);
 }
+.metodologia-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.1rem;
+  background-color: var(--color-papel);
+  border-bottom: 1px solid var(--color-borde);
+}
+.metodologia-barra-punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-rosa-pastel);
+}
+.metodologia-barra-punto:nth-child(2) { background-color: var(--color-verde-suave); }
+.metodologia-barra-icono {
+  margin-left: auto;
+  display: inline-flex;
+  color: var(--color-cafe-suave);
+}
+.metodologia-inner { padding: var(--espacio-lg) var(--espacio-md); }
 .metodologia-title { margin-bottom: var(--espacio-md); }
 
 .metodologia-lista {
   display: grid;
   gap: var(--espacio-sm);
 }
-.metodologia-lista li {
+.metodologia-item {
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
   color: var(--color-cafe-suave);
+  transition: color 0.4s ease;
 }
-.metodologia-numero {
+.metodologia-item.is-checked { color: var(--color-burdeos); }
+
+.metodologia-check {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: var(--color-frambuesa);
-  color: var(--color-blanco);
-  font-weight: 700;
-  display: flex;
+  width: 26px;
+  height: 26px;
+  margin-top: 0.05rem;
+  border-radius: 7px;
+  border: 2px solid var(--color-borde);
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.metodologia-check::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border-right: 2px solid var(--color-marfil);
+  border-bottom: 2px solid var(--color-marfil);
+  transform: rotate(40deg) scale(0);
+  transition: transform 0.25s ease;
+}
+.metodologia-item.is-checked .metodologia-check {
+  background-color: var(--color-burdeos);
+  border-color: var(--color-burdeos);
+}
+.metodologia-item.is-checked .metodologia-check::after { transform: rotate(40deg) scale(1); }
+
+.metodologia-final {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-family: var(--fuente-serif);
+  gap: 0.4rem;
+  margin: var(--espacio-md) 0 0;
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.5rem;
+  color: var(--color-burdeos);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.metodologia-final.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .metodologia-item,
+  .metodologia-check,
+  .metodologia-check::after,
+  .metodologia-final { transition: none; }
 }
 
 .nota-servicios {
@@ -966,6 +1178,55 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   color: var(--color-cafe-suave);
   max-width: 640px;
   margin-bottom: var(--espacio-md);
+}
+
+/* =================== SELECTOR SOCIAL MEDIA / COMMUNITY MANAGEMENT =================== */
+.servicios-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--espacio-lg);
+}
+.servicios-tab-boton {
+  background-color: var(--color-papel);
+  border: 1.5px solid var(--color-cafe);
+  border-radius: 4px 14px 14px 4px;
+  padding: 0.7rem 1.3rem;
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-cafe);
+  transition: background-color var(--transicion), color var(--transicion), transform var(--transicion-deco);
+}
+.servicios-tab-boton:hover { transform: translateY(-2px); }
+.servicios-tab-boton.is-activo {
+  background-color: var(--color-cafe);
+  color: var(--color-marfil);
+  border-color: var(--color-cafe);
+}
+@media (prefers-reduced-motion: reduce) {
+  .servicios-tab-boton { transition: none; }
+}
+
+.community-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6rem;
+  margin: var(--espacio-lg) 0;
+}
+.community-lista li {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde-sm);
+  padding: var(--espacio-sm) var(--espacio-md);
+  font-weight: 600;
+  color: var(--color-cafe);
+}
+.community-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-sm);
+  margin-top: var(--espacio-md);
 }
 
 /* =================== PLANES DE GESTIÓN DE REDES SOCIALES =================== */
@@ -1127,11 +1388,32 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .proyecto-card:nth-child(3n+2) { margin-top: var(--espacio-lg); }
 .proyecto-card:nth-child(4n+1) { transform: rotate(-0.8deg); }
 .proyecto-card:nth-child(4n+3) { transform: rotate(0.7deg); }
-.proyecto-card:hover { transform: rotate(0deg) translateY(-5px); box-shadow: var(--sombra-suave); }
+.proyecto-card:hover,
+.proyecto-card:focus-within {
+  transform: rotate(-1.4deg) translateY(-70px);
+  box-shadow: var(--sombra-suave);
+  z-index: 5;
+}
+.proyecto-card:hover ~ .proyecto-card,
+.proyecto-card:focus-within ~ .proyecto-card { transform: translateX(6px); }
 .proyecto-card .deco-clip { top: -20px; right: var(--espacio-md); left: auto; transform: rotate(12deg); z-index: 3; }
 .proyecto-card .deco-pin { top: -14px; left: var(--espacio-lg); }
 @media (prefers-reduced-motion: reduce) {
-  .proyecto-card { transition: none; }
+  .proyecto-card,
+  .proyecto-card:hover ~ .proyecto-card,
+  .proyecto-card:focus-within ~ .proyecto-card { transition: none; transform: none; }
+}
+
+/* Flecha que se adelanta al pasar el cursor, sin depender de ella
+   para abrir el proyecto: el botón/enlace ya es interactivo por sí solo. */
+.proyecto-flecha {
+  display: inline-block;
+  transition: transform var(--transicion-deco);
+}
+.proyecto-card:hover .proyecto-flecha,
+.proyecto-card:focus-within .proyecto-flecha { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .proyecto-flecha { transition: none; }
 }
 
 .proyecto-card .marco-foto {
@@ -1152,6 +1434,31 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 }
 
 /* =================== JOURNALING =================== */
+
+/* Secuencia de titulares "Crear también es...": cada línea aparece
+   como si se fuera escribiendo, con la última destacada en burdeos. */
+.secuencia-titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+.secuencia-linea {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.secuencia-titulo.reveal.is-visible .secuencia-linea {
+  animation: aparecer-linea 0.6s ease forwards;
+}
+.secuencia-linea:nth-child(1) { animation-delay: 0s; }
+.secuencia-linea:nth-child(2) { animation-delay: 0.4s; }
+.secuencia-linea:nth-child(3) { animation-delay: 0.8s; }
+.secuencia-linea--final { color: var(--color-burdeos); font-style: italic; }
+@keyframes aparecer-linea {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .secuencia-linea { opacity: 1; transform: none; animation: none; }
+}
 
 .categorias-grid {
   display: grid;
@@ -1388,19 +1695,6 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   object-position: center top;
 }
 
-.etiqueta-persona {
-  display: inline-block;
-  background-color: var(--color-burdeos);
-  color: var(--color-blanco);
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  margin-bottom: var(--espacio-sm);
-}
-
 .sobre-mi-texto p { color: var(--color-cafe-suave); }
 
 .sobre-mi-botones {
@@ -1413,6 +1707,77 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 @media (max-width: 760px) {
   .sobre-mi-inner { grid-template-columns: 1fr; }
   .sobre-mi-imagen { max-width: 280px; margin: 0 auto; }
+}
+
+/* Nota "Desde mi escritorio": la ventana de archivo se presenta como
+   una nota manuscrita real, con encabezado, estado, fecha, firma y
+   cursor parpadeante — no como una ficha curricular. */
+.nota-escritorio { position: relative; }
+.nota-escritorio-lazo {
+  top: 60px;
+  right: var(--espacio-md);
+  transform: rotate(8deg);
+  z-index: 3;
+}
+
+.nota-escritorio-encabezado {
+  font-size: 1.6rem;
+  color: var(--color-burdeos);
+  margin: 0 0 0.3rem;
+}
+
+.nota-escritorio-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-sm);
+  margin-bottom: var(--espacio-md);
+  font-size: 0.85rem;
+  color: var(--color-cafe-suave);
+}
+.nota-escritorio-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+.nota-escritorio-fecha { opacity: 0.8; }
+.nota-escritorio-punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-verde);
+  animation: latido-punto 1.8s ease-in-out infinite;
+}
+@keyframes latido-punto {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nota-escritorio-punto { animation: none; }
+}
+
+.nota-escritorio-firma {
+  font-size: 1.3rem;
+  color: var(--color-burdeos);
+  text-shadow: 0 1px 0 rgba(255, 253, 249, 0.6);
+  margin-top: var(--espacio-md);
+}
+.nota-escritorio-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 0.3rem;
+  vertical-align: text-bottom;
+  background-color: var(--color-burdeos);
+  animation: parpadeo-cursor 1s step-end infinite;
+}
+@keyframes parpadeo-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nota-escritorio-cursor { animation: none; }
 }
 
 /* =================== CONTACTO =================== */
@@ -1510,8 +1875,8 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .footer-cierre {
   background-color: var(--color-marfil);
   background-image:
-    radial-gradient(ellipse 420px 320px at 12% 25%, rgba(201, 217, 168, 0.4), transparent 70%),
-    radial-gradient(ellipse 460px 380px at 88% 20%, rgba(245, 183, 203, 0.45), transparent 70%),
+    radial-gradient(ellipse 420px 320px at 12% 25%, rgba(201, 215, 167, 0.4), transparent 70%),
+    radial-gradient(ellipse 460px 380px at 88% 20%, rgba(243, 175, 195, 0.45), transparent 70%),
     radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
   background-size: auto, auto, 24px 24px;
   text-align: center;
@@ -1587,7 +1952,7 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 }
 
 .footer-derechos {
-  border-top: 1px solid rgba(242, 197, 208, 0.25);
+  border-top: 1px solid rgba(243, 175, 195, 0.25);
   padding-top: var(--espacio-md);
   font-size: 0.9rem;
   opacity: 0.85;
@@ -1885,6 +2250,6 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   :root { --espacio-xl: 3.25rem; }
   .btn { width: 100%; }
   .producto-botones .btn,
-  .hero-paths .btn,
+  .modalidad-botones .btn,
   .detalle-proyecto-botones .btn { width: 100%; }
 }

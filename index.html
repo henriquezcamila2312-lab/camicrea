@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>camicrea ✿ | Publicidad, creatividad, journaling y autocuidado</title>
-  <meta name="description" content="camicrea es el espacio de Camila Henríquez: estrategia y contenido para marcas a través del estudio creativo, y journaling, autocuidado y productos digitales para conectar contigo.">
-  <meta name="theme-color" content="#FFF8F2">
+  <title>Camicrea ✿ | Publicidad, creatividad, journaling y autocuidado</title>
+  <meta name="description" content="Camicrea es el espacio de Camila Henríquez: estrategia y contenido para marcas a través del estudio creativo, y journaling, autocuidado y productos digitales para conectar contigo.">
+  <meta name="theme-color" content="#FFFDF9">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="camicrea">
-  <meta property="og:title" content="camicrea ✿ | Publicidad, creatividad, journaling y autocuidado">
+  <meta property="og:site_name" content="Camicrea">
+  <meta property="og:title" content="Camicrea ✿ | Publicidad, creatividad, journaling y autocuidado">
   <meta property="og:description" content="Estrategia, contenido y creatividad para marcas con personalidad, y journaling, autocuidado y herramientas para conectar contigo.">
   <meta property="og:image" content="assets/og-camicrea.jpg">
   <meta property="og:locale" content="es_CL">
@@ -21,7 +21,7 @@
   <!-- Tipografías: Playfair Display (serif editorial, con cursiva) + DM Sans (sans funcional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -33,7 +33,7 @@
   <header class="site-header" id="header">
     <div class="container header-inner">
       <a class="logo" href="#inicio">
-        <img class="logo-img" src="./assets/logo-camicrea.png" alt="camicrea Estudio Creativo">
+        <img class="logo-img" src="./assets/logo-camicrea.png" alt="Camicrea Estudio Creativo">
       </a>
 
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
@@ -42,16 +42,44 @@
         <span class="nav-toggle-bar"></span>
       </button>
 
-      <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
-        <ul class="nav-list">
-          <li><a href="#inicio" class="nav-link">Inicio</a></li>
-          <li><a href="#estudio" class="nav-link">Estudio Creativo</a></li>
-          <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
-          <li><a href="#journaling" class="nav-link">Journaling, autocuidado y más</a></li>
-          <li><a href="#sobre-mi" class="nav-link">Sobre camicrea</a></li>
-          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      <nav class="primary-nav nav-carpetas" id="primaryNav" aria-label="Navegación principal">
+        <ul class="nav-list carpetas-lista">
+          <li class="carpeta-nav-item">
+            <a href="#estudio" class="nav-link carpeta-nav carpeta-nav--rosa">
+              <span class="carpeta-nav-vista" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="9" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="16" x2="12" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span class="carpeta-nav-pestana">01</span>
+              <span class="carpeta-nav-cuerpo">Estudio creativo<span class="carpeta-nav-flecha" aria-hidden="true">&#8594;</span></span>
+            </a>
+          </li>
+          <li class="carpeta-nav-item">
+            <a href="#portafolio" class="nav-link carpeta-nav carpeta-nav--verde">
+              <span class="carpeta-nav-vista" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><rect x="3" y="7" width="10" height="10" rx="1.5" fill="currentColor" opacity="0.55"/><rect x="8" y="4" width="10" height="10" rx="1.5" fill="currentColor" opacity="0.85"/><rect x="12" y="9" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+              <span class="carpeta-nav-pestana">02</span>
+              <span class="carpeta-nav-cuerpo">Portafolio<span class="carpeta-nav-flecha" aria-hidden="true">&#8594;</span></span>
+            </a>
+          </li>
+          <li class="carpeta-nav-item">
+            <a href="#cuidarse" class="nav-link carpeta-nav carpeta-nav--negro">
+              <span class="carpeta-nav-vista" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 3C9 3 7.5 5.5 8 8.5C6 8 4.5 9 4.5 11C4.5 13.5 7.5 14.5 9.5 13C9 15 8.5 17 8.5 19H15.5C15.5 17 15 15 14.5 13C16.5 14.5 19.5 13.5 19.5 11C19.5 9 18 8 16 8.5C16.5 5.5 15 3 12 3Z" fill="currentColor"/><line x1="12" y1="13" x2="12" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="carpeta-nav-pestana">03</span>
+              <span class="carpeta-nav-cuerpo">Crear también es cuidarse<span class="carpeta-nav-flecha" aria-hidden="true">&#8594;</span></span>
+            </a>
+          </li>
+          <li class="carpeta-nav-item">
+            <a href="#escritorio" class="nav-link carpeta-nav carpeta-nav--papel">
+              <span class="carpeta-nav-vista" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 3h10l4 4v14H5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><line x1="8" y1="11" x2="16" y2="11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="8" y1="14.5" x2="16" y2="14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="8" y1="18" x2="13" y2="18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+              <span class="carpeta-nav-pestana">04</span>
+              <span class="carpeta-nav-cuerpo">Desde mi escritorio<span class="carpeta-nav-flecha" aria-hidden="true">&#8594;</span></span>
+            </a>
+          </li>
+          <li class="carpeta-nav-item">
+            <a href="#contacto" class="nav-link carpeta-nav carpeta-nav--burdeos">
+              <span class="carpeta-nav-vista" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M21 3L3 10.5L10.5 13L13.5 20.5L21 3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><line x1="10.5" y1="13" x2="21" y2="3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="carpeta-nav-pestana">05</span>
+              <span class="carpeta-nav-cuerpo">Contacto<span class="carpeta-nav-flecha" aria-hidden="true">&#8594;</span></span>
+            </a>
+          </li>
         </ul>
-        <a href="#estudio" class="btn btn-primary nav-cta">Explorar camicrea</a>
       </nav>
     </div>
   </header>
@@ -64,75 +92,94 @@
       <div class="hero-blob hero-blob--dos" aria-hidden="true"></div>
 
       <div class="container hero-inner">
-        <p class="eyebrow reveal">Creado por Camila Henríquez, publicista y creadora de contenido.</p>
         <h1 class="hero-title reveal">¿Qué quieres <span class="hero-title-acento">crear</span> hoy?</h1>
-        <p class="hero-lead reveal"><span class="marca-camicrea">camicrea</span> es un espacio para transformar ideas en contenido, proyectos y pequeñas acciones que te acerquen a lo que quieres.</p>
-        <p class="hero-subtext reveal">Publicidad, creatividad, journaling, autocuidado y vida real, todo en un mismo lugar.</p>
+        <p class="hero-lead reveal"><span class="marca-camicrea">Camicrea</span> es un espacio para transformar ideas en contenido, proyectos y pequeñas acciones que te acerquen a lo que quieres.</p>
 
-        <div class="hero-cta-wrap">
-          <a href="#portafolio" class="btn btn-primary hero-cta-portafolio reveal">Explora mi trabajo</a>
-        </div>
-
-        <!--
-          Ventana de navegador: composición decorativa que evoca camicrea.cl.
-          Usa marcos-placeholder honestos (sin fotos inventadas) para las
-          fotografías reales del portafolio. Cuando existan, reemplaza cada
-          <div class="marco-foto">...</div> por una <img> real (ver
-          assets/IMAGENES-PENDIENTES.md), conservando el marco para no
-          generar saltos de layout.
-        -->
-        <div class="ventana-navegador reveal" aria-hidden="true">
-          <div class="ventana-navegador-barra">
-            <span class="ventana-navegador-punto"></span>
-            <span class="ventana-navegador-punto"></span>
-            <span class="ventana-navegador-punto"></span>
-            <span class="ventana-navegador-url">camicrea.cl / portafolio</span>
-          </div>
-          <div class="ventana-navegador-contenido">
-            <div class="marco-foto" aria-hidden="true"><span class="marco-foto-etiqueta">Fotografía real<br>próximamente</span></div>
-            <div class="marco-foto" aria-hidden="true"><span class="marco-foto-etiqueta">Fotografía real<br>próximamente</span></div>
-            <span class="ventana-navegador-insignia">crear con<br>intención</span>
-          </div>
-        </div>
-
-        <div class="hero-paths">
-          <article class="path-card path-card--estudio reveal">
+        <div class="caminos-principales">
+          <!-- Camino 1: crear para la marca — se abre en dos modalidades -->
+          <article class="camino-card camino-card--marca reveal">
             <span class="path-tag">Camino profesional</span>
             <h2>Quiero crear para mi marca</h2>
-            <p>Estrategia, planificación y contenido con personalidad para comunicar lo que hace especial a tu proyecto.</p>
-            <a href="#estudio" class="btn btn-primary">Conocer el Estudio Creativo</a>
+            <p>El acceso principal al Estudio Creativo, en dos modalidades según cómo prefieras trabajar.</p>
+
+            <div class="modalidades-grid">
+              <div class="modalidad-card">
+                <h3>Quiero trabajar contigo</h3>
+                <p>Para personas o marcas que quieren contratar servicios personalizados.</p>
+                <ul class="modalidad-lista" role="list">
+                  <li>Social Media</li>
+                  <li>Community Management</li>
+                  <li>Estrategia de contenido</li>
+                  <li>Creación de contenido</li>
+                  <li>Copywriting</li>
+                  <li>Guiones para reels</li>
+                  <li>Fotografía</li>
+                  <li>Grabación y edición de reels</li>
+                  <li>Campañas</li>
+                  <li>Planificación</li>
+                  <li>Revisión estratégica de contenido</li>
+                  <li>Trabajos específicos</li>
+                </ul>
+                <div class="modalidad-botones">
+                  <a href="#contacto" class="btn btn-primary">Solicitar una cotización</a>
+                  <a href="#contacto" class="btn btn-outline">Cuéntame qué necesitas</a>
+                </div>
+              </div>
+
+              <div class="modalidad-card">
+                <h3>Quiero hacerlo a mi ritmo</h3>
+                <p>Para emprendedoras que quieren materiales para trabajar su propia marca, presentados como archivos y carpetas descargables.</p>
+                <ul class="modalidad-archivos" role="list">
+                  <li>📁 Guías</li>
+                  <li>📁 Kits de contenido</li>
+                  <li>📁 Plantillas editables</li>
+                  <li>📁 Ideas de publicaciones</li>
+                  <li>📁 Guiones</li>
+                  <li>📁 Calendarios</li>
+                  <li>📁 Parrillas de contenido</li>
+                  <li>📁 Recursos visuales</li>
+                  <li>📁 Materiales personalizados</li>
+                </ul>
+                <p class="modalidad-nota">Descubre la <a href="#cuidarse">Plantilla Método 369</a>, disponible ahora.</p>
+              </div>
+            </div>
           </article>
 
-          <article class="path-card path-card--journaling reveal">
+          <!-- Camino 2: crear para una misma — dirige directo a "Crear también es cuidarse" -->
+          <article class="camino-card camino-card--mi reveal">
             <span class="path-tag">Camino personal</span>
-            <h2>Quiero conectar conmigo</h2>
+            <h2>Quiero crear para mí</h2>
             <p>Journaling, autocuidado, hábitos y herramientas para avanzar a tu propio ritmo.</p>
-            <a href="#journaling" class="btn btn-secondary">Explorar este espacio</a>
+            <a href="#cuidarse" class="btn btn-secondary">Explorar este espacio</a>
           </article>
         </div>
 
-        <nav class="accesos-carpetas reveal" aria-label="Accesos rápidos a otras ventanas">
-          <a href="#portafolio" class="acceso-carpeta">Portafolio</a>
-          <a href="#sobre-mi" class="acceso-carpeta">Sobre camicrea</a>
-          <a href="#contacto" class="acceso-carpeta">Contacto</a>
-        </nav>
+        <div class="hero-cta-wrap">
+          <a href="#portafolio" class="btn btn-primary hero-cta-portafolio reveal">Explora mi trabajo →</a>
+        </div>
       </div>
     </section>
 
-    <!-- ======================= camicrea ESTUDIO CREATIVO ======================= -->
+    <!-- ======================= Camicrea ESTUDIO CREATIVO ======================= -->
     <section class="estudio site-window" id="estudio" hidden>
+      <div class="franja-ticker franja-ticker--rosa reveal" aria-hidden="true">
+        <div class="franja-ticker-track">
+          <span>ESTRATEGIA ✦ CONTENIDO ✦ CREATIVIDAD ✦ COMUNIDAD ✦ IDENTIDAD ✦ </span>
+          <span>ESTRATEGIA ✦ CONTENIDO ✦ CREATIVIDAD ✦ COMUNIDAD ✦ IDENTIDAD ✦ </span>
+        </div>
+      </div>
       <div class="cinta-categorias reveal" aria-hidden="true">
         <div class="cinta-categorias-track">
-          <span>Estrategia ❖ Community Management ❖ Contenido ❖ Copies ❖ Campañas ❖ Auditorías ❖ </span>
-          <span>Estrategia ❖ Community Management ❖ Contenido ❖ Copies ❖ Campañas ❖ Auditorías ❖ </span>
+          <span>Estrategia ❖ Community Management ❖ Contenido ❖ Copies ❖ Campañas ❖ Revisión estratégica ❖ </span>
+          <span>Estrategia ❖ Community Management ❖ Contenido ❖ Copies ❖ Campañas ❖ Revisión estratégica ❖ </span>
         </div>
       </div>
       <div class="ventana-bloque">
       <div class="container">
-        <span class="section-tag section-tag--marca reveal">camicrea Estudio Creativo</span>
+        <span class="section-tag section-tag--marca reveal">Camicrea · Estudio creativo</span>
         <h2 class="section-title reveal">Tu marca tiene algo que decir. Hagamos que se note.</h2>
-        <p class="section-lead reveal">Estrategia, contenido y creatividad para marcas con <mark class="destacador reveal">personalidad</mark>.</p>
-        <p class="section-text reveal">En el estudio creativo unimos estrategia, organización, creatividad y criterio visual para construir contenido que tenga sentido para tu marca y conecte con las personas correctas.</p>
+        <p class="section-lead reveal"><span class="bloque-destacado">Estrategia, contenido y creatividad para marcas con personalidad.</span></p>
+        <p class="section-text reveal">En el estudio creativo unimos <span class="subrayado-marcador">estrategia</span>, <span class="subrayado-marcador">organización</span>, <span class="subrayado-marcador">creatividad</span> y <span class="subrayado-marcador">criterio visual</span> para construir contenido que tenga sentido para tu marca y conecte con las <span class="subrayado-marcador">personas correctas</span>.</p>
 
         <div class="servicios-grid">
           <article class="servicio-card servicio-card--rosa reveal">
@@ -171,22 +218,41 @@
           </article>
 
           <article class="servicio-card servicio-card--crema reveal">
-            <span class="servicio-tab">06 · Auditorías</span>
+            <span class="servicio-tab">06 · Revisión</span>
             <span class="servicio-icono" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><line x1="15.3" y1="15.3" x2="21" y2="21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-            <h3>Auditorías y métricas orgánicas</h3>
-            <p>Revisión del estado actual de tus redes y análisis de métricas orgánicas para entender qué está funcionando y qué se puede mejorar.</p>
+            <h3>Revisión estratégica de contenido</h3>
+            <p>Revisamos el estado actual de tu contenido y tus métricas orgánicas para entender qué está funcionando y qué se puede mejorar.</p>
           </article>
         </div>
+      </div>
+      </div>
 
+      <div class="franja-ticker franja-ticker--negro reveal" aria-hidden="true">
+        <div class="franja-ticker-track">
+          <span>TU IDEA ✦ TU VOZ ✦ TU RITMO ✦ TU MARCA ✦ </span>
+          <span>TU IDEA ✦ TU VOZ ✦ TU RITMO ✦ TU MARCA ✦ </span>
+        </div>
+      </div>
+
+      <div class="ventana-bloque">
+      <div class="container">
         <div class="metodologia reveal">
-          <h3 class="metodologia-title">¿Cómo trabajamos?</h3>
-          <ol class="metodologia-lista">
-            <li><span class="metodologia-numero">1</span> Conocemos tu marca, identidad y necesidades.</li>
-            <li><span class="metodologia-numero">2</span> Definimos objetivos, públicos y canales.</li>
-            <li><span class="metodologia-numero">3</span> Diseñamos una estrategia y propuesta de trabajo.</li>
-            <li><span class="metodologia-numero">4</span> Acordamos entregables y alcance.</li>
-            <li><span class="metodologia-numero">5</span> Creamos, implementamos y revisamos resultados.</li>
-          </ol>
+          <div class="metodologia-barra">
+            <span class="metodologia-barra-punto"></span>
+            <span class="metodologia-barra-punto"></span>
+            <span class="metodologia-barra-icono" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M14.7 3.3a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4L8 18h-4v-4L14.7 3.3z" fill="currentColor"/></svg></span>
+          </div>
+          <div class="metodologia-inner">
+            <h3 class="metodologia-title">¿Cómo trabajamos?</h3>
+            <ol class="metodologia-lista" id="metodologiaLista">
+              <li class="metodologia-item"><span class="metodologia-check" aria-hidden="true"></span>Conocemos tu marca, identidad y necesidades.</li>
+              <li class="metodologia-item"><span class="metodologia-check" aria-hidden="true"></span>Definimos objetivos, públicos y canales.</li>
+              <li class="metodologia-item"><span class="metodologia-check" aria-hidden="true"></span>Diseñamos la estrategia y propuesta de trabajo.</li>
+              <li class="metodologia-item"><span class="metodologia-check" aria-hidden="true"></span>Acordamos entregables y alcance.</li>
+              <li class="metodologia-item"><span class="metodologia-check" aria-hidden="true"></span>Creamos, implementamos y revisamos resultados.</li>
+            </ol>
+            <p class="metodologia-final" id="metodologiaFinal" aria-live="polite">Lista para crear <span aria-hidden="true">✦</span></p>
+          </div>
         </div>
 
         <p class="nota-servicios reveal">La gestión digital y la producción presencial de contenido se evalúan y cotizan según las necesidades de cada proyecto.</p>
@@ -198,9 +264,15 @@
       <!-- ======================= PLANES DE GESTIÓN DE REDES SOCIALES ======================= -->
       <div class="ventana-bloque planes" id="planes">
       <div class="container">
-        <span class="section-tag reveal">Community Manager en Chile</span>
-        <h2 class="section-title reveal">Planes de gestión de redes sociales</h2>
-        <p class="section-text reveal">Encuentra una alternativa acorde con el momento y las necesidades de tu marca. Todos los planes pueden adaptarse según el volumen de contenido, la modalidad de trabajo y los objetivos del proyecto.</p>
+        <div class="servicios-tabs" role="tablist" aria-label="Tipo de gestión de redes sociales">
+          <button type="button" class="servicios-tab-boton is-activo" id="tabSocialMedia" role="tab" aria-selected="true" aria-controls="panelSocialMedia">Social Media</button>
+          <button type="button" class="servicios-tab-boton" id="tabCommunity" role="tab" aria-selected="false" aria-controls="panelCommunity" tabindex="-1">Community Management</button>
+        </div>
+
+        <div id="panelSocialMedia" role="tabpanel" aria-labelledby="tabSocialMedia">
+        <span class="section-tag reveal">Social Media</span>
+        <h2 class="section-title reveal">Planes de Social Media</h2>
+        <p class="section-text reveal">Estrategia, planificación y contenido para construir una presencia digital coherente con tu marca.</p>
 
         <div class="planes-grid">
           <article class="plan-card reveal">
@@ -220,7 +292,7 @@
               <li>Una reunión mensual</li>
               <li>Reporte de métricas orgánicas</li>
             </ul>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Contenido%20en%20la%20p%C3%A1gina%20de%20camicrea%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Contenido%20en%20la%20p%C3%A1gina%20de%20Camicrea%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
           </article>
 
           <article class="plan-card plan-card--destacado reveal">
@@ -243,7 +315,7 @@
               <li>Reporte y análisis de métricas orgánicas</li>
               <li>Recomendaciones para el mes siguiente</li>
             </ul>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Gesti%C3%B3n%20en%20la%20p%C3%A1gina%20de%20camicrea%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-primary plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20el%20Plan%20Gesti%C3%B3n%20en%20la%20p%C3%A1gina%20de%20Camicrea%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." class="btn btn-primary plan-boton" target="_blank" rel="noopener noreferrer">Consultar por este plan</a>
           </article>
 
           <article class="plan-card reveal">
@@ -258,10 +330,10 @@
               <li>Cobertura de actividades o eventos</li>
               <li>Community management</li>
               <li>Guiones y copies</li>
-              <li>Auditoría de redes sociales</li>
+              <li>Revisión estratégica de contenido</li>
               <li>Informes personalizados</li>
             </ul>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20camicrea%20y%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20personalizada." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Solicitar cotización</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Camicrea%20y%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20personalizada." class="btn btn-outline plan-boton" target="_blank" rel="noopener noreferrer">Solicitar cotización</a>
           </article>
         </div>
 
@@ -272,7 +344,7 @@
             <li>Pack de historias</li>
             <li>Jornada de grabación presencial</li>
             <li>Edición de videos con material entregado por el cliente</li>
-            <li>Auditoría de Instagram</li>
+            <li>Revisión estratégica de contenido</li>
             <li>Calendario de contenido</li>
             <li>Campaña creativa puntual</li>
             <li>Cobertura de eventos</li>
@@ -280,6 +352,29 @@
         </div>
 
         <p class="nota-servicios reveal">Los valores publicados son referenciales. La producción presencial, los traslados, la inversión publicitaria y los requerimientos adicionales se evalúan y cotizan según cada proyecto.</p>
+        </div>
+
+        <div id="panelCommunity" role="tabpanel" aria-labelledby="tabCommunity" hidden>
+          <span class="section-tag reveal">Community Management</span>
+          <h2 class="section-title reveal">Community Management</h2>
+          <p class="section-text reveal">Gestión cercana y coherente de las conversaciones que ocurren alrededor de tu marca.</p>
+
+          <ul class="community-lista reveal" role="list">
+            <li>Programación y publicación</li>
+            <li>Respuesta de comentarios</li>
+            <li>Gestión de mensajes</li>
+            <li>Aplicación del tono de voz</li>
+            <li>Interacción con la comunidad</li>
+            <li>Derivación de consultas</li>
+            <li>Seguimiento de preguntas frecuentes</li>
+            <li>Reporte de gestión</li>
+          </ul>
+
+          <div class="community-botones reveal">
+            <a href="#contacto" class="btn btn-primary">Solicitar una propuesta personalizada</a>
+            <a href="#contacto" class="btn btn-outline">Quiero combinar ambos servicios</a>
+          </div>
+        </div>
       </div>
       </div>
     </section>
@@ -294,73 +389,81 @@
         <div class="portafolio-grid">
           <article class="proyecto-card reveal">
             <span class="deco-clip" aria-hidden="true"></span>
-            <div class="marco-foto" aria-hidden="true">
-              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
-            </div>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
             <div class="proyecto-info">
               <h3>Medical Store y Ortopedia &amp; Uniformes Pro</h3>
               <p class="proyecto-meta">Medical Store y Ortopedia &amp; Uniformes Pro</p>
-              <button type="button" class="btn btn-outline is-disabled" disabled>Próximamente</button>
+              <a href="#contacto" class="btn btn-outline">Conversemos <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <article class="proyecto-card reveal">
             <span class="deco-pin" aria-hidden="true"></span>
-            <div class="marco-foto" aria-hidden="true">
-              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
-            </div>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
             <div class="proyecto-info">
-              <h3>Siempre estuvieron ahí</h3>
-              <p class="proyecto-meta">Siempre estuvieron ahí</p>
-              <button type="button" class="btn btn-outline is-disabled" disabled>Próximamente</button>
+              <h3>247</h3>
+              <p class="proyecto-meta">247</p>
+              <a href="#contacto" class="btn btn-outline">Conversemos <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <article class="proyecto-card reveal">
             <span class="deco-clip" aria-hidden="true"></span>
-            <div class="marco-foto" aria-hidden="true">
-              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
-            </div>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
             <div class="proyecto-info">
-              <h3>10 años bajo un mismo paraguas</h3>
-              <p class="proyecto-meta">Oncomamás</p>
-              <a href="proyecto-oncomamas.html" class="btn btn-outline">Ver proyecto</a>
+              <h3>Siempre estuvieron ahí</h3>
+              <p class="proyecto-meta">Siempre estuvieron ahí</p>
+              <a href="#contacto" class="btn btn-outline">Conversemos <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <article class="proyecto-card reveal">
             <span class="deco-pin deco-pin--verde" aria-hidden="true"></span>
-            <div class="marco-foto" aria-hidden="true">
-              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
-            </div>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
             <div class="proyecto-info">
-              <h3>Bless</h3>
-              <p class="proyecto-meta">Bless</p>
-              <button type="button" class="btn btn-outline is-disabled" disabled>Próximamente</button>
+              <h3>DateColor</h3>
+              <p class="proyecto-meta">DateColor</p>
+              <a href="#contacto" class="btn btn-outline">Conversemos <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <article class="proyecto-card reveal">
             <span class="deco-clip" aria-hidden="true"></span>
-            <div class="marco-foto" aria-hidden="true">
-              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
-            </div>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
             <div class="proyecto-info">
-              <h3>KitKat</h3>
-              <p class="proyecto-meta">KitKat</p>
-              <a href="proyecto-kitkat.html" class="btn btn-outline">Ver proyecto</a>
+              <h3>El Reino de los Dientes</h3>
+              <p class="proyecto-meta">El Reino de los Dientes</p>
+              <a href="#contacto" class="btn btn-outline">Conversemos <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <article class="proyecto-card reveal">
             <span class="deco-pin" aria-hidden="true"></span>
-            <div class="marco-foto" aria-hidden="true">
-              <span class="marco-foto-etiqueta">Fotografía del proyecto<br>próximamente</span>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
+            <div class="proyecto-info">
+              <h3>10 años bajo un mismo paraguas</h3>
+              <p class="proyecto-meta">Oncomamás</p>
+              <a href="proyecto-oncomamas.html" class="btn btn-outline">Ver proyecto <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
+          </article>
+
+          <article class="proyecto-card reveal">
+            <span class="deco-clip" aria-hidden="true"></span>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
+            <div class="proyecto-info">
+              <h3>KitKat</h3>
+              <p class="proyecto-meta">KitKat</p>
+              <a href="proyecto-kitkat.html" class="btn btn-outline">Ver proyecto <span class="proyecto-flecha" aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="proyecto-card reveal">
+            <span class="deco-pin deco-pin--verde" aria-hidden="true"></span>
+            <div class="marco-foto marco-foto--abstracto" aria-hidden="true"></div>
             <div class="proyecto-info">
               <h3>ADA Vestuario</h3>
               <p class="proyecto-meta">ADA Vestuario</p>
-              <a href="proyecto-ada-vestuario.html" class="btn btn-outline">Ver proyecto</a>
+              <a href="proyecto-ada-vestuario.html" class="btn btn-outline">Ver proyecto <span class="proyecto-flecha" aria-hidden="true">→</span></a>
             </div>
           </article>
         </div>
@@ -368,12 +471,22 @@
     </section>
 
     <!-- ======================= JOURNALING, AUTOCUIDADO Y MÁS ======================= -->
-    <section class="journaling site-window" id="journaling" hidden>
+    <section class="journaling site-window" id="cuidarse" hidden>
+      <div class="franja-ticker franja-ticker--verde reveal" aria-hidden="true">
+        <div class="franja-ticker-track">
+          <span>PAUSAR ✦ ESCRIBIR ✦ ORDENAR ✦ CONECTAR ✦ CREAR ✦ </span>
+          <span>PAUSAR ✦ ESCRIBIR ✦ ORDENAR ✦ CONECTAR ✦ CREAR ✦ </span>
+        </div>
+      </div>
       <div class="ventana-bloque">
       <div class="container">
-        <span class="section-tag reveal">Journaling, autocuidado y más</span>
-        <h2 class="section-title reveal">Journaling, autocuidado y más</h2>
-        <p class="section-lead reveal">Un espacio cercano para conectar contigo, ordenar tus ideas y avanzar a tu propio ritmo.</p>
+        <span class="section-tag reveal">Crear también es cuidarse</span>
+        <h2 class="section-title secuencia-titulo reveal">
+          <span class="secuencia-linea">Crear también es avanzar.</span>
+          <span class="secuencia-linea">Crear también es escucharse.</span>
+          <span class="secuencia-linea secuencia-linea--final">Crear también es cuidarse.</span>
+        </h2>
+        <p class="section-lead reveal">Crear no siempre comienza frente a una pantalla. A veces empieza haciendo una pausa, escribiendo lo que sentimos y volviendo a conectar con nosotras mismas.</p>
         <p class="section-text reveal">No se trata de tener una vida perfecta ni de sentirte motivada todos los días. Se trata de conocerte, volver a tus intenciones y encontrar pequeñas formas de cuidarte y avanzar.</p>
 
         <ul class="categorias-grid reveal" role="list">
@@ -394,14 +507,14 @@
 
         <div class="creando-juntas regalo-bloque reveal">
           <h3>Un regalo para comenzar</h3>
-          <p>Descarga gratis tu plantilla al suscribirte a la comunidad de camicrea y recibe acompañamiento durante tu proceso de 30 días.</p>
+          <p>Descarga gratis tu plantilla al suscribirte a la comunidad de Camicrea y recibe acompañamiento durante tu proceso de 30 días.</p>
           <a href="#suscripcion" class="btn btn-primary">Quiero comenzar</a>
         </div>
 
         <div class="suscripcion-bloque reveal" id="suscripcion">
           <span class="section-tag">Un regalo para ti</span>
           <h3 class="suscripcion-titulo">Recibe tu plantilla gratuita y comienza tu proceso 🌸</h3>
-          <p class="suscripcion-descripcion">Suscríbete a la comunidad de camicrea para descargar tu plantilla, registrar tus avances y recibir acompañamiento durante los próximos 30 días.</p>
+          <p class="suscripcion-descripcion">Suscríbete a la comunidad de Camicrea para descargar tu plantilla, registrar tus avances y recibir acompañamiento durante los próximos 30 días.</p>
 
           <!--
             INTEGRACIÓN CON KIT (kit.com, antes ConvertKit) — PENDIENTE DE CONECTAR.
@@ -433,7 +546,7 @@
             <div class="form-field">
               <label class="checkbox-label">
                 <input type="checkbox" name="consentimiento" id="suscripcionConsentimiento" required>
-                <span>Quiero recibir la plantilla, los correos del proceso de 30 días y novedades de camicrea. Podré cancelar mi suscripción cuando quiera.</span>
+                <span>Quiero recibir la plantilla, los correos del proceso de 30 días y novedades de Camicrea. Podré cancelar mi suscripción cuando quiera.</span>
               </label>
             </div>
 
@@ -450,7 +563,7 @@
             </div>
           </form>
 
-          <p class="suscripcion-privacidad">Utilizaremos tu nombre y correo únicamente para enviarte la plantilla, acompañar tu proceso y compartir novedades de camicrea. Podrás cancelar tu suscripción cuando quieras. <a href="privacidad.html">Política de privacidad</a>.</p>
+          <p class="suscripcion-privacidad">Utilizaremos tu nombre y correo únicamente para enviarte la plantilla, acompañar tu proceso y compartir novedades de Camicrea. Podrás cancelar tu suscripción cuando quieras. <a href="privacidad.html">Política de privacidad</a>.</p>
         </div>
       </div>
       </div>
@@ -535,47 +648,35 @@
           <li>Conversaciones cercanas</li>
         </ul>
 
-        <!-- Enlace de comunidad aún no existe: se muestra como "Próximamente" y no dirige a ninguna parte -->
-        <button type="button" class="btn btn-primary is-disabled reveal" disabled title="Enlace provisional: aún no existe, se activará cuando la comunidad esté disponible">Próximamente</button>
+        <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-primary reveal" target="_blank" rel="noopener noreferrer">Sígueme en Instagram</a>
       </div>
       </div>
     </section>
 
-    <!-- ======================= SOBRE camicrea ======================= -->
-    <section class="sobre-mi site-window" id="sobre-mi" hidden>
-      <div class="ventana-bloque presentacion" id="presentacion">
-        <div class="container">
-          <span class="section-tag section-tag--marca reveal">camicrea</span>
-          <h2 class="section-title reveal">Crear también es una forma de avanzar</h2>
-          <p class="section-text reveal">Este espacio nació para reunir dos partes de una misma historia: la publicista que transforma ideas en estrategias y la creadora que busca herramientas para vivir con mayor intención. Aquí puedes encontrar apoyo para hacer crecer tu marca y también recursos para conectar contigo.</p>
-
-          <ul class="concept-chips reveal" role="list">
-            <li>Crear ideas</li>
-            <li>Crear contenido</li>
-            <li>Crear hábitos</li>
-            <li>Crear comunidad</li>
-            <li>Crear una vida más tuya</li>
-          </ul>
-        </div>
-      </div>
-
+    <!-- ======================= SOBRE Camicrea ======================= -->
+    <section class="sobre-mi site-window" id="escritorio" hidden>
       <div class="ventana-bloque">
       <div class="container">
-        <div class="ventana-archivo reveal">
+        <div class="ventana-archivo nota-escritorio reveal">
+          <span class="deco-lazo nota-escritorio-lazo" aria-hidden="true"></span>
           <div class="ventana-archivo-barra">
             <span class="ventana-navegador-punto"></span>
             <span class="ventana-navegador-punto"></span>
             <span class="ventana-navegador-punto"></span>
-            <span class="ventana-archivo-nombre">sobre_mí.txt</span>
+            <span class="ventana-archivo-nombre">desde_mi_escritorio.txt</span>
           </div>
           <div class="ventana-archivo-contenido sobre-mi-inner">
-            <img class="sobre-mi-imagen" src="./assets/sobre-mi/camila-henriquez.jpg" alt="Camila Henríquez, publicista y creadora de camicrea" loading="lazy">
+            <img class="sobre-mi-imagen" src="./assets/sobre-mi/camila-henriquez.jpg" alt="Camila Henríquez, publicista y creadora de Camicrea" loading="lazy">
             <div class="sobre-mi-texto">
-              <span class="etiqueta-persona">Publicista y creadora</span>
-              <h2 class="section-title">Hola, soy Camila</h2>
-              <p>Soy Camila Henríquez, publicista, creadora de contenido y fundadora de <span class="marca-camicrea">camicrea</span>. Me gusta transformar ideas en mensajes claros, estrategias ordenadas y contenido con personalidad.</p>
-              <p>También estoy aprendiendo a construir una vida más consciente, organizada y conectada conmigo. De ese proceso nacen las herramientas de journaling, autocuidado y bienestar que comparto aquí.</p>
-              <p>Este espacio reúne esas dos partes de mí: la publicista que ayuda a las marcas a comunicar lo que las hace especiales y la creadora que comparte herramientas para que otras mujeres también puedan avanzar hacia lo que desean.</p>
+              <p class="nota-escritorio-encabezado manuscrita">Nota nueva de Cami <span aria-hidden="true">✦</span></p>
+              <p class="nota-escritorio-meta">
+                <span class="nota-escritorio-estado"><span class="nota-escritorio-punto" aria-hidden="true"></span>Cami está creando…</span>
+                <span class="nota-escritorio-fecha" id="notaFecha"></span>
+              </p>
+              <p>Hola, ¿cómo están? Soy <span class="subrayado-marcador">Camila</span>, publicista y creadora de <span class="marca-camicrea">Camicrea</span>.</p>
+              <p>Este espacio nació para compartir lo que sé, crear junto a marcas y ayudar a que otras personas puedan darle forma a sus propias ideas. Aquí puedes trabajar conmigo, encontrar herramientas para tu proyecto y también acompañarme en ese lado más personal de <span class="subrayado-marcador">crear nuevos hábitos</span>, escribir y volver a conectar con una misma.</p>
+              <p>Quiero que Camicrea siga creciendo como un espacio creativo y cercano: un lugar donde podamos aprender, compartir procesos y construir una comunidad alrededor de las cosas que nos gusta crear.</p>
+              <p class="nota-escritorio-firma manuscrita">— Cami<span class="nota-escritorio-cursor" aria-hidden="true"></span></p>
               <div class="sobre-mi-botones">
                 <a href="#portafolio" class="btn btn-primary">Conoce mi trabajo</a>
                 <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Sígueme en Instagram</a>
@@ -592,7 +693,7 @@
       <div class="container">
         <span class="section-tag reveal">Contacto</span>
         <p class="contacto-tagline reveal">¿Tienes una idea dando vueltas? Hagámosla <span class="hero-title-acento">florecer</span>.</p>
-        <h2 class="section-title reveal">Cuéntame qué quieres crear</h2>
+        <h2 class="section-title reveal">Cuéntame qué quieres crear: una marca, un proyecto…</h2>
         <p class="section-text reveal">Si tienes una marca, proyecto o idea y necesitas apoyo creativo, escríbeme para conocer tus necesidades y preparar una propuesta adecuada.</p>
 
         <div class="contacto-grid">
@@ -631,7 +732,7 @@
                 <option value="contenido">Creación de contenido</option>
                 <option value="copies">Copies y guiones</option>
                 <option value="campanas">Campañas e ideas creativas</option>
-                <option value="auditoria">Auditorías y métricas orgánicas</option>
+                <option value="revision">Revisión estratégica de contenido</option>
                 <option value="otro">Otro / aún no lo sé</option>
               </select>
             </div>
@@ -663,7 +764,7 @@
 
           <div class="contacto-directo reveal">
             <h3>O escríbeme directamente</h3>
-            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20tu%20p%C3%A1gina%20de%20camicrea%20y%20me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios." class="btn btn-outline btn-contacto" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+            <a href="https://wa.me/56931360094?text=Hola%2C%20vi%20tu%20p%C3%A1gina%20de%20Camicrea%20y%20me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios." class="btn btn-outline btn-contacto" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
             <a href="mailto:camiipublicista@gmail.com" class="btn btn-outline btn-contacto">Escribir por correo</a>
             <a href="https://www.instagram.com/cvmilapazz/" class="btn btn-outline btn-contacto" target="_blank" rel="noopener noreferrer">Visitar Instagram</a>
           </div>
@@ -685,16 +786,15 @@
 
     <div class="container footer-inner">
       <div class="footer-marca">
-        <img class="footer-logo-img" src="./assets/logo-camicrea.png" alt="camicrea Estudio Creativo">
-        <p class="footer-tagline">Publicidad, creatividad, journaling, autocuidado y vida real, todo en un mismo lugar.</p>
+        <img class="footer-logo-img" src="./assets/logo-camicrea.png" alt="Camicrea Estudio Creativo">
       </div>
 
       <nav class="footer-nav" aria-label="Navegación del pie de página">
         <a href="#inicio">Inicio</a>
         <a href="#estudio">Estudio Creativo</a>
         <a href="#portafolio">Portafolio</a>
-        <a href="#journaling">Journaling, autocuidado y más</a>
-        <a href="#sobre-mi">Sobre camicrea</a>
+        <a href="#cuidarse">Crear también es cuidarse</a>
+        <a href="#escritorio">Desde mi escritorio</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
@@ -705,7 +805,7 @@
         <a href="mailto:camiipublicista@gmail.com">camiipublicista@gmail.com</a>
       </div>
 
-      <p class="footer-derechos">© <span id="anioActual">2026</span> camicrea. Todos los derechos reservados.</p>
+      <p class="footer-derechos">© <span id="anioActual">2026</span> Camicrea. Todos los derechos reservados.</p>
 
       <p class="footer-firma">Hecho con ideas, café y un poquito de brillo <span aria-hidden="true">✦</span></p>
 
