@@ -329,6 +329,37 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border-top: 1px solid var(--color-borde);
 }
 
+/* Cinta de categorías: franja angosta que se desplaza en bucle con
+   los nombres reales de los servicios, a modo de encabezado decorativo
+   de la ventana Estudio Creativo. */
+.cinta-categorias {
+  overflow: hidden;
+  background-color: var(--color-burdeos);
+  color: var(--color-marfil);
+  padding: 0.55rem 0;
+}
+.cinta-categorias-track {
+  display: flex;
+  width: max-content;
+  animation: desplazar-cinta 28s linear infinite;
+}
+.cinta-categorias-track span {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-right: 0.4rem;
+}
+@keyframes desplazar-cinta {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinta-categorias-track { animation: none; }
+  .cinta-categorias { overflow-x: auto; }
+}
+
 .nav-link.esta-activo {
   color: var(--color-burdeos);
   border-bottom-color: var(--color-burdeos);
@@ -862,7 +893,15 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 .servicio-card:nth-child(4n+3) { transform: rotate(-0.6deg); }
 .servicio-card:nth-child(4n+4) { transform: rotate(1deg); }
 .servicio-card:hover { transform: rotate(0deg) translateY(-4px); box-shadow: var(--sombra-suave); }
-.servicio-card .deco-clip { top: -16px; right: var(--espacio-md); left: auto; transform: rotate(10deg); }
+
+/* Icono simple de línea/trazo plano por servicio (sustituye al clip
+   decorativo): un glifo pequeño en color café, sin fotografías ni
+   ilustraciones complejas. */
+.servicio-icono {
+  display: inline-flex;
+  color: var(--color-cafe);
+  margin-top: var(--espacio-sm);
+}
 @media (prefers-reduced-motion: reduce) {
   .servicio-card { transition: none; }
 }
@@ -1464,6 +1503,51 @@ mark.destacador.is-visible { background-size: 100% 55%; }
 }
 
 /* =================== PIE DE PÁGINA =================== */
+
+/* Cierre visual: última invitación antes del pie de página propiamente
+   dicho, con un fondo de manchas de color suaves (sin flores ni fotos
+   dibujadas, solo degradados abstractos) y el correo real de contacto. */
+.footer-cierre {
+  background-color: var(--color-marfil);
+  background-image:
+    radial-gradient(ellipse 420px 320px at 12% 25%, rgba(201, 217, 168, 0.4), transparent 70%),
+    radial-gradient(ellipse 460px 380px at 88% 20%, rgba(245, 183, 203, 0.45), transparent 70%),
+    radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
+  background-size: auto, auto, 24px 24px;
+  text-align: center;
+  padding: var(--espacio-xl) var(--espacio-md);
+}
+.footer-cierre-inner { max-width: 640px; margin: 0 auto; }
+.footer-cierre-eyebrow {
+  font-size: 1.05rem;
+  color: var(--color-cafe-suave);
+  margin: 0 0 var(--espacio-xs);
+}
+.footer-cierre-titulo {
+  font-family: var(--fuente-serif);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  color: var(--color-cafe);
+  line-height: 1.1;
+  margin: 0 0 var(--espacio-lg);
+}
+.footer-cierre-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-burdeos);
+  color: var(--color-marfil);
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--transicion), background-color var(--transicion);
+}
+.footer-cierre-boton:hover { background-color: var(--color-cafe); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .footer-cierre-boton { transition: none; }
+}
+
 .site-footer {
   background-color: var(--color-burdeos);
   color: var(--color-marfil);
@@ -1508,6 +1592,22 @@ mark.destacador.is-visible { background-size: 100% 55%; }
   font-size: 0.9rem;
   opacity: 0.85;
 }
+
+.footer-firma {
+  color: var(--color-rosa-pastel);
+  font-style: italic;
+  font-size: 0.92rem;
+  margin: -0.4rem 0 0;
+}
+
+.footer-volver-arriba {
+  justify-self: start;
+  color: var(--color-marfil);
+  opacity: 0.85;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+.footer-volver-arriba:hover { opacity: 1; }
 
 .footer-aviso {
   font-size: 0.82rem;
