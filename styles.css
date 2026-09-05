@@ -46,6 +46,15 @@
   --transicion: 0.25s ease;
   --transicion-deco: 0.45s ease;
   --ancho-maximo: 1180px;
+
+  /* Superficies translúcidas sobre el fondo animado: mismo tono de
+     papel/blanco/rosa/verde de siempre, con transparencia + blur para
+     dejar ver el fondo detrás sin perder legibilidad. */
+  --superficie-papel: rgba(255, 255, 251, 0.82);
+  --superficie-blanco: rgba(255, 255, 255, 0.85);
+  --superficie-rosa: rgba(251, 233, 239, 0.82);
+  --superficie-verde: rgba(201, 215, 167, 0.82);
+  --desenfoque-superficie: blur(7px);
 }
 
 /* =================== RESET BÁSICO =================== */
@@ -58,13 +67,122 @@ html {
 body {
   margin: 0;
   background-color: var(--color-marfil);
-  background-image: radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
   color: var(--color-cafe);
   font-family: var(--fuente-sans);
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* =========================================================
+   FONDO AURORA ANIMADO
+   Capa fija detrás de toda la página: manchas grandes, orgánicas
+   y muy desenfocadas de la paleta de marca, moviéndose despacio
+   (25-40s por ciclo, siempre en bucle cerrado para no dar saltos).
+   Encima, una textura de papel muy fina y de opacidad baja para
+   conectar el fondo digital con los post-it y carpetas del sitio.
+   Puramente decorativo: no contiene texto ni información. ========= */
+.fondo-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--color-marfil);
+}
+.fondo-aurora-mancha {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+.fondo-aurora-mancha--rosa1 {
+  width: 62vw;
+  height: 62vw;
+  max-width: 820px;
+  max-height: 820px;
+  left: -14%;
+  top: -18%;
+  background-color: var(--color-rosa-pastel);
+  opacity: 0.55;
+  animation: deriva-aurora-uno 34s ease-in-out infinite;
+}
+.fondo-aurora-mancha--rosa2 {
+  width: 38vw;
+  height: 38vw;
+  max-width: 520px;
+  max-height: 520px;
+  right: -8%;
+  top: 22%;
+  background-color: var(--color-rosa-pastel);
+  opacity: 0.38;
+  animation: deriva-aurora-dos 29s ease-in-out infinite;
+}
+.fondo-aurora-mancha--verde {
+  width: 56vw;
+  height: 56vw;
+  max-width: 720px;
+  max-height: 720px;
+  left: 18%;
+  bottom: -24%;
+  background-color: var(--color-verde-suave);
+  opacity: 0.5;
+  animation: deriva-aurora-tres 38s ease-in-out infinite;
+}
+.fondo-aurora-mancha--burdeos {
+  width: 20vw;
+  height: 20vw;
+  max-width: 260px;
+  max-height: 260px;
+  right: 10%;
+  bottom: 8%;
+  background-color: var(--color-burdeos);
+  opacity: 0.3;
+  animation: deriva-aurora-cuatro 26s ease-in-out infinite;
+}
+.fondo-aurora-mancha--sombra {
+  width: 26vw;
+  height: 26vw;
+  max-width: 340px;
+  max-height: 340px;
+  left: 42%;
+  top: -12%;
+  background-color: var(--color-cafe);
+  opacity: 0.12;
+  animation: deriva-aurora-dos 32s ease-in-out infinite reverse;
+}
+.fondo-aurora-textura {
+  position: absolute;
+  inset: -10%;
+  background-image: radial-gradient(circle, rgba(33, 28, 30, 0.55) 1px, transparent 1px);
+  background-size: 5px 5px;
+  opacity: 0.045;
+}
+@keyframes deriva-aurora-uno {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(4%, 6%) scale(1.08); }
+  50% { transform: translate(-3%, 10%) scale(0.96); }
+  75% { transform: translate(-6%, 3%) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes deriva-aurora-dos {
+  0% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(-5%, 4%) scale(1.1); }
+  60% { transform: translate(3%, -6%) scale(0.94); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes deriva-aurora-tres {
+  0% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(6%, -5%) scale(1.06); }
+  70% { transform: translate(-4%, -8%) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes deriva-aurora-cuatro {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8%, -6%) scale(1.12); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fondo-aurora-mancha { animation: none; }
 }
 
 img { max-width: 100%; display: block; }
@@ -290,7 +408,9 @@ textarea:focus-visible {
   width: min(420px, 100vw);
   flex-direction: column;
   align-items: stretch;
-  background-color: var(--color-marfil);
+  background-color: var(--superficie-blanco);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
   border-top: none;
   box-shadow: var(--sombra-suave);
@@ -399,7 +519,9 @@ textarea:focus-visible {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.9rem 1.1rem;
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: 0 20px 20px 0;
   font-weight: 700;
   font-size: 0.98rem;
@@ -806,7 +928,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 /* Ventana de archivo: "sobre_mí.txt", con la misma barra de ventana
    de navegador (puntos + etiqueta), para la ficha personal. */
 .ventana-archivo {
-  background-color: var(--color-blanco);
+  background-color: var(--superficie-blanco);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra-suave);
@@ -817,7 +941,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   align-items: center;
   gap: 0.4rem;
   padding: 0.8rem 1.2rem;
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
   border-bottom: 1px solid var(--color-borde);
 }
 .ventana-navegador-punto {
@@ -1053,7 +1177,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 .modalidad-card {
-  background-color: var(--color-marfil);
+  background-color: var(--superficie-papel);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio-borde-sm);
   padding: var(--espacio-md);
@@ -1130,9 +1256,11 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .servicio-card {
   position: relative;
   margin-top: 24px;
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
   background-image: radial-gradient(circle, rgba(33, 28, 30, 0.07) 1px, transparent 1px);
   background-size: 12px 12px;
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: 4px var(--radio-borde-sm) var(--radio-borde-sm) var(--radio-borde-sm);
   padding: var(--espacio-md);
   border: 1px solid var(--color-borde);
@@ -1142,9 +1270,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
     11px 13px 0 -7px rgba(201, 215, 167, 0.5);
   transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
 }
-.servicio-card--rosa { background-color: var(--color-rosa-palido); }
-.servicio-card--verde { background-color: var(--color-verde-suave); }
-.servicio-card--crema { background-color: var(--color-papel); }
+.servicio-card--rosa { background-color: var(--superficie-rosa); }
+.servicio-card--verde { background-color: var(--superficie-verde); }
+.servicio-card--crema { background-color: var(--superficie-papel); }
 
 .servicio-card:nth-child(4n+1) { transform: rotate(-1.1deg); }
 .servicio-card:nth-child(4n+2) { transform: rotate(0.8deg); }
@@ -1207,6 +1335,8 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   top: -24px;
   left: var(--espacio-md);
   background-color: inherit;
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
   border-bottom: none;
   border-radius: 8px 8px 0 0;
@@ -1226,7 +1356,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
    con controles + lápiz, y una lista que se va marcando sola al
    hacer scroll (ver script.js), terminando en un mensaje con brillo. */
 .metodologia {
-  background-color: var(--color-blanco);
+  background-color: var(--superficie-blanco);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: var(--radio-borde);
   margin-bottom: var(--espacio-md);
   border: 1px solid var(--color-borde);
@@ -1242,7 +1374,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   align-items: center;
   gap: 0.4rem;
   padding: 0.7rem 1.1rem;
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
   border-bottom: 1px solid var(--color-borde);
 }
 .metodologia-barra-punto {
@@ -1391,7 +1523,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-blanco);
+  background-color: var(--superficie-blanco);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio-borde);
   padding: var(--espacio-lg) var(--espacio-md) var(--espacio-md);
@@ -1514,7 +1648,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
    archivador y no perfectamente alineadas. */
 .proyecto-card {
   position: relative;
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: 4px var(--radio-borde) var(--radio-borde) var(--radio-borde);
   border: 1px solid var(--color-borde);
   display: flex;
@@ -1625,7 +1761,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 .creando-juntas {
   position: relative;
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: var(--radio-borde);
   padding: var(--espacio-lg) var(--espacio-md);
   border: 1px solid var(--color-borde);
@@ -1951,7 +2089,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--espacio-md);
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: var(--radio-borde);
   padding: var(--espacio-lg);
   border: 1px solid var(--color-borde);
@@ -2001,7 +2141,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 .contacto-directo {
-  background-color: var(--color-blanco);
+  background-color: var(--superficie-blanco);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border-radius: var(--radio-borde);
   padding: var(--espacio-lg) var(--espacio-md);
   border: 1px solid var(--color-borde);
@@ -2227,7 +2369,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   padding: 0.7rem 1.1rem;
   border-radius: var(--radio-borde-sm);
   border: 1px solid var(--color-borde);
-  background-color: var(--color-papel);
+  background-color: var(--superficie-papel);
+  backdrop-filter: var(--desenfoque-superficie);
+  -webkit-backdrop-filter: var(--desenfoque-superficie);
   box-shadow: var(--sombra-papel);
   transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
 }
