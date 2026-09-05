@@ -549,6 +549,24 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   .franja-ticker { overflow-x: auto; }
 }
 
+/* Corte de cuaderno: pequeña pausa visual, tipo encuadernado en espiral,
+   entre el bloque de servicios y "¿Cómo trabajamos?". Puramente decorativo. */
+.corte-cuaderno {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: var(--espacio-md) var(--espacio-md) 0;
+}
+.corte-cuaderno-anillas {
+  display: block;
+  height: 20px;
+  border-top: 2px dashed var(--color-gris);
+  background-image: radial-gradient(circle, var(--color-cafe-suave) 0 3px, transparent 3.5px);
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-size: 30px 20px;
+  opacity: 0.5;
+}
+
 /* El estado activo real de la navegación lo resuelve .carpeta-nav.esta-activo
    (ver =================== NAVEGACIÓN COMO PILA DE CARPETAS ===================). */
 
