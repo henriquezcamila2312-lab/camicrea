@@ -109,7 +109,7 @@ body {
     radial-gradient(circle at 92% 90%, rgba(141, 41, 73, 0.28) 0%, transparent 38%),
     radial-gradient(circle at 6% 92%, rgba(33, 28, 30, 0.16) 0%, transparent 34%);
   background-position: 0% 0%;
-  animation: malla-posicion-uno 33s ease-in-out infinite, malla-opacidad-uno 24s ease-in-out infinite;
+  animation: malla-posicion-uno 26s ease-in-out infinite, malla-opacidad-uno 21s ease-in-out infinite;
 }
 .fondo-aurora-capa--dos {
   background-image:
@@ -119,7 +119,7 @@ body {
     radial-gradient(circle at 8% 10%, rgba(141, 41, 73, 0.24) 0%, transparent 36%),
     radial-gradient(circle at 94% 6%, rgba(33, 28, 30, 0.14) 0%, transparent 32%);
   background-position: 100% 100%;
-  animation: malla-posicion-dos 28s ease-in-out infinite, malla-opacidad-dos 30s ease-in-out infinite;
+  animation: malla-posicion-dos 22s ease-in-out infinite, malla-opacidad-dos 25s ease-in-out infinite;
 }
 .fondo-aurora-textura {
   position: absolute;
@@ -130,24 +130,28 @@ body {
 }
 @keyframes malla-posicion-uno {
   0% { background-position: 0% 0%; transform: rotate(0deg); }
-  30% { background-position: 24% 14%; transform: rotate(1deg); }
-  65% { background-position: 8% 30%; transform: rotate(-0.8deg); }
+  16% { background-position: 14% 9%; transform: rotate(0.6deg); }
+  40% { background-position: 30% 18%; transform: rotate(1.3deg); }
+  68% { background-position: 10% 34%; transform: rotate(-1deg); }
+  88% { background-position: 3% 12%; transform: rotate(-0.3deg); }
   100% { background-position: 0% 0%; transform: rotate(0deg); }
 }
 @keyframes malla-posicion-dos {
   0% { background-position: 100% 100%; transform: rotate(0deg); }
-  35% { background-position: 76% 84%; transform: rotate(-1.1deg); }
-  70% { background-position: 88% 66%; transform: rotate(0.9deg); }
+  18% { background-position: 87% 90%; transform: rotate(-0.7deg); }
+  45% { background-position: 72% 80%; transform: rotate(-1.4deg); }
+  72% { background-position: 90% 62%; transform: rotate(1.1deg); }
+  90% { background-position: 97% 92%; transform: rotate(0.3deg); }
   100% { background-position: 100% 100%; transform: rotate(0deg); }
 }
 @keyframes malla-opacidad-uno {
-  0% { opacity: 0.85; }
+  0% { opacity: 0.82; }
   50% { opacity: 1; }
-  100% { opacity: 0.85; }
+  100% { opacity: 0.82; }
 }
 @keyframes malla-opacidad-dos {
   0% { opacity: 1; }
-  50% { opacity: 0.78; }
+  50% { opacity: 0.74; }
   100% { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
