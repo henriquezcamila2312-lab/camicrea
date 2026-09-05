@@ -540,4 +540,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ---------- Parallax muy leve del gladiolo del hero (solo escritorio) ---------- */
+  var florGladioloParallax = document.querySelector('.flor-gladiolo-parallax');
+  var esDispositivoTactil = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if (florGladioloParallax && !prefersReducedMotion && !esDispositivoTactil && window.matchMedia('(min-width: 641px)').matches) {
+    document.addEventListener('mousemove', function (evento) {
+      var proporcionX = (evento.clientX / window.innerWidth) - 0.5;
+      var proporcionY = (evento.clientY / window.innerHeight) - 0.5;
+      florGladioloParallax.style.transform = 'translate(' + (proporcionX * -16).toFixed(1) + 'px, ' + (proporcionY * -10).toFixed(1) + 'px)';
+    });
+  }
+
 });
