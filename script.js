@@ -6,24 +6,62 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Menú móvil ---------- */
+  /* ---------- Menú de archivador (pila vertical de carpetas) ----------
+     Al abrir, cada carpeta aparece con un pequeño desfase (como si el
+     archivador se fuera desplegando) en vez de mostrarse todas de
+     golpe. Al cerrar, se limpia el estado para que el próximo abrir
+     repita el mismo efecto escalonado. */
   var navToggle = document.getElementById('navToggle');
   var primaryNav = document.getElementById('primaryNav');
+  var carpetasNavItems = primaryNav ? primaryNav.querySelectorAll('.carpeta-nav-item') : [];
+  var prefiereMenosMovimientoMenu = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var temporizadoresCarpetas = [];
+
+  var limpiarTemporizadoresCarpetas = function () {
+    temporizadoresCarpetas.forEach(function (id) { window.clearTimeout(id); });
+    temporizadoresCarpetas = [];
+  };
+
+  var abrirArchivador = function () {
+    primaryNav.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'Cerrar menú de navegación');
+
+    if (prefiereMenosMovimientoMenu) {
+      carpetasNavItems.forEach(function (item) { item.classList.add('is-visible'); });
+      return;
+    }
+    limpiarTemporizadoresCarpetas();
+    carpetasNavItems.forEach(function (item, indice) {
+      var id = window.setTimeout(function () {
+        item.classList.add('is-visible');
+      }, indice * 80);
+      temporizadoresCarpetas.push(id);
+    });
+  };
+
+  var cerrarArchivador = function () {
+    limpiarTemporizadoresCarpetas();
+    primaryNav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+    carpetasNavItems.forEach(function (item) { item.classList.remove('is-visible'); });
+  };
 
   if (navToggle && primaryNav) {
     navToggle.addEventListener('click', function () {
-      var isOpen = primaryNav.classList.toggle('is-open');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-      navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+      if (primaryNav.classList.contains('is-open')) {
+        cerrarArchivador();
+      } else {
+        abrirArchivador();
+      }
     });
 
     // Cierra el menú al elegir una opción (comportamiento esperado en móvil)
     primaryNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         if (primaryNav.classList.contains('is-open')) {
-          primaryNav.classList.remove('is-open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          navToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+          cerrarArchivador();
         }
       });
     });
@@ -31,8 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cierra el menú con la tecla Escape
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && primaryNav.classList.contains('is-open')) {
-        primaryNav.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
+        cerrarArchivador();
         navToggle.focus();
       }
     });
@@ -114,53 +151,55 @@ document.addEventListener('DOMContentLoaded', function () {
     manejarHash();
   }
 
-  /* ---------- Cursor personalizado: flecha pixelada + hilo burdeos ----------
-     Solo en escritorio con puntero preciso (mouse/trackpad) y sin
-     prefers-reduced-motion. En pantallas táctiles no se activa. */
+  /* ---------- Cursor: flecha nativa + polvo de brillo delicado ----------
+     La flecha del sistema se mantiene intacta (precisa y funcional).
+     Solo se agrega un rastro corto de 3 a 5 brillos que se desvanecen
+     rápido con opacity + scale; nunca forma una línea ni un hilo
+     continuo. Máximo 5 partículas simultáneas. Solo en escritorio con
+     puntero preciso y sin prefers-reduced-motion; desactivado en
+     táctil. */
   var puedeUsarCursorPersonalizado = window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (puedeUsarCursorPersonalizado) {
-    document.body.classList.add('cursor-personalizado-activo');
+    var COLORES_BRILLO_CURSOR = ['#F3AFC3', '#FFFDF9', '#8D2949'];
+    var particulasBrilloCursor = [];
+    var ultimoBrilloCursorTs = 0;
+    var INTERVALO_BRILLO_CURSOR_MS = 75;
 
-    var cursorFlecha = document.createElement('div');
-    cursorFlecha.className = 'cursor-flecha';
-    cursorFlecha.setAttribute('aria-hidden', 'true');
-    cursorFlecha.innerHTML = '<svg viewBox="0 0 14 14" width="18" height="18" shape-rendering="crispEdges"><polygon points="1,1 1,11 4,8.3 5.8,12 7.6,11.1 5.8,7.4 10,7.4" fill="#211C1E" stroke="#FFFDF9" stroke-width="1"/></svg>';
+    var crearBrilloCursor = function (x, y, grande) {
+      var el = document.createElement('span');
+      el.className = 'cursor-brillo';
+      var tam = grande ? 11 : 6;
+      el.style.width = tam + 'px';
+      el.style.height = tam + 'px';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.style.backgroundColor = COLORES_BRILLO_CURSOR[Math.floor(Math.random() * COLORES_BRILLO_CURSOR.length)];
+      document.body.appendChild(el);
+      particulasBrilloCursor.push(el);
 
-    var cursorHilo = document.createElement('div');
-    cursorHilo.className = 'cursor-hilo';
-    cursorHilo.setAttribute('aria-hidden', 'true');
-    cursorHilo.innerHTML = '<svg viewBox="0 0 40 20" width="40" height="20"><path d="M1 2C10 2 8 18 20 14C28 11 30 6 38 8" fill="none" stroke="#8D2949" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/></svg>';
+      while (particulasBrilloCursor.length > 5) {
+        var viejo = particulasBrilloCursor.shift();
+        if (viejo.parentNode) { viejo.parentNode.removeChild(viejo); }
+      }
 
-    var cursorAccento = document.createElement('div');
-    cursorAccento.className = 'cursor-accento';
-    cursorAccento.setAttribute('aria-hidden', 'true');
-    cursorAccento.innerHTML = '<svg viewBox="0 0 30 30" width="16" height="16"><path d="M15 2 L18 12 L28 15 L18 18 L15 28 L12 18 L2 15 L12 12 Z" fill="#8D2949"/></svg>';
-
-    document.body.appendChild(cursorHilo);
-    document.body.appendChild(cursorFlecha);
-    document.body.appendChild(cursorAccento);
+      window.requestAnimationFrame(function () {
+        el.classList.add('cursor-brillo--desvanece');
+      });
+      window.setTimeout(function () {
+        if (el.parentNode) { el.parentNode.removeChild(el); }
+        var indice = particulasBrilloCursor.indexOf(el);
+        if (indice !== -1) { particulasBrilloCursor.splice(indice, 1); }
+      }, 550);
+    };
 
     document.addEventListener('mousemove', function (event) {
-      var x = event.clientX;
-      var y = event.clientY;
-      cursorFlecha.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-      cursorHilo.style.transform = 'translate(' + (x - 6) + 'px, ' + (y + 2) + 'px)';
-      cursorAccento.style.transform = 'translate(' + (x + 16) + 'px, ' + (y + 16) + 'px)';
-      cursorFlecha.classList.add('esta-activo');
-      cursorHilo.classList.add('esta-activo');
-    });
-
-    document.addEventListener('mouseover', function (event) {
+      var ahora = Date.now();
+      if (ahora - ultimoBrilloCursorTs < INTERVALO_BRILLO_CURSOR_MS) { return; }
+      ultimoBrilloCursorTs = ahora;
       var esInteractivo = event.target.closest && event.target.closest('a, button, input, select, textarea, .proceso-dia');
-      cursorAccento.classList.toggle('esta-visible', !!esInteractivo);
-    });
-
-    document.addEventListener('mouseleave', function () {
-      cursorFlecha.classList.remove('esta-activo');
-      cursorHilo.classList.remove('esta-activo');
-      cursorAccento.classList.remove('esta-visible');
+      crearBrilloCursor(event.clientX, event.clientY, !!esInteractivo);
     });
   }
 
@@ -230,6 +269,90 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tabSocialMedia.addEventListener('click', function () { mostrarPanelServicios(tabSocialMedia); });
     tabCommunity.addEventListener('click', function () { mostrarPanelServicios(tabCommunity); });
+  }
+
+  /* ---------- Selección estilo iOS/iPad: destacados progresivos ----------
+     Cada .seleccion-ios recibe dos manijas (inicio y fin) posicionadas
+     con getClientRects(), para funcionar igual si el texto ocupa una o
+     varias líneas. El color de fondo aparece progresivamente al entrar
+     en pantalla; el texto en sí nunca se oculta. */
+  var seleccionesIOS = document.querySelectorAll('.seleccion-ios');
+  var posicionarSelecciones = function () {};
+
+  if (seleccionesIOS.length) {
+    var colorManijaDe = function (span) {
+      if (span.classList.contains('seleccion-ios--verde')) { return 'seleccion-ios-mango--verde'; }
+      if (span.classList.contains('seleccion-ios--negro')) { return 'seleccion-ios-mango--negro'; }
+      return '';
+    };
+
+    seleccionesIOS.forEach(function (span) {
+      var claseColor = colorManijaDe(span);
+      var sinManijas = span.classList.contains('seleccion-ios--sin-manijas');
+      var soloFin = span.classList.contains('seleccion-ios--solo-fin');
+
+      if (!sinManijas && !soloFin) {
+        var mangoInicio = document.createElement('span');
+        mangoInicio.className = 'seleccion-ios-mango' + (claseColor ? ' ' + claseColor : '');
+        mangoInicio.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(mangoInicio);
+        span._mangoInicio = mangoInicio;
+      }
+
+      if (!sinManijas) {
+        var mangoFin = document.createElement('span');
+        mangoFin.className = 'seleccion-ios-mango' + (claseColor ? ' ' + claseColor : '');
+        mangoFin.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(mangoFin);
+        span._mangoFin = mangoFin;
+      }
+    });
+
+    posicionarSelecciones = function () {
+      seleccionesIOS.forEach(function (span) {
+        var rects = span.getClientRects();
+        if (!rects.length) { return; }
+        var primero = rects[0];
+        var ultimo = rects[rects.length - 1];
+        var scrollX = window.scrollX;
+        var scrollY = window.scrollY;
+
+        if (span._mangoInicio) {
+          span._mangoInicio.style.left = (primero.left + scrollX) + 'px';
+          span._mangoInicio.style.top = (primero.bottom + scrollY) + 'px';
+          span._mangoInicio.style.setProperty('--alto-linea', primero.height + 'px');
+        }
+
+        if (span._mangoFin) {
+          span._mangoFin.style.left = (ultimo.right + scrollX) + 'px';
+          span._mangoFin.style.top = (ultimo.bottom + scrollY) + 'px';
+          span._mangoFin.style.setProperty('--alto-linea', ultimo.height + 'px');
+        }
+      });
+    };
+
+    var marcarSeleccionVisible = function (span) {
+      span.classList.add('is-visible');
+      if (span._mangoInicio) { span._mangoInicio.classList.add('is-visible'); }
+      if (span._mangoFin) { span._mangoFin.classList.add('is-visible'); }
+      window.requestAnimationFrame(posicionarSelecciones);
+    };
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      seleccionesIOS.forEach(marcarSeleccionVisible);
+    } else {
+      var seleccionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            marcarSeleccionVisible(entry.target);
+            seleccionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      seleccionesIOS.forEach(function (span) { seleccionObserver.observe(span); });
+    }
+
+    window.addEventListener('resize', posicionarSelecciones);
   }
 
   /* ---------- "¿Cómo trabajamos?": checklist que se marca sola al hacer scroll ---------- */
