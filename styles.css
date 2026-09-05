@@ -745,6 +745,129 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   z-index: 2;
 }
 
+/* =================== FLORES DECORATIVAS =================== */
+/* Recortes florales reales (PNG con transparencia) integrados como
+   acentos editoriales puntuales: nunca de fondo completo, nunca
+   tapando texto, botones ni menú. Cada una tiene un movimiento propio
+   y sutil (6-10s). Con prefers-reduced-motion quedan estáticas gracias
+   a la regla global de accesibilidad ya definida más arriba. */
+.flor-decorativa {
+  position: absolute;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 14px 22px rgba(33, 28, 30, 0.16));
+}
+
+/* Inicio: gladiolo entrando desde el borde derecho, detrás del
+   contenido (mismo nivel que los hero-blob). El contenedor separado
+   permite sumar parallax (JS, solo escritorio) sin pisar la
+   animación de flotación del propio recorte. */
+.flor-gladiolo-parallax {
+  position: absolute;
+  right: -8%;
+  top: 6%;
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+}
+.flor-gladiolo {
+  position: static;
+  height: clamp(420px, 46vw, 650px);
+  width: auto;
+  animation: flor-flotar-a 9s ease-in-out infinite;
+}
+@media (max-width: 640px) {
+  .flor-gladiolo-parallax { right: -22px; top: -6px; }
+  .flor-gladiolo { height: 190px; }
+}
+
+/* Estudio creativo: alstroemeria apoyada sobre el encabezado, detrás
+   de las tarjetas de servicios (orden natural del documento). */
+.flor-alstroemeria {
+  top: 6px;
+  right: 0;
+  width: clamp(120px, 15vw, 200px);
+  z-index: 0;
+  opacity: 0.95;
+  animation: flor-flotar-b 8s ease-in-out infinite;
+}
+.flor-alstroemeria-brillo { top: 4px; right: clamp(126px, 16vw, 210px); }
+
+/* ¿Cómo trabajamos?: lirio sujeto con clip a la nota */
+.flor-lirio {
+  top: -30px;
+  right: 20px;
+  width: clamp(90px, 11vw, 140px);
+}
+
+/* Portafolio: hibisco asomando desde detrás del primer archivo,
+   con leve inclinación de reposo; sube y gira un poco al pasar el
+   cursor por esa misma tarjeta. */
+.flor-hibisco {
+  top: -32px;
+  left: -24px;
+  width: clamp(90px, 12vw, 140px);
+  transform: rotate(-6deg);
+  transition: transform 0.6s ease;
+}
+.proyecto-card:hover .flor-hibisco,
+.proyecto-card:focus-within .flor-hibisco {
+  transform: translateY(-11px) rotate(-4deg);
+}
+
+/* Crear también es cuidarse: loto como elemento floral principal,
+   integrado sobre la primera nota de la sección. */
+.flor-loto {
+  top: -78px;
+  right: -10px;
+  left: auto;
+  width: clamp(120px, 15vw, 190px);
+  z-index: 0;
+  animation: flor-flotar-c 10s ease-in-out infinite;
+}
+.flor-loto-brillo { top: -34px; right: clamp(128px, 16vw, 198px); }
+
+/* Contacto: pequeño gladiolo reutilizado junto al CTA "Hagámosla
+   florecer" — discreto, en línea con el texto, sin posicionamiento
+   absoluto para no arriesgar desbordes. */
+.flor-mini {
+  position: static;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: auto;
+  margin-left: 0.4rem;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 4px 8px rgba(33, 28, 30, 0.12));
+  animation: flor-flotar-b 8s ease-in-out infinite;
+}
+
+@keyframes flor-flotar-a {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+@keyframes flor-flotar-b {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.4deg); }
+}
+@keyframes flor-flotar-c {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-9px) rotate(-1.2deg); }
+}
+
+@media (max-width: 640px) {
+  .flor-alstroemeria { width: 90px; top: 4px; }
+  .flor-alstroemeria-brillo { right: 96px; }
+  .flor-lirio { width: 72px; top: -16px; right: 8px; }
+  .flor-hibisco { width: 76px; top: -18px; left: -12px; }
+  .flor-loto { width: 110px; top: -28px; right: -6px; }
+  .flor-loto-brillo { right: 116px; }
+}
+
+.metodologia { position: relative; }
+.flor-anchor-estudio { position: relative; }
+
 /* Tarjeta de papel: base para notas y bloques de contenido con textura suave */
 .recorte-papel {
   background-color: var(--color-papel);
