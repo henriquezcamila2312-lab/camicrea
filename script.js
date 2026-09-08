@@ -209,16 +209,6 @@ document.addEventListener('DOMContentLoaded', function () {
     anioActual.textContent = String(new Date().getFullYear());
   }
 
-  /* ---------- Fecha automática en la nota "Desde mi escritorio" ---------- */
-  var notaFecha = document.getElementById('notaFecha');
-  if (notaFecha) {
-    try {
-      notaFecha.textContent = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
-    } catch (error) {
-      notaFecha.textContent = '';
-    }
-  }
-
   /* ---------- Animaciones discretas al aparecer secciones ---------- */
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealElements = document.querySelectorAll('.reveal');

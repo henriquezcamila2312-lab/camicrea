@@ -130,6 +130,7 @@ body {
   background-size: 320px auto;
 }
 .background-grid-flowers::after { background: rgba(255, 255, 255, 0.35); }
+.background-grid-flowers--sutil::after { background: rgba(255, 255, 255, 0.6); }
 
 .background-plano { background-color: #FBE8EC; }
 
@@ -1000,42 +1001,6 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border: 1px solid var(--color-borde);
   border-bottom: none;
   border-radius: 6px 6px 0 0;
-}
-
-/* Ventana de archivo: "sobre_mí.txt", con la misma barra de ventana
-   de navegador (puntos + etiqueta), para la ficha personal. */
-.ventana-archivo {
-  background-color: var(--superficie-blanco);
-  backdrop-filter: var(--desenfoque-superficie);
-  -webkit-backdrop-filter: var(--desenfoque-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-borde);
-  box-shadow: var(--sombra-suave);
-  overflow: hidden;
-}
-.ventana-archivo-barra {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.8rem 1.2rem;
-  background-color: var(--superficie-papel);
-  border-bottom: 1px solid var(--color-borde);
-}
-.ventana-navegador-punto {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--color-rosa-pastel);
-}
-.ventana-navegador-punto:nth-child(2) { background-color: var(--color-verde-suave); }
-.ventana-navegador-punto:nth-child(3) { background-color: var(--color-burdeos); }
-.ventana-archivo-nombre {
-  margin-left: auto;
-  font-size: 0.8rem;
-  color: var(--color-cafe-suave);
-}
-.ventana-archivo-contenido {
-  padding: var(--espacio-lg) var(--espacio-md);
 }
 
 /* Nota sujeta con clip: para el formulario de contacto */
@@ -2040,108 +2005,203 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border: 1px solid var(--color-borde);
 }
 
-/* =================== SOBRE MÍ =================== */
-.sobre-mi-inner {
-  display: grid;
-  grid-template-columns: minmax(220px, 340px) 1fr;
-  gap: var(--espacio-lg);
-  align-items: center;
+/* =================== SOBRE CAMICREA: CARTA Y SOBRE =================== */
+/* Composición de una carta personal saliendo de un sobre abierto, en
+   capas independientes (fondo del sobre, solapa trasera, carta,
+   solapa delantera, lazo y detalles) para que la carta quede siempre
+   legible por encima de las texturas. Paleta propia, tomada tal cual
+   de la referencia de esta sección. */
+:root {
+  --carta-burdeos: #8F2348;
+  --carta-rosa: #F6C1CF;
+  --carta-rosa-palido: #FBE8EC;
+  --carta-crema: #F7F1E8;
+  --carta-negro: #1E1719;
 }
 
-.sobre-mi-imagen {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  border-radius: var(--radio-borde);
-  border: 1px solid var(--color-borde);
+.carta-sobre-wrap {
+  max-width: 600px;
+  margin: 0 auto var(--espacio-lg);
+}
+
+.carta-sobre {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: 132px;
+}
+
+.sobre-cuerpo {
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 0;
+  height: 230px;
+  background-color: var(--carta-rosa);
+  border: 1.5px solid var(--carta-burdeos);
+  border-radius: 6px 6px 16px 16px;
   box-shadow: var(--sombra-suave);
-  background-color: var(--color-rosa-palido);
-  object-fit: cover;
-  object-position: center top;
+  z-index: 1;
 }
 
-.sobre-mi-texto p { color: var(--color-cafe-suave); }
-
-.sobre-mi-botones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--espacio-sm);
-  margin-top: var(--espacio-md);
+.sobre-solapa-fondo {
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 170px;
+  height: 112px;
+  background-color: var(--carta-rosa-palido);
+  border: 1.5px solid rgba(143, 35, 72, 0.5);
+  border-bottom: none;
+  clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
+  z-index: 2;
 }
 
-@media (max-width: 760px) {
-  .sobre-mi-inner { grid-template-columns: 1fr; }
-  .sobre-mi-imagen { max-width: 280px; margin: 0 auto; }
-}
-
-/* Nota "Desde mi escritorio": la ventana de archivo se presenta como
-   una nota manuscrita real, con encabezado, estado, fecha, firma y
-   cursor parpadeante — no como una ficha curricular. */
-.nota-escritorio { position: relative; }
-.nota-escritorio-lazo {
-  top: 60px;
-  right: var(--espacio-md);
-  transform: rotate(8deg);
+.carta {
+  position: relative;
   z-index: 3;
+  width: 92%;
+  margin: 0 auto;
+  background-color: var(--carta-crema);
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 34px, rgba(143, 35, 72, 0.09) 34px, rgba(143, 35, 72, 0.09) 35px),
+    radial-gradient(circle, rgba(30, 23, 25, 0.045) 1px, transparent 1px);
+  background-size: auto, 6px 6px;
+  border: 1px solid rgba(143, 35, 72, 0.3);
+  border-radius: 4px 16px 6px 18px;
+  box-shadow: var(--sombra-papel);
+  padding: 2.5rem 2.1rem 2.9rem;
+  transform: rotate(-1deg);
+  transition: transform 0.5s ease;
+}
+@media (hover: hover) {
+  .carta:hover { transform: rotate(-1deg) translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carta { transition: none; }
 }
 
-.nota-escritorio-encabezado {
-  font-size: 1.6rem;
-  color: var(--color-burdeos);
-  margin: 0 0 0.3rem;
+.carta-titulo {
+  font-family: var(--fuente-serif);
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  color: var(--carta-negro);
+  margin-bottom: var(--espacio-md);
 }
 
-.nota-escritorio-meta {
+.carta p { color: var(--carta-negro); font-family: var(--fuente-sans); }
+
+.carta-resalte {
+  background-image: linear-gradient(180deg, transparent 62%, rgba(246, 193, 207, 0.7) 62%);
+  padding: 0 0.15em;
+  border-radius: 2px;
+}
+
+.carta-firma {
+  margin-top: var(--espacio-md);
+  font-size: 1.7rem;
+  color: var(--carta-burdeos);
+}
+
+.carta-clip {
+  top: -20px;
+  right: 26px;
+  transform: rotate(10deg);
+  z-index: 4;
+}
+
+.carta-cinta {
+  position: absolute;
+  top: -14px;
+  left: 34px;
+  width: 66px;
+  height: 24px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.55) 0 5px, transparent 5px 10px),
+    rgba(246, 193, 207, 0.8);
+  border: 1px solid rgba(143, 35, 72, 0.25);
+  box-shadow: 0 2px 5px rgba(30, 23, 25, 0.1);
+  transform: rotate(-5deg);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.carta-corazon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 22px;
+  height: 20px;
+  opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 36'%3E%3Cpath d='M20 32C20 32 4 22 4 12C4 5 10 2 15 5C18 7 20 11 20 11C20 11 22 7 25 5C30 2 36 5 36 12C36 22 20 32 20 32Z' fill='none' stroke='%238F2348' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.sobre-solapa-frente {
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 0;
+  height: 172px;
+  background-color: var(--carta-rosa);
+  border: 1.5px solid var(--carta-burdeos);
+  clip-path: polygon(0% 100%, 100% 100%, 50% 8%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.sobre-lazo {
+  position: absolute;
+  left: 14%;
+  bottom: 4px;
+  width: 92px;
+  height: 64px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cdefs%3E%3Cpattern id='c' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Crect width='10' height='10' fill='%23F6C1CF'/%3E%3Crect width='5' height='5' fill='%238F2348'/%3E%3Crect x='5' y='5' width='5' height='5' fill='%238F2348'/%3E%3C/pattern%3E%3C/defs%3E%3Cpath d='M50 35 L15 10 Q5 10 5 25 Q5 40 20 38 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L85 10 Q95 10 95 25 Q95 40 80 38 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L20 55 Q15 60 20 65 Q30 68 38 55 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L80 55 Q85 60 80 65 Q70 68 62 55 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='35' r='9' fill='%238F2348'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.16));
+  z-index: 6;
+  pointer-events: none;
+}
+
+.sobre-flor {
+  position: absolute;
+  right: 10%;
+  bottom: 22px;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='%23F6C1CF' stroke='%238F2348' stroke-width='1'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.carta-acciones {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
   gap: var(--espacio-sm);
-  margin-bottom: var(--espacio-md);
-  font-size: 0.85rem;
-  color: var(--color-cafe-suave);
-}
-.nota-escritorio-estado {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 600;
-}
-.nota-escritorio-fecha { opacity: 0.8; }
-.nota-escritorio-punto {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-verde);
-  animation: latido-punto 1.8s ease-in-out infinite;
-}
-@keyframes latido-punto {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .nota-escritorio-punto { animation: none; }
-}
-
-.nota-escritorio-firma {
-  font-size: 1.3rem;
-  color: var(--color-burdeos);
-  text-shadow: 0 1px 0 rgba(255, 253, 249, 0.6);
   margin-top: var(--espacio-md);
 }
-.nota-escritorio-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  margin-left: 0.3rem;
-  vertical-align: text-bottom;
-  background-color: var(--color-burdeos);
-  animation: parpadeo-cursor 1s step-end infinite;
-}
-@keyframes parpadeo-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .nota-escritorio-cursor { animation: none; }
+
+@media (max-width: 640px) {
+  .carta-sobre { padding-bottom: 100px; }
+  .sobre-cuerpo { height: 176px; }
+  .sobre-solapa-fondo { bottom: 128px; height: 88px; }
+  .carta {
+    width: 96%;
+    padding: 1.9rem 1.4rem 2.3rem;
+    transform: none;
+  }
+  @media (hover: hover) {
+    .carta:hover { transform: translateY(-4px); }
+  }
+  .sobre-solapa-frente { height: 132px; clip-path: polygon(0% 100%, 100% 100%, 50% 10%); }
+  .sobre-lazo { width: 70px; height: 50px; left: 10%; }
+  .sobre-flor { width: 30px; height: 30px; right: 8%; bottom: 16px; }
+  .carta-cinta { width: 54px; height: 20px; left: 20px; }
 }
 
 /* =================== CONTACTO =================== */
