@@ -2039,7 +2039,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   background-color: var(--carta-rosa);
   border: 1.5px solid var(--carta-burdeos);
   border-radius: 6px 6px 16px 16px;
-  box-shadow: var(--sombra-suave);
+  box-shadow: var(--sombra-suave), 0 12px 22px rgba(30, 23, 25, 0.1);
   z-index: 1;
 }
 
@@ -2068,13 +2068,13 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   background-size: auto, 6px 6px;
   border: 1px solid rgba(143, 35, 72, 0.3);
   border-radius: 4px 16px 6px 18px;
-  box-shadow: var(--sombra-papel);
+  box-shadow: var(--sombra-papel), 0 16px 28px rgba(30, 23, 25, 0.12);
   padding: 2.5rem 2.1rem 2.9rem;
-  transform: rotate(-1deg);
+  transform: rotate(-2deg);
   transition: transform 0.5s ease;
 }
 @media (hover: hover) {
-  .carta:hover { transform: rotate(-1deg) translateY(-6px); }
+  .carta:hover { transform: rotate(-2deg) translateY(-6px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .carta { transition: none; }
@@ -2147,6 +2147,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   background-color: var(--carta-rosa);
   border: 1.5px solid var(--carta-burdeos);
   clip-path: polygon(0% 100%, 100% 100%, 50% 8%);
+  filter: drop-shadow(0 6px 10px rgba(30, 23, 25, 0.14));
   z-index: 5;
   pointer-events: none;
 }
@@ -2178,6 +2179,21 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   pointer-events: none;
 }
 
+.carta-flor-superior {
+  position: absolute;
+  top: -18px;
+  left: 7%;
+  width: 36px;
+  height: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='%23F6C1CF' stroke='%238F2348' stroke-width='1'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(-14deg);
+  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.14));
+  z-index: 4;
+  pointer-events: none;
+}
+
 .carta-acciones {
   display: flex;
   flex-wrap: wrap;
@@ -2201,6 +2217,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   .sobre-solapa-frente { height: 132px; clip-path: polygon(0% 100%, 100% 100%, 50% 10%); }
   .sobre-lazo { width: 70px; height: 50px; left: 10%; }
   .sobre-flor { width: 30px; height: 30px; right: 8%; bottom: 16px; }
+  .carta-flor-superior { width: 26px; height: 26px; top: -12px; left: 8%; }
   .carta-cinta { width: 54px; height: 20px; left: 20px; }
 }
 
