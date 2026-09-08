@@ -2022,6 +2022,31 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .carta-sobre-wrap {
   max-width: 600px;
   margin: 0 auto var(--espacio-lg);
+  position: relative;
+}
+
+/* Halo suave + sombra proyectada: dan a la composición un aire de
+   fotografía/collage físico en vez de ilustración plana. */
+.carta-sobre-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -6% -4%;
+  background: radial-gradient(ellipse at center, rgba(143, 35, 72, 0.05) 0%, transparent 62%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.carta-sobre-wrap::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 2px;
+  height: 44px;
+  background: radial-gradient(ellipse at center, rgba(30, 23, 25, 0.24), transparent 72%);
+  filter: blur(9px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .carta-sobre {
@@ -2037,6 +2062,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   bottom: 0;
   height: 230px;
   background-color: var(--carta-rosa);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  background-blend-mode: multiply;
   border: 1.5px solid var(--carta-burdeos);
   border-radius: 6px 6px 16px 16px;
   box-shadow: var(--sombra-suave), 0 12px 22px rgba(30, 23, 25, 0.1);
@@ -2050,6 +2078,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   bottom: 170px;
   height: 112px;
   background-color: var(--carta-rosa-palido);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  background-blend-mode: multiply;
   border: 1.5px solid rgba(143, 35, 72, 0.5);
   border-bottom: none;
   clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
@@ -2064,8 +2095,10 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   background-color: var(--carta-crema);
   background-image:
     repeating-linear-gradient(to bottom, transparent 0, transparent 34px, rgba(143, 35, 72, 0.09) 34px, rgba(143, 35, 72, 0.09) 35px),
-    radial-gradient(circle, rgba(30, 23, 25, 0.045) 1px, transparent 1px);
-  background-size: auto, 6px 6px;
+    radial-gradient(circle, rgba(30, 23, 25, 0.045) 1px, transparent 1px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: auto, 6px 6px, 150px 150px;
+  background-blend-mode: normal, normal, multiply;
   border: 1px solid rgba(143, 35, 72, 0.3);
   border-radius: 4px 16px 6px 18px;
   box-shadow: var(--sombra-papel), 0 16px 28px rgba(30, 23, 25, 0.12);
@@ -2145,6 +2178,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   bottom: 0;
   height: 172px;
   background-color: var(--carta-rosa);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  background-blend-mode: multiply;
   border: 1.5px solid var(--carta-burdeos);
   clip-path: polygon(0% 100%, 100% 100%, 50% 8%);
   filter: drop-shadow(0 6px 10px rgba(30, 23, 25, 0.14));
