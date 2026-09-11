@@ -121,17 +121,18 @@
       </div>
     </section>
 
-    <!-- ======================= EXPLICACIÓN DE LA CAMPAÑA =======================
-         Etapa 1: solo texto. Cuando se reciban banners, piezas
-         gráficas, material educativo, kit de actividades y
-         fotografías, esta sección pasa a un layout de dos columnas
-         (proyecto-dos-columnas, igual que en KitKat): a la izquierda
-         esta misma explicación, a la derecha una nueva sección
-         "Piezas de la campaña" con esos archivos reales. No agregar
-         tarjetas vacías ni textos de "Próximamente" mientras tanto. -->
+    <!-- ======================= EXPLICACIÓN + PIEZAS DE LA CAMPAÑA =======================
+         Layout de dos columnas igual que en KitKat: a la izquierda la
+         explicación, a la derecha "Piezas de la campaña" con los
+         archivos reales ya recibidos. Cuando lleguen más piezas
+         (key visual, banner, Príncipe Swish aislado, logo final,
+         material educativo, kit de apoyo), se agregan a
+         proyecto-piezas-lista sin reemplazar las ya incorporadas. -->
     <section class="detalle-proyecto-seccion">
       <div class="container">
-        <div class="proyecto-explicacion proyecto-explicacion--sola reveal">
+        <div class="proyecto-dos-columnas">
+
+          <div class="proyecto-explicacion reveal">
           <p class="proyecto-explicacion-etiqueta">Campaña educativa infantil · Midnight Lab</p>
           <h2 class="section-title proyecto-explicacion-subtitulo">Tus dientes también son tesoros</h2>
           <div class="proyecto-explicacion-texto">
@@ -159,36 +160,50 @@
             <ul class="proyecto-creditos-lista" role="list">
               <li><strong>Agencia:</strong> Midnight Lab</li>
             </ul>
-            <!-- Créditos completos del equipo (integrantes con nombre y apellido, roles) pendientes de confirmar. No inventar. -->
+            <!--
+              Cliente (Ministerio de Salud, visible en las piezas
+              gráficas) y créditos completos del equipo (integrantes
+              con nombre y apellido, roles): pendientes de confirmar
+              explícitamente antes de publicarlos. No inventar.
+            -->
           </div>
+          </div>
+
+          <div class="proyecto-piezas reveal">
+            <h2 class="section-title">Piezas de la campaña</h2>
+            <div class="proyecto-piezas-lista">
+              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: letra del jingle y código QR para escucharlo completo">
+                <img src="./assets/images/proyectos/reino-dientes-jingle-qr.webp" alt="Pieza gráfica de El Reino de los Dientes con la letra del jingle (“De arriba hacia abajo, y de abajo hacia arriba, así tu sonrisa ¡destacará!”) y un código QR para escuchar el jingle completo.">
+              </button>
+              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: concurso Cepíllate, canta y gana">
+                <img src="./assets/images/proyectos/reino-dientes-cepillate-canta-gana.webp" alt="Pieza gráfica del concurso “¡Cepíllate, canta y gana!”, con el Príncipe Swish invitando a las familias a grabarse cantando el jingle.">
+              </button>
+              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: anuncio de evento El Reino de los Dientes llega a tu ciudad">
+                <img src="./assets/images/proyectos/reino-dientes-evento-ciudad.webp" alt="Pieza gráfica del anuncio “¡El Reino de los Dientes llega a tu ciudad!”, con el Príncipe Swish invitando a revisar si el colegio fue seleccionado.">
+              </button>
+            </div>
+            <!--
+              Espacios pendientes, sin duplicar las piezas ya
+              incorporadas arriba: key visual, banner adicional,
+              personaje Príncipe Swish de forma aislada, logo final
+              (si difiere del recorte usado en la franja), material
+              educativo y kit o material de apoyo. No mostrar tarjetas
+              vacías ni inventar piezas mientras tanto.
+            -->
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!--
-      ======================= PIEZAS DE LA CAMPAÑA (pendiente) =======================
-      Cuando se reciban los archivos reales, agregar aquí una sección
-      "Piezas de la campaña" y convertir el bloque de arriba en un
-      layout de dos columnas (proyecto-dos-columnas + proyecto-piezas
-      / proyecto-piezas-lista, igual que en KitKat), integrada con el
-      estilo de collage, papel recortado y textura celeste del
-      proyecto. Cada imagen debe conservar su proporción original
-      (sin recortes ni deformación), tener carga optimizada y poder
-      ampliarse en el lightbox ya existente (galeria-lightbox).
-
-      Espacios preparados, uno por pieza, sin duplicar entre sí:
-        - Key visual.
-        - Banner.
-        - Personaje Príncipe Swish.
-        - Logo de El Reino de los Dientes (versión final, si difiere
-          del recorte ya usado en la franja).
-        - Piezas gráficas.
-        - Material educativo.
-        - Kit o material de apoyo.
-
-      No mostrar tarjetas vacías ni mensajes de "Próximamente" mientras
-      tanto; no inventar ni duplicar piezas.
-    -->
+    <!-- Lightbox: amplía la pieza seleccionada -->
+    <div class="galeria-lightbox" id="galeriaLightbox" hidden>
+      <div class="galeria-lightbox-fondo" data-cerrar-lightbox></div>
+      <div class="galeria-lightbox-contenido" role="dialog" aria-modal="true" aria-label="Pieza de la campaña ampliada">
+        <button type="button" class="galeria-lightbox-cerrar" data-cerrar-lightbox aria-label="Cerrar">✕</button>
+        <div class="galeria-lightbox-pieza" id="galeriaLightboxPieza"></div>
+      </div>
+    </div>
 
     <!--
       ======================= CONTENIDOS AUDIOVISUALES COMPLEMENTARIOS (pendiente) =======================
