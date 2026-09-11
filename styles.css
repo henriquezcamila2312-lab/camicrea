@@ -2020,7 +2020,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 .carta-sobre-wrap {
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto var(--espacio-lg);
   position: relative;
 }
@@ -2062,9 +2062,11 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   bottom: 0;
   height: 230px;
   background-color: var(--carta-rosa);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 150px 150px;
-  background-blend-mode: multiply;
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, transparent 35%, transparent 75%, rgba(30, 23, 25, 0.1) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: auto, 150px 150px;
+  background-blend-mode: normal, multiply;
   border: 1.5px solid var(--carta-burdeos);
   border-radius: 6px 6px 16px 16px;
   box-shadow: var(--sombra-suave), 0 12px 22px rgba(30, 23, 25, 0.1);
@@ -2078,9 +2080,11 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   bottom: 170px;
   height: 112px;
   background-color: var(--carta-rosa-palido);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 150px 150px;
-  background-blend-mode: multiply;
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 60%, rgba(30, 23, 25, 0.05) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: auto, 150px 150px;
+  background-blend-mode: normal, multiply;
   border: 1.5px solid rgba(143, 35, 72, 0.5);
   border-bottom: none;
   clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
@@ -2094,11 +2098,12 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   margin: 0 auto;
   background-color: var(--carta-crema);
   background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 30%, transparent 72%, rgba(30, 23, 25, 0.06) 100%),
     repeating-linear-gradient(to bottom, transparent 0, transparent 34px, rgba(143, 35, 72, 0.09) 34px, rgba(143, 35, 72, 0.09) 35px),
     radial-gradient(circle, rgba(30, 23, 25, 0.045) 1px, transparent 1px),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: auto, 6px 6px, 150px 150px;
-  background-blend-mode: normal, normal, multiply;
+  background-size: auto, auto, 6px 6px, 150px 150px;
+  background-blend-mode: normal, normal, normal, multiply;
   border: 1px solid rgba(143, 35, 72, 0.3);
   border-radius: 4px 16px 6px 18px;
   box-shadow: var(--sombra-papel), 0 16px 28px rgba(30, 23, 25, 0.12);
@@ -2178,9 +2183,11 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   bottom: 0;
   height: 172px;
   background-color: var(--carta-rosa);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 150px 150px;
-  background-blend-mode: multiply;
+  background-image:
+    linear-gradient(200deg, rgba(255, 255, 255, 0.25) 0%, transparent 40%, rgba(30, 23, 25, 0.12) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: auto, 150px 150px;
+  background-blend-mode: normal, multiply;
   border: 1.5px solid var(--carta-burdeos);
   clip-path: polygon(0% 100%, 100% 100%, 50% 8%);
   filter: drop-shadow(0 6px 10px rgba(30, 23, 25, 0.14));
@@ -2190,10 +2197,11 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 .sobre-lazo {
   position: absolute;
-  left: 14%;
+  left: 50%;
   bottom: 4px;
-  width: 92px;
-  height: 64px;
+  width: 100px;
+  height: 70px;
+  transform: translateX(-50%);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cdefs%3E%3Cpattern id='c' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Crect width='10' height='10' fill='%23F6C1CF'/%3E%3Crect width='5' height='5' fill='%238F2348'/%3E%3Crect x='5' y='5' width='5' height='5' fill='%238F2348'/%3E%3C/pattern%3E%3C/defs%3E%3Cpath d='M50 35 L15 10 Q5 10 5 25 Q5 40 20 38 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L85 10 Q95 10 95 25 Q95 40 80 38 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L20 55 Q15 60 20 65 Q30 68 38 55 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L80 55 Q85 60 80 65 Q70 68 62 55 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='35' r='9' fill='%238F2348'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
@@ -2204,28 +2212,29 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 .sobre-flor {
   position: absolute;
-  right: 10%;
-  bottom: 22px;
-  width: 40px;
-  height: 40px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='%23F6C1CF' stroke='%238F2348' stroke-width='1'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3C/svg%3E");
+  right: 8%;
+  bottom: 18px;
+  width: 48px;
+  height: 48px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='pf1' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0%25' stop-color='%23FBE3EA'/%3E%3Cstop offset='100%25' stop-color='%23E38EA4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23pf1)' stroke='%238F2348' stroke-width='1' stroke-dasharray='2 2'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3Ccircle cx='26' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='26' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
+  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.18));
   z-index: 6;
   pointer-events: none;
 }
 
 .carta-flor-superior {
   position: absolute;
-  top: -18px;
+  top: -22px;
   left: 7%;
-  width: 36px;
-  height: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='%23F6C1CF' stroke='%238F2348' stroke-width='1'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3C/svg%3E");
+  width: 44px;
+  height: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='pf2' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0%25' stop-color='%23FBE3EA'/%3E%3Cstop offset='100%25' stop-color='%23E38EA4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23pf2)' stroke='%238F2348' stroke-width='1' stroke-dasharray='2 2'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3Ccircle cx='26' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='26' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   transform: rotate(-14deg);
-  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.14));
+  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.18));
   z-index: 4;
   pointer-events: none;
 }
@@ -2251,9 +2260,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
     .carta:hover { transform: translateY(-4px); }
   }
   .sobre-solapa-frente { height: 132px; clip-path: polygon(0% 100%, 100% 100%, 50% 10%); }
-  .sobre-lazo { width: 70px; height: 50px; left: 10%; }
-  .sobre-flor { width: 30px; height: 30px; right: 8%; bottom: 16px; }
-  .carta-flor-superior { width: 26px; height: 26px; top: -12px; left: 8%; }
+  .sobre-lazo { width: 74px; height: 52px; left: 50%; transform: translateX(-50%); }
+  .sobre-flor { width: 34px; height: 34px; right: 6%; bottom: 14px; }
+  .carta-flor-superior { width: 30px; height: 30px; top: -14px; left: 8%; }
   .carta-cinta { width: 54px; height: 20px; left: 20px; }
 }
 
