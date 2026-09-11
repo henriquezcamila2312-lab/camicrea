@@ -21,7 +21,7 @@
   <!-- Tipografías: Playfair Display (serif editorial, con cursiva) + DM Sans (sans funcional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Luckiest+Guy&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -121,18 +121,16 @@
       </div>
     </section>
 
-    <!-- ======================= EXPLICACIÓN + PIEZAS DE LA CAMPAÑA =======================
-         Layout de dos columnas igual que en KitKat: a la izquierda la
-         explicación, a la derecha "Piezas de la campaña" con los
-         archivos reales ya recibidos. Cuando lleguen más piezas
-         (key visual, banner, Príncipe Swish aislado, logo final,
-         material educativo, kit de apoyo), se agregan a
-         proyecto-piezas-lista sin reemplazar las ya incorporadas. -->
+    <!-- ======================= EXPLICACIÓN DE LA CAMPAÑA =======================
+         Columna derecha reservada para el Key Visual y la imagen de
+         logo/personaje (versión limpia, sin las etiquetas de guía
+         "LOGO"/"PERSONAJE" ni flechas del moodboard). Queda vacía
+         hasta que se entreguen esos archivos; no mostrar el moodboard
+         anotado ni ninguna tarjeta vacía mientras tanto. -->
     <section class="detalle-proyecto-seccion">
       <div class="container">
         <div class="proyecto-dos-columnas">
-
-          <div class="proyecto-explicacion reveal">
+        <div class="proyecto-explicacion reveal">
           <p class="proyecto-explicacion-etiqueta">Campaña educativa infantil · Midnight Lab</p>
           <h2 class="section-title proyecto-explicacion-subtitulo">Tus dientes también son tesoros</h2>
           <div class="proyecto-explicacion-texto">
@@ -167,34 +165,56 @@
               explícitamente antes de publicarlos. No inventar.
             -->
           </div>
-          </div>
+        </div>
 
-          <div class="proyecto-piezas reveal">
-            <h2 class="section-title">Piezas de la campaña</h2>
-            <div class="proyecto-piezas-lista">
-              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: letra del jingle y código QR para escucharlo completo">
-                <img src="./assets/images/proyectos/reino-dientes-jingle-qr.webp" alt="Pieza gráfica de El Reino de los Dientes con la letra del jingle (“De arriba hacia abajo, y de abajo hacia arriba, así tu sonrisa ¡destacará!”) y un código QR para escuchar el jingle completo.">
-              </button>
-              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: concurso Cepíllate, canta y gana">
-                <img src="./assets/images/proyectos/reino-dientes-cepillate-canta-gana.webp" alt="Pieza gráfica del concurso “¡Cepíllate, canta y gana!”, con el Príncipe Swish invitando a las familias a grabarse cantando el jingle.">
-              </button>
-              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: anuncio de evento El Reino de los Dientes llega a tu ciudad">
-                <img src="./assets/images/proyectos/reino-dientes-evento-ciudad.webp" alt="Pieza gráfica del anuncio “¡El Reino de los Dientes llega a tu ciudad!”, con el Príncipe Swish invitando a revisar si el colegio fue seleccionado.">
-              </button>
-            </div>
-            <!--
-              Espacios pendientes, sin duplicar las piezas ya
-              incorporadas arriba: key visual, personaje Príncipe
-              Swish de forma aislada, logo final (si difiere del
-              recorte usado en la franja), material educativo y kit o
-              material de apoyo. No mostrar tarjetas vacías ni
-              inventar piezas mientras tanto.
-            -->
-          </div>
-
+        <!--
+          Columna derecha: Key Visual + imagen de logo/personaje,
+          pendientes. En el moodboard "KEY VISUAL" es un marcador de
+          posición repetido, no la pieza final; el resto del
+          moodboard tiene etiquetas de guía ("LOGO", "PERSONAJE
+          PRINCIPE SWISH") y flechas que no corresponde publicar tal
+          cual. Se espera un archivo limpio de cada uno. No mostrar
+          tarjetas vacías ni el moodboard anotado mientras tanto.
+        -->
+        <div class="proyecto-piezas"></div>
         </div>
       </div>
     </section>
+
+    <!-- ======================= PIEZAS DE LA CAMPAÑA (ancho completo, en línea) ======================= -->
+    <section class="detalle-proyecto-seccion">
+      <div class="container">
+        <div class="proyecto-piezas reveal">
+          <h2 class="section-title">Piezas de la campaña</h2>
+          <div class="proyecto-piezas-lista">
+            <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: letra del jingle y código QR para escucharlo completo">
+              <img src="./assets/images/proyectos/reino-dientes-jingle-qr.webp" alt="Pieza gráfica de El Reino de los Dientes con la letra del jingle (“De arriba hacia abajo, y de abajo hacia arriba, así tu sonrisa ¡destacará!”) y un código QR para escuchar el jingle completo.">
+            </button>
+            <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: concurso Cepíllate, canta y gana">
+              <img src="./assets/images/proyectos/reino-dientes-cepillate-canta-gana.webp" alt="Pieza gráfica del concurso “¡Cepíllate, canta y gana!”, con el Príncipe Swish invitando a las familias a grabarse cantando el jingle.">
+            </button>
+            <button type="button" class="proyecto-pieza-item" aria-label="Ampliar pieza gráfica: anuncio de evento El Reino de los Dientes llega a tu ciudad">
+              <img src="./assets/images/proyectos/reino-dientes-evento-ciudad.webp" alt="Pieza gráfica del anuncio “¡El Reino de los Dientes llega a tu ciudad!”, con el Príncipe Swish invitando a revisar si el colegio fue seleccionado.">
+            </button>
+          </div>
+          <!--
+            Espacios pendientes, sin duplicar las piezas ya
+            incorporadas arriba: personaje Príncipe Swish de forma
+            aislada, logo final (si difiere del recorte usado en la
+            franja), material educativo y kit o material de apoyo. No
+            mostrar tarjetas vacías ni inventar piezas mientras tanto.
+          -->
+        </div>
+      </div>
+    </section>
+
+    <!--
+      ======================= VIDEOS DE TIKTOK (pendiente) =======================
+      Debajo de "Piezas de la campaña": tres mockups de celular, uno
+      por video, para mostrar los videos de TikTok de la campaña.
+      Falta que se entreguen los videos o enlaces reales. No mostrar
+      mockups vacíos ni inventar contenido mientras tanto.
+    -->
 
     <!-- ======================= BANNER (ancho completo) ======================= -->
     <section class="detalle-proyecto-seccion detalle-proyecto-seccion--tira">
