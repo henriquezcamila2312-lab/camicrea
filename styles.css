@@ -2470,6 +2470,14 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   font-family: "Montserrat", var(--fuente-sans);
 }
 
+/* Piezas de la campaña más chicas, en mini-grilla junto al texto (en
+   vez de apiladas grandes), solo en esta página. */
+.pagina-reino-dientes .proyecto-piezas-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: var(--espacio-sm);
+}
+
 /* Dos columnas iguales: explicación de la campaña a la izquierda,
    piezas de la campaña a la derecha, alineadas por arriba. En
    celular se apilan en el mismo orden del documento. */
