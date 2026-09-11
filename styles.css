@@ -2447,17 +2447,19 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 /* Tipografía propia de El Reino de los Dientes, aplicada solo dentro
    de esta página (scope .pagina-reino-dientes) para no afectar el
-   resto del sitio. Sedgwick Ave Display es una alternativa gratuita
-   de apariencia manual y alargada (similar a Breakfast Club, que no
-   está disponible como fuente libre) para títulos creativos y
-   palabras destacadas; Montserrat se usa en párrafos, descripciones,
-   botones y datos del proyecto. No se aplica la tipografía manual en
-   textos largos. */
+   resto del sitio. Luckiest Guy es una alternativa gratuita de estilo
+   display, bold y legible (Breakfast Club, la fuente real del
+   moodboard, no está disponible como fuente libre; la cursiva usada
+   antes —Sedgwick Ave Display— resultó poco legible) para títulos
+   creativos y palabras destacadas; Montserrat se usa en párrafos,
+   descripciones, botones y datos del proyecto. No se aplica la
+   tipografía display en textos largos. */
 .pagina-reino-dientes .section-title,
 .pagina-reino-dientes .proyecto-agradecimiento-titulo,
 .pagina-reino-dientes .franja-reino-texto,
 .pagina-reino-dientes .section-tag {
-  font-family: "Sedgwick Ave Display", var(--fuente-sans);
+  font-family: "Luckiest Guy", var(--fuente-sans);
+  letter-spacing: 0.02em;
 }
 .pagina-reino-dientes #contenido-principal,
 .pagina-reino-dientes .btn,
