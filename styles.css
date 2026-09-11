@@ -24,6 +24,13 @@
   --color-gris: #B9B2A6;
   --color-papel: #FFFFFB;
 
+  /* Identidad propia del proyecto El Reino de los Dientes, tomada de
+     su moodboard oficial (azul marino profundo, celeste y dorado del
+     escudo), distinta de la paleta de KitKat. */
+  --color-reino-azul: #1B3A5C;
+  --color-reino-celeste: #9BC3DE;
+  --color-reino-oro: #D4A72C;
+
   /* Tipografía */
   --fuente-serif: "Playfair Display", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
   --fuente-sans: "DM Sans", "Segoe UI", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2357,6 +2364,32 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   display: block;
 }
 
+/* Franja animada de El Reino de los Dientes: mismo mecanismo de
+   .franja-ticker, en la identidad propia del proyecto (azul real +
+   dorado), con el logo real del escudo como separador. */
+.franja-ticker--reino {
+  background-color: var(--color-reino-azul);
+  padding: 0.6rem 0;
+}
+.franja-ticker-track--reino { align-items: center; gap: 0.9rem; }
+.franja-reino-texto {
+  color: var(--color-marfil);
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.franja-reino-logo {
+  height: 1.15rem;
+  width: auto;
+  display: block;
+}
+@media (max-width: 640px) {
+  .franja-reino-texto { font-size: 0.78rem; }
+  .franja-reino-logo { height: 1rem; }
+}
+
 /* Dos columnas iguales: explicación de la campaña a la izquierda,
    piezas de la campaña a la derecha, alineadas por arriba. En
    celular se apilan en el mismo orden del documento. */
@@ -2365,6 +2398,14 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   grid-template-columns: 1fr 1fr;
   gap: var(--espacio-xl);
   align-items: start;
+}
+
+/* Etapa 1 de un proyecto: solo hay explicación, todavía sin piezas
+   propias que formen la segunda columna. Se usa como columna única
+   de lectura cómoda hasta que la galería real esté lista. */
+.proyecto-explicacion--sola {
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .proyecto-explicacion-etiqueta {
