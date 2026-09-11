@@ -2360,7 +2360,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 .proyecto-info-logo {
   display: block;
-  width: 120px;
+  width: 156px;
   height: auto;
   margin-bottom: var(--espacio-md);
 }
@@ -2445,7 +2445,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 @media (max-width: 640px) {
-  .proyecto-info-logo { width: 84px; }
+  .proyecto-info-logo { width: 108px; }
 }
 
 /* Navegación entre proyectos: anterior / siguiente y progreso, al final de cada caso */
