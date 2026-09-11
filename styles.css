@@ -2309,6 +2309,28 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   transform: translateX(-50%) rotate(-3deg);
 }
 
+/* Video madre de un proyecto: pieza principal, sin marco pesado,
+   esquinas redondeadas y proporción responsive (16:9, como el embed
+   de origen). El iframe se carga de forma diferida (loading="lazy"). */
+.proyecto-video-wrap {
+  position: relative;
+  max-width: 860px;
+  margin: var(--espacio-lg) auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  background-color: var(--color-cafe);
+}
+.proyecto-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 /* Navegación entre proyectos: anterior / siguiente y progreso, al final de cada caso */
 .proyecto-navegacion {
   display: flex;
