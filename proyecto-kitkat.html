@@ -65,44 +65,22 @@
 
   <main id="contenido-principal" class="background-plano">
 
-    <!-- ======================= PORTADA DEL PROYECTO ======================= -->
-    <section class="detalle-proyecto-hero" id="portada">
+    <!-- ======================= VOLVER AL PORTAFOLIO ======================= -->
+    <section class="detalle-proyecto-hero detalle-proyecto-hero--compacta" id="portada">
       <div class="container">
         <a href="index.html#portafolio" class="detalle-proyecto-volver reveal">← Volver al portafolio</a>
-
-        <span class="section-tag reveal">KitKat · Portafolio</span>
-
-        <div class="detalle-proyecto-visual reveal" aria-hidden="true">
-          <span class="deco-cinta" aria-hidden="true"></span>
-          <!--
-            LOGO + IMAGEN DE PORTADA — PENDIENTES DE ARCHIVO.
-            Reemplazar el <span>KITKAT</span> de abajo por, en este
-            orden (imagen de fondo detrás, logo real encima, sin
-            deformar ninguno de los dos):
-
-            <img class="detalle-proyecto-visual-fondo" src="RUTA_IMAGEN_PORTADA" alt="" aria-hidden="true">
-            <img class="detalle-proyecto-visual-logo" src="RUTA_LOGO_KITKAT" alt="KitKat">
-          -->
-          <span>KITKAT</span>
-        </div>
       </div>
     </section>
 
     <!-- ======================= INFORMACIÓN + VIDEO MADRE ======================= -->
-    <section class="detalle-proyecto-seccion">
+    <section class="detalle-proyecto-seccion detalle-proyecto-seccion--principal">
       <div class="container">
         <div class="proyecto-detalle-grid">
 
-          <div class="proyecto-info-datos reveal">
-            <span class="proyecto-info-marca">KITKAT</span>
-            <h1 class="section-title detalle-proyecto-titulo">La vida te da un wate cuando necesitas un break</h1>
+          <div class="proyecto-info-cabecera reveal">
+            <img class="proyecto-info-logo" src="./assets/images/proyectos/kitkat-logo.png" alt="KitKat">
             <p class="proyecto-info-tipo">Campaña universitaria · 2025</p>
-            <p class="proyecto-info-descripcion">Campaña desarrollada para KitKat por Agencia Mindla.</p>
-
-            <div class="proyecto-info-bloque">
-              <span class="section-tag">Concepto creativo</span>
-              <blockquote class="detalle-proyecto-concepto">“La vida te da un wate cuando necesitas un break.”</blockquote>
-            </div>
+            <h1 class="section-title detalle-proyecto-titulo">La vida te da un wate cuando necesitas un break</h1>
           </div>
 
           <div class="proyecto-video-col reveal">
@@ -118,9 +96,20 @@
             </div>
           </div>
 
+          <div class="proyecto-info-concepto reveal">
+            <div class="proyecto-editorial-bloque">
+              <span class="section-tag">Concepto central creativo</span>
+              <p class="proyecto-concepto-frase">La vida te da un wate cuando necesitas un break.</p>
+            </div>
+            <div class="proyecto-editorial-bloque">
+              <span class="section-tag">Insight</span>
+              <p>A veces la vida te da un wate: un golpe inesperado que te obliga a detenerte. El concepto transforma ese momento cotidiano en una invitación a hacer una pausa, recuperar energía y disfrutar el break que necesitabas con KitKat.</p>
+            </div>
+          </div>
+
           <div class="proyecto-info-participacion reveal">
-            <span class="section-tag">Mi participación</span>
-            <div class="metodologia">
+            <div class="proyecto-editorial-bloque">
+              <span class="section-tag">Mi participación</span>
               <p>Participé en el desarrollo creativo de la campaña, la redacción del concepto y también frente a cámara como modelo del video madre.</p>
               <ul class="producto-tags" role="list">
                 <li>Concepto creativo</li>
@@ -132,13 +121,16 @@
           </div>
 
           <div class="proyecto-info-creditos reveal">
-            <span class="section-tag">Créditos</span>
-            <ul class="proyecto-creditos-lista" role="list">
-              <li><strong>Cliente:</strong> KitKat</li>
-              <li><strong>Proyecto:</strong> Campaña universitaria</li>
-              <li><strong>Año:</strong> 2025</li>
-              <li><strong>Agencia:</strong> Mindla</li>
-            </ul>
+            <div class="proyecto-editorial-bloque">
+              <span class="section-tag">Créditos</span>
+              <ul class="proyecto-creditos-lista" role="list">
+                <li><strong>Marca:</strong> KitKat</li>
+                <li><strong>Proyecto:</strong> Campaña universitaria</li>
+                <li><strong>Año:</strong> 2025</li>
+                <li><strong>Agencia:</strong> NightLab</li>
+              </ul>
+              <!-- Créditos completos (integrantes con nombre y apellido) pendientes de confirmar. -->
+            </div>
           </div>
 
         </div>
@@ -148,8 +140,14 @@
     <!-- ======================= GALERÍA ======================= -->
     <section class="detalle-proyecto-seccion">
       <div class="container">
-        <span class="section-tag reveal">Galería</span>
-        <h2 class="section-title reveal">Piezas de la campaña</h2>
+        <div class="proyecto-galeria-encabezado">
+          <div>
+            <span class="section-tag reveal">Galería</span>
+            <h2 class="section-title reveal">Piezas de la campaña</h2>
+          </div>
+          <!-- Enlace "ver proyecto completo" pendiente de URL: agregar href="URL_REAL" cuando se proporcione (sin href, el enlace queda inerte y no navega). -->
+          <a class="proyecto-enlace-discreto reveal" aria-disabled="true">Ver proyecto completo →</a>
+        </div>
         <p class="section-text reveal">Esta galería está preparada para incorporar imágenes, videos y mockups de la campaña a medida que estén disponibles.</p>
 
         <div class="galeria-proyecto-grid galeria-proyecto-grid--collage">
@@ -169,6 +167,27 @@
         <div class="galeria-lightbox-pieza" id="galeriaLightboxPieza"></div>
       </div>
     </div>
+
+    <!-- ======================= DETRÁS DE CÁMARA ======================= -->
+    <section class="detalle-proyecto-seccion">
+      <div class="container">
+        <span class="section-tag reveal">Detrás de cámara</span>
+        <h2 class="section-title reveal">Detrás de cámara</h2>
+        <p class="section-text reveal">Esta sección se completará próximamente con fotografías y videos del detrás de cámara de la campaña.</p>
+      </div>
+    </section>
+
+    <!-- ======================= AGRADECIMIENTOS ======================= -->
+    <section class="detalle-proyecto-seccion">
+      <div class="container">
+        <div class="proyecto-agradecimiento">
+          <!-- Fotografía grupal del equipo: agregar aquí cuando se proporcione. -->
+          <!-- Texto provisional: nombres y apellidos completos pendientes de confirmar. -->
+          <h2 class="proyecto-agradecimiento-titulo reveal">Gracias por crear este break conmigo</h2>
+          <p class="proyecto-agradecimiento-texto reveal">Este proyecto fue posible gracias al trabajo, las ideas y la energía de todo el equipo de NightLab. Gracias a Mira, Alfaro, Camila Ferrer, Nicole, Rayén y Marcela por ser parte de esta campaña.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- ======================= NAVEGACIÓN ENTRE PROYECTOS ======================= -->
     <section class="detalle-proyecto-seccion">
