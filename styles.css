@@ -28,7 +28,7 @@
      su moodboard oficial (azul marino profundo, celeste y dorado del
      escudo), distinta de la paleta de KitKat. */
   --color-reino-azul: #1B3A5C;
-  --color-reino-celeste: #9BC3DE;
+  --color-reino-celeste: #8DB9C8;
   --color-reino-oro: #D4A72C;
 
   /* Tipografía */
@@ -2342,6 +2342,59 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   display: block;
 }
 
+/* Miniatura con botón de reproducción para un video madre que se
+   carga bajo demanda (sin autoplay). Se usa tanto para el estado
+   normal (clic → inserta el iframe) como, si YouTube rechaza la
+   inserción, para el estado de respaldo (clic → abre YouTube en una
+   pestaña nueva). */
+.proyecto-video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: block;
+}
+.proyecto-video-poster-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.proyecto-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: rgba(33, 28, 30, 0.62);
+  color: var(--color-marfil);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding-left: 0.2rem;
+  transition: background-color var(--transicion), transform var(--transicion);
+}
+.proyecto-video-poster:hover .proyecto-video-play,
+.proyecto-video-poster:focus-visible .proyecto-video-play {
+  background-color: var(--color-reino-azul);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.proyecto-video-enlace {
+  margin-top: var(--espacio-xs);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
 /* Franja animada de KitKat: mismo mecanismo de .franja-ticker, en
    burdeos con texto crema y el logo real intercalado. Reemplaza la
    antigua portada del proyecto. */
@@ -2365,19 +2418,21 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 /* Franja animada de El Reino de los Dientes: mismo mecanismo de
-   .franja-ticker, en la identidad propia del proyecto (azul real +
-   dorado), con el logo real del escudo como separador. */
+   .franja-ticker, en el celeste principal del moodboard con texto en
+   azul petróleo oscuro para conservar el contraste, y el logo real
+   del escudo como separador. */
 .franja-ticker--reino {
-  background-color: var(--color-reino-azul);
+  background-color: var(--color-reino-celeste);
   padding: 0.6rem 0;
 }
 .franja-ticker-track--reino { align-items: center; gap: 0.9rem; }
 .franja-reino-texto {
-  color: var(--color-marfil);
+  color: var(--color-reino-azul);
   font-family: var(--fuente-sans);
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 .franja-reino-logo {
@@ -2388,6 +2443,31 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 @media (max-width: 640px) {
   .franja-reino-texto { font-size: 0.78rem; }
   .franja-reino-logo { height: 1rem; }
+}
+
+/* Tipografía propia de El Reino de los Dientes, aplicada solo dentro
+   de esta página (scope .pagina-reino-dientes) para no afectar el
+   resto del sitio. Sedgwick Ave Display es una alternativa gratuita
+   de apariencia manual y alargada (similar a Breakfast Club, que no
+   está disponible como fuente libre) para títulos creativos y
+   palabras destacadas; Montserrat se usa en párrafos, descripciones,
+   botones y datos del proyecto. No se aplica la tipografía manual en
+   textos largos. */
+.pagina-reino-dientes .section-title,
+.pagina-reino-dientes .proyecto-agradecimiento-titulo,
+.pagina-reino-dientes .franja-reino-texto,
+.pagina-reino-dientes .section-tag {
+  font-family: "Sedgwick Ave Display", var(--fuente-sans);
+}
+.pagina-reino-dientes #contenido-principal,
+.pagina-reino-dientes .btn,
+.pagina-reino-dientes .proyecto-explicacion-texto,
+.pagina-reino-dientes .proyecto-explicacion-etiqueta,
+.pagina-reino-dientes .proyecto-editorial-bloque p,
+.pagina-reino-dientes .proyecto-creditos-lista,
+.pagina-reino-dientes .proyecto-agradecimiento-texto,
+.pagina-reino-dientes .proyecto-video-enlace {
+  font-family: "Montserrat", var(--fuente-sans);
 }
 
 /* Dos columnas iguales: explicación de la campaña a la izquierda,
