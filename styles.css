@@ -24,6 +24,11 @@
   --color-gris: #B9B2A6;
   --color-papel: #FFFFFB;
 
+  /* Identidad propia del proyecto El Reino de los Dientes (azul real +
+     dorado de tesoro), distinta de la paleta de KitKat. */
+  --color-reino-azul: #1E3A5F;
+  --color-reino-oro: #D4A72C;
+
   /* Tipografía */
   --fuente-serif: "Playfair Display", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
   --fuente-sans: "DM Sans", "Segoe UI", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2357,6 +2362,32 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   display: block;
 }
 
+/* Franja animada de El Reino de los Dientes: mismo mecanismo de
+   .franja-ticker, en la identidad propia del proyecto (azul real +
+   dorado), con un separador provisional (estrella) hasta contar con
+   el logo oficial, que lo reemplazará. */
+.franja-ticker--reino {
+  background-color: var(--color-reino-azul);
+  padding: 0.6rem 0;
+}
+.franja-ticker-track--reino { align-items: center; gap: 0.9rem; }
+.franja-reino-texto {
+  color: var(--color-marfil);
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.franja-reino-separador {
+  color: var(--color-reino-oro);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+@media (max-width: 640px) {
+  .franja-reino-texto { font-size: 0.78rem; }
+}
+
 /* Dos columnas iguales: explicación de la campaña a la izquierda,
    piezas de la campaña a la derecha, alineadas por arriba. En
    celular se apilan en el mismo orden del documento. */
@@ -2365,6 +2396,14 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   grid-template-columns: 1fr 1fr;
   gap: var(--espacio-xl);
   align-items: start;
+}
+
+/* Etapa 1 de un proyecto: solo hay explicación, todavía sin piezas
+   propias que formen la segunda columna. Se usa como columna única
+   de lectura cómoda hasta que la galería real esté lista. */
+.proyecto-explicacion--sola {
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .proyecto-explicacion-etiqueta {
