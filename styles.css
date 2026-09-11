@@ -2366,8 +2366,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 /* Franja animada de El Reino de los Dientes: mismo mecanismo de
    .franja-ticker, en la identidad propia del proyecto (azul real +
-   dorado), con un separador provisional (estrella) hasta contar con
-   el logo oficial, que lo reemplazará. */
+   dorado), con el logo real del escudo como separador. */
 .franja-ticker--reino {
   background-color: var(--color-reino-azul);
   padding: 0.6rem 0;
@@ -2381,13 +2380,14 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-.franja-reino-separador {
-  color: var(--color-reino-oro);
-  font-size: 0.85rem;
-  line-height: 1;
+.franja-reino-logo {
+  height: 1.15rem;
+  width: auto;
+  display: block;
 }
 @media (max-width: 640px) {
   .franja-reino-texto { font-size: 0.78rem; }
+  .franja-reino-logo { height: 1rem; }
 }
 
 /* Dos columnas iguales: explicación de la campaña a la izquierda,
