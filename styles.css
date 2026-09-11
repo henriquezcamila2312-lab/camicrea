@@ -2419,6 +2419,9 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   transform: translateY(-2px);
   box-shadow: var(--sombra-papel);
 }
+.detalle-proyecto-seccion--tira { padding-top: 0; }
+.proyecto-pieza-item--ancha { box-shadow: var(--sombra-papel); }
+
 .proyecto-pieza-item img,
 .proyecto-pieza-item video {
   display: block;
