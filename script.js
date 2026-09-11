@@ -6,14 +6,13 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Menú de archivador (pila vertical de carpetas) ----------
-     Al abrir, cada carpeta aparece con un pequeño desfase (como si el
-     archivador se fuera desplegando) en vez de mostrarse todas de
-     golpe. Al cerrar, se limpia el estado para que el próximo abrir
-     repita el mismo efecto escalonado. */
+  /* ---------- Menú "Explorar CamiCrea" ----------
+     Al abrir, cada bloque aparece con un pequeño desfase en vez de
+     mostrarse todos de golpe. Al cerrar, se limpia el estado para que
+     el próximo abrir repita el mismo efecto escalonado. */
   var navToggle = document.getElementById('navToggle');
   var primaryNav = document.getElementById('primaryNav');
-  var carpetasNavItems = primaryNav ? primaryNav.querySelectorAll('.carpeta-nav-item') : [];
+  var carpetasNavItems = primaryNav ? primaryNav.querySelectorAll('.explorar-item') : [];
   var prefiereMenosMovimientoMenu = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var temporizadoresCarpetas = [];
 
@@ -72,6 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
         cerrarArchivador();
         navToggle.focus();
       }
+    });
+
+    // Cierra el menú al tocar fuera de él
+    document.addEventListener('click', function (event) {
+      if (!primaryNav.classList.contains('is-open')) { return; }
+      if (primaryNav.contains(event.target) || navToggle.contains(event.target)) { return; }
+      cerrarArchivador();
     });
   }
 
@@ -207,16 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var anioActual = document.getElementById('anioActual');
   if (anioActual) {
     anioActual.textContent = String(new Date().getFullYear());
-  }
-
-  /* ---------- Fecha automática en la nota "Desde mi escritorio" ---------- */
-  var notaFecha = document.getElementById('notaFecha');
-  if (notaFecha) {
-    try {
-      notaFecha.textContent = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
-    } catch (error) {
-      notaFecha.textContent = '';
-    }
   }
 
   /* ---------- Animaciones discretas al aparecer secciones ---------- */
@@ -537,6 +533,24 @@ document.addEventListener('DOMContentLoaded', function () {
         guardarDiasProceso(diasCompletadosProceso);
         aplicarEstadoProceso(diasCompletadosProceso);
       });
+    }
+  }
+
+  /* ---------- Capullo que se abre en Contacto ---------- */
+  var florCapullo = document.getElementById('florCapullo');
+  if (florCapullo) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      florCapullo.classList.add('is-open');
+    } else {
+      var capulloObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-open');
+            capulloObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      capulloObserver.observe(florCapullo);
     }
   }
 

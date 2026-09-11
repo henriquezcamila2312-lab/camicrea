@@ -130,6 +130,7 @@ body {
   background-size: 320px auto;
 }
 .background-grid-flowers::after { background: rgba(255, 255, 255, 0.35); }
+.background-grid-flowers--sutil::after { background: rgba(255, 255, 255, 0.6); }
 
 .background-plano { background-color: #FBE8EC; }
 
@@ -292,83 +293,62 @@ textarea:focus-visible {
   display: block;
 }
 
-/* Botón de menú: una única carpeta principal ("Explorar Camicrea"),
-   para que se entienda de inmediato que se puede tocar y no quede un
-   bloque vacío esperando interacción. */
+/* =================== NAVEGACIÓN: "EXPLORAR CAMICREA" ===================
+   Botón simple (texto + tres puntos, sin ícono de carpeta) que abre un
+   panel con accesos directos a cada sección, presentados como bloques
+   de color — no como carpetas, archivos ni ventana de computador. */
 .nav-toggle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1rem;
-  background-color: var(--color-rosa-pastel);
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  background-color: var(--color-rosa-palido);
   border: 1.5px solid var(--color-burdeos);
-  border-radius: 4px 16px 16px 16px;
-  color: var(--color-cafe);
+  border-radius: 999px;
+  color: var(--color-burdeos);
   font-family: var(--fuente-sans);
   font-weight: 700;
-  font-size: 0.85rem;
-  box-shadow: var(--sombra-papel);
-  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco), background-color var(--transicion-deco);
-  animation: brillo-toggle 3s ease-in-out infinite;
+  font-size: 0.88rem;
+  transition: background-color var(--transicion), color var(--transicion), transform var(--transicion);
 }
 .nav-toggle:hover,
 .nav-toggle:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-suave);
-  background-color: var(--color-rosa-principal, var(--color-rosa-pastel));
+  background-color: var(--color-burdeos);
+  color: var(--color-rosa-palido);
+  transform: translateY(-1px);
 }
-.nav-toggle-carpeta { display: inline-flex; flex-shrink: 0; }
-.nav-toggle-flecha {
+.nav-toggle-puntos {
   display: inline-flex;
-  margin-left: 0.15rem;
-  transition: transform var(--transicion-deco);
+  align-items: center;
+  gap: 3px;
 }
-.nav-toggle[aria-expanded="true"] .nav-toggle-flecha { transform: rotate(180deg); }
-@keyframes brillo-toggle {
-  0%, 100% { box-shadow: var(--sombra-papel); }
-  50% { box-shadow: var(--sombra-papel), 0 0 0 4px rgba(243, 175, 195, 0.35); }
+.nav-toggle-puntos span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+  transition: transform var(--transicion);
 }
+.nav-toggle[aria-expanded="true"] .nav-toggle-puntos span:nth-child(2) { transform: translateY(-2px); }
 @media (max-width: 420px) {
   .nav-toggle-texto { display: none; }
-  .nav-toggle { padding: 0.6rem; border-radius: 4px 14px 14px 14px; }
+  .nav-toggle { padding: 0.7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav-toggle { animation: none; transition: none; }
-  .nav-toggle-flecha { transition: none; }
-}
-
-.primary-nav {
-  display: flex;
-  align-items: center;
-  gap: var(--espacio-md);
-}
-
-/* =================== NAVEGACIÓN COMO PILA VERTICAL DE ARCHIVOS ===================
-   El botón de menú abre un panel desplegable (en todos los anchos, no
-   solo en móvil) con las 5 carpetas de sección apiladas de arriba hacia
-   abajo: cada una tapa a la siguiente y asoma su pestaña por el costado
-   superior. Al pasar el cursor o el foco, la carpeta se adelanta hacia
-   la derecha, se inclina, aumenta su sombra y revela una franja de
-   textura más completa; las carpetas de abajo se separan levemente. */
-.nav-toggle { display: flex; }
-@media (min-width: 901px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle { transition: none; }
+  .nav-toggle-puntos span { transition: none; }
 }
 
 .primary-nav {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   right: 0;
-  width: min(420px, 100vw);
-  flex-direction: column;
-  align-items: stretch;
+  width: min(360px, 100vw);
   background-color: var(--superficie-blanco);
-  backdrop-filter: var(--desenfoque-superficie);
-  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
-  border-top: none;
+  border-radius: var(--radio-borde);
   box-shadow: var(--sombra-suave);
-  padding: var(--espacio-lg) var(--espacio-md);
+  padding: var(--espacio-md);
   max-height: calc(100vh - 100%);
   overflow-y: auto;
   overflow-x: hidden;
@@ -377,6 +357,7 @@ textarea:focus-visible {
   visibility: hidden;
   pointer-events: none;
   transition: transform var(--transicion), opacity var(--transicion);
+  z-index: 500;
 }
 .primary-nav.is-open {
   transform: translateY(0);
@@ -385,145 +366,68 @@ textarea:focus-visible {
   pointer-events: auto;
 }
 
-.carpetas-lista {
-  display: flex;
-  flex-direction: column;
+.explorar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
 }
 
-.carpeta-nav-item {
-  position: relative;
-  transition: margin var(--transicion-deco);
+.explorar-item {
   opacity: 0;
-  transform: translateY(-14px);
-  transition: margin var(--transicion-deco), opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.carpeta-nav-item.is-visible {
+.explorar-item.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
-.carpeta-nav-item + .carpeta-nav-item { margin-top: -22px; }
-.carpeta-nav-item:hover,
-.carpeta-nav-item:focus-within { z-index: 20; }
-.carpeta-nav-item:hover ~ .carpeta-nav-item,
-.carpeta-nav-item:focus-within ~ .carpeta-nav-item { margin-top: -6px; }
+.explorar-item--ancho { grid-column: 1 / -1; }
 
-.carpeta-nav {
-  position: relative;
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-  min-height: 76px;
-  margin-top: 22px;
-  border-radius: 4px 20px 20px 20px;
-  border: 1.5px solid var(--color-cafe);
-  box-shadow: var(--sombra-papel);
-  overflow: visible;
-  text-decoration: none;
-  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
-}
-.carpeta-nav-item:first-child .carpeta-nav { margin-top: 0; }
-.carpeta-nav:hover,
-.carpeta-nav:focus-visible {
-  transform: translateX(14px) rotate(-1.2deg);
-  box-shadow: var(--sombra-suave);
-  outline: none;
-}
-
-/* Pestaña: sobresale por la parte superior izquierda, como una carpeta
-   colgante real, siempre visible por encima de la carpeta siguiente. */
-.carpeta-nav-pestana {
-  position: absolute;
-  top: -20px;
-  left: var(--espacio-md);
-  background-color: var(--color-cafe);
-  color: var(--color-marfil);
-  font-family: var(--fuente-sans);
-  font-weight: 700;
-  font-size: 0.82rem;
-  line-height: 1.2;
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px 8px 0 0;
-  white-space: nowrap;
-  z-index: 2;
-}
-
-.carpeta-nav-vista {
-  flex: 0 0 96px;
-  position: relative;
+.explorar-bloque {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-cafe);
-  border-radius: 3px 0 0 20px;
-  overflow: hidden;
-}
-.carpeta-nav-vista::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(33, 28, 30, 0.1) 1px, transparent 1px);
-  background-size: 11px 11px;
-}
-.carpeta-nav-vista svg { position: relative; z-index: 1; }
-
-.carpeta-nav-cuerpo {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.9rem 1.1rem;
-  background-color: var(--superficie-papel);
-  backdrop-filter: var(--desenfoque-superficie);
-  -webkit-backdrop-filter: var(--desenfoque-superficie);
-  border-radius: 0 20px 20px 0;
+  width: 100%;
+  min-height: 84px;
+  padding: 0.9rem;
+  border-radius: 18px;
+  text-align: center;
+  text-decoration: none;
   font-weight: 700;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   color: var(--color-cafe);
+  background-color: var(--color-rosa-palido);
+  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
 }
-.carpeta-nav-flecha {
-  flex-shrink: 0;
-  opacity: 0.45;
-  transition: transform var(--transicion-deco), opacity var(--transicion-deco);
+.explorar-bloque:hover,
+.explorar-bloque:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-papel);
+  outline: none;
 }
-.carpeta-nav:hover .carpeta-nav-flecha,
-.carpeta-nav:focus-visible .carpeta-nav-flecha { opacity: 1; transform: translateX(4px); }
 
-.carpeta-nav--rosa .carpeta-nav-vista { background-color: var(--color-rosa-pastel); }
-.carpeta-nav--verde .carpeta-nav-vista { background-color: var(--color-verde-suave); }
-.carpeta-nav--negro .carpeta-nav-vista { background-color: var(--color-cafe); color: var(--color-rosa-palido); }
-.carpeta-nav--negro .carpeta-nav-vista::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
-.carpeta-nav--papel .carpeta-nav-vista { background-color: var(--color-papel); border-right: 1.5px solid var(--color-cafe); }
-.carpeta-nav--papel { border-width: 2px; }
-.carpeta-nav--burdeos .carpeta-nav-vista { background-color: var(--color-burdeos); color: var(--color-rosa-palido); }
-.carpeta-nav--burdeos .carpeta-nav-vista::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
-.carpeta-nav--burdeos .carpeta-nav-pestana { background-color: var(--color-burdeos); }
+.explorar-bloque--rosa { background-color: var(--color-rosa-pastel); }
+.explorar-bloque--verde { background-color: var(--color-verde-suave); }
+.explorar-bloque--negro { background-color: var(--color-cafe); color: var(--color-rosa-palido); }
+.explorar-bloque--papel { background-color: var(--color-papel); border: 1.5px solid var(--color-burdeos); }
+.explorar-bloque--burdeos { background-color: var(--color-burdeos); color: var(--color-rosa-palido); }
 
-/* Carpeta activa: destacada en burdeos, con un pequeño botón de
-   costura junto a su nombre. */
-.carpeta-nav.esta-activo {
-  border-color: var(--color-burdeos);
-  box-shadow: 0 0 0 2px var(--color-burdeos), var(--sombra-papel);
-}
-.carpeta-nav.esta-activo .carpeta-nav-cuerpo { color: var(--color-burdeos); }
-.carpeta-nav.esta-activo .carpeta-nav-cuerpo::after {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-burdeos);
-  box-shadow: 0 0 0 1.5px var(--color-rosa-pastel);
+/* Bloque activo: aro burdeos sutil, sin depender del color de fondo */
+.explorar-bloque.esta-activo {
+  box-shadow: 0 0 0 2px var(--color-burdeos);
 }
 
 @media (max-width: 520px) {
-  .primary-nav { width: 100vw; right: 0; }
+  .primary-nav {
+    width: 100vw;
+    right: 0;
+    border-radius: 0 0 var(--radio-borde) var(--radio-borde);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carpeta-nav-item,
-  .carpeta-nav,
-  .carpeta-nav-flecha { transition: none; }
+  .explorar-item,
+  .explorar-bloque { transition: none; }
 }
 
 /* =================== SECCIONES GENERALES =================== */
@@ -800,19 +704,52 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 .flor-loto-brillo { top: -34px; right: clamp(128px, 16vw, 198px); }
 
-/* Contacto: pequeño gladiolo reutilizado junto al CTA "Hagámosla
-   florecer" — discreto, en línea con el texto, sin posicionamiento
-   absoluto para no arriesgar desbordes. */
-.flor-mini {
-  position: static;
+/* Contacto: capullo ilustrado junto al CTA "Hagámosla florecer" que
+   se abre al entrar en pantalla (ver script.js) y queda con un vaivén
+   orgánico muy leve. Fondo transparente, sin posicionamiento absoluto
+   para no arriesgar desbordes; prefers-reduced-motion ya colapsa
+   duraciones de transición/animación de forma global (ver más abajo). */
+.flor-capullo {
   display: inline-block;
   vertical-align: middle;
-  width: 42px;
+  width: 40px;
   height: auto;
   margin-left: 0.4rem;
-  transform: rotate(-8deg);
+  overflow: visible;
+  transform-origin: 30px 64px;
   filter: drop-shadow(0 4px 8px rgba(33, 28, 30, 0.12));
-  animation: flor-flotar-b 8s ease-in-out infinite;
+}
+.flor-capullo.is-open {
+  animation: capullo-vaiven 7s ease-in-out infinite;
+}
+.capullo-tallo {
+  fill: none;
+  stroke: var(--color-verde);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.capullo-hoja {
+  fill: var(--color-verde-suave);
+  stroke: var(--color-verde);
+  stroke-width: 0.8;
+}
+.capullo-petalo {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: rotate(0deg) scale(0.38);
+  fill: url(#capulloPetaloGradiente);
+  stroke: var(--color-burdeos);
+  stroke-width: 1;
+  transition: transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.flor-capullo.is-open .capullo-petalo {
+  transform: rotate(var(--ang, 0deg)) scale(1);
+}
+.capullo-centro { fill: var(--color-burdeos); }
+
+@keyframes capullo-vaiven {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
 }
 
 @keyframes flor-flotar-a {
@@ -1002,42 +939,6 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border-radius: 6px 6px 0 0;
 }
 
-/* Ventana de archivo: "sobre_mí.txt", con la misma barra de ventana
-   de navegador (puntos + etiqueta), para la ficha personal. */
-.ventana-archivo {
-  background-color: var(--superficie-blanco);
-  backdrop-filter: var(--desenfoque-superficie);
-  -webkit-backdrop-filter: var(--desenfoque-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-borde);
-  box-shadow: var(--sombra-suave);
-  overflow: hidden;
-}
-.ventana-archivo-barra {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.8rem 1.2rem;
-  background-color: var(--superficie-papel);
-  border-bottom: 1px solid var(--color-borde);
-}
-.ventana-navegador-punto {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--color-rosa-pastel);
-}
-.ventana-navegador-punto:nth-child(2) { background-color: var(--color-verde-suave); }
-.ventana-navegador-punto:nth-child(3) { background-color: var(--color-burdeos); }
-.ventana-archivo-nombre {
-  margin-left: auto;
-  font-size: 0.8rem;
-  color: var(--color-cafe-suave);
-}
-.ventana-archivo-contenido {
-  padding: var(--espacio-lg) var(--espacio-md);
-}
-
 /* Nota sujeta con clip: para el formulario de contacto */
 .nota-clip {
   position: relative;
@@ -1190,9 +1091,25 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .hero-inner { position: relative; z-index: 1; text-align: center; }
 
 .hero-title {
+  position: relative;
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   margin: 0.25rem auto var(--espacio-sm);
   max-width: 900px;
+}
+/* Despeja suavemente los puntos del fondo justo detrás del título,
+   sin caja sólida: un difuminado rosado que se disuelve hacia los
+   bordes para que el texto respire sobre el patrón de puntos. */
+.hero-title::before {
+  content: '';
+  position: absolute;
+  inset: -26% -12%;
+  background: radial-gradient(ellipse at center, rgba(251, 232, 236, 0.92) 0%, rgba(251, 232, 236, 0.6) 45%, rgba(251, 232, 236, 0) 78%);
+  filter: blur(4px);
+  z-index: -1;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .hero-title::before { inset: -18% -6%; }
 }
 .hero-title-acento {
   font-style: italic;
@@ -2040,108 +1957,90 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border: 1px solid var(--color-borde);
 }
 
-/* =================== SOBRE MÍ =================== */
-.sobre-mi-inner {
-  display: grid;
-  grid-template-columns: minmax(220px, 340px) 1fr;
-  gap: var(--espacio-lg);
-  align-items: center;
+/* =================== SOBRE CAMICREA: PRESENTACIÓN EDITORIAL =================== */
+/* Composición abierta, sin tarjeta contenedora: título, presentación
+   breve en párrafos cortos, frase de cierre destacada y dos flores
+   discretas. Reutiliza la paleta y tipografía globales del sitio. */
+.presentacion {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: var(--espacio-md);
 }
 
-.sobre-mi-imagen {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  border-radius: var(--radio-borde);
-  border: 1px solid var(--color-borde);
-  box-shadow: var(--sombra-suave);
-  background-color: var(--color-rosa-palido);
-  object-fit: cover;
-  object-position: center top;
+.presentacion-titulo {
+  font-family: var(--fuente-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-cafe);
+  margin-bottom: var(--espacio-xl);
 }
 
-.sobre-mi-texto p { color: var(--color-cafe-suave); }
-
-.sobre-mi-botones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--espacio-sm);
-  margin-top: var(--espacio-md);
+.presentacion-texto {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
 }
-
-@media (max-width: 760px) {
-  .sobre-mi-inner { grid-template-columns: 1fr; }
-  .sobre-mi-imagen { max-width: 280px; margin: 0 auto; }
+.presentacion-texto p {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--color-cafe);
+  margin-bottom: var(--espacio-lg);
 }
+.presentacion-texto p:last-child { margin-bottom: 0; }
 
-/* Nota "Desde mi escritorio": la ventana de archivo se presenta como
-   una nota manuscrita real, con encabezado, estado, fecha, firma y
-   cursor parpadeante — no como una ficha curricular. */
-.nota-escritorio { position: relative; }
-.nota-escritorio-lazo {
-  top: 60px;
-  right: var(--espacio-md);
-  transform: rotate(8deg);
-  z-index: 3;
-}
-
-.nota-escritorio-encabezado {
-  font-size: 1.6rem;
+.presentacion-resalte {
   color: var(--color-burdeos);
-  margin: 0 0 0.3rem;
-}
-
-.nota-escritorio-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--espacio-sm);
-  margin-bottom: var(--espacio-md);
-  font-size: 0.85rem;
-  color: var(--color-cafe-suave);
-}
-.nota-escritorio-estado {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
   font-weight: 600;
-}
-.nota-escritorio-fecha { opacity: 0.8; }
-.nota-escritorio-punto {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-verde);
-  animation: latido-punto 1.8s ease-in-out infinite;
-}
-@keyframes latido-punto {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .nota-escritorio-punto { animation: none; }
+  border-bottom: 2px solid rgba(141, 41, 73, 0.25);
 }
 
-.nota-escritorio-firma {
-  font-size: 1.3rem;
+.presentacion-cierre {
+  position: relative;
+  max-width: 560px;
+  margin: var(--espacio-xl) auto var(--espacio-lg);
+}
+.presentacion-frase {
+  font-family: var(--fuente-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
   color: var(--color-burdeos);
-  text-shadow: 0 1px 0 rgba(255, 253, 249, 0.6);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.presentacion-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-sm);
   margin-top: var(--espacio-md);
 }
-.nota-escritorio-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  margin-left: 0.3rem;
-  vertical-align: text-bottom;
-  background-color: var(--color-burdeos);
-  animation: parpadeo-cursor 1s step-end infinite;
+
+.flor-presentacion--uno {
+  top: -18px;
+  right: 2%;
+  width: clamp(70px, 9vw, 108px);
 }
-@keyframes parpadeo-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.flor-presentacion--dos {
+  top: 50%;
+  left: -78px;
+  transform: translateY(-50%);
+  width: clamp(46px, 6vw, 62px);
 }
-@media (prefers-reduced-motion: reduce) {
-  .nota-escritorio-cursor { animation: none; }
+
+@media (max-width: 780px) {
+  .flor-presentacion--dos {
+    left: 50%;
+    top: -38px;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .presentacion-titulo { margin-bottom: var(--espacio-lg); }
+  .flor-presentacion--uno { width: 56px; top: -8px; right: 0; }
+  .flor-presentacion--dos { width: 40px; top: -30px; }
 }
 
 /* =================== CONTACTO =================== */
@@ -2238,15 +2137,10 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 /* =================== PIE DE PÁGINA =================== */
 
 /* Cierre visual: última invitación antes del pie de página propiamente
-   dicho, con un fondo de manchas de color suaves (sin flores ni fotos
-   dibujadas, solo degradados abstractos) y el correo real de contacto. */
+   dicho. Fondo plano y sobrio (sin puntos ni manchas flotantes) para
+   que la atención quede en el mensaje y el correo real de contacto. */
 .footer-cierre {
-  background-color: var(--color-marfil);
-  background-image:
-    radial-gradient(ellipse 420px 320px at 12% 25%, rgba(201, 215, 167, 0.4), transparent 70%),
-    radial-gradient(ellipse 460px 380px at 88% 20%, rgba(243, 175, 195, 0.45), transparent 70%),
-    radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
-  background-size: auto, auto, 24px 24px;
+  background-color: var(--color-rosa-palido);
   text-align: center;
   padding: var(--espacio-xl) var(--espacio-md);
 }
