@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Lightbox de la galería del proyecto (páginas de detalle) ---------- */
   var galeriaLightbox = document.getElementById('galeriaLightbox');
   var galeriaLightboxPieza = document.getElementById('galeriaLightboxPieza');
-  var galeriaItems = document.querySelectorAll('.galeria-proyecto-item');
+  var galeriaItems = document.querySelectorAll('.galeria-proyecto-item, .proyecto-pieza-item');
 
   if (galeriaLightbox && galeriaLightboxPieza && galeriaItems.length) {
     var abrirGaleriaLightbox = function (item) {

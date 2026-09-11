@@ -2258,11 +2258,10 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 
 .detalle-proyecto-hero { padding-top: var(--espacio-lg); }
 
-/* Cuando la portada solo contiene "Volver al portafolio" (sin franja
-   ni banner), se reduce su aire inferior para que el video y la
-   información principal queden cerca, arriba del todo. */
-.detalle-proyecto-hero--compacta { padding-bottom: var(--espacio-sm); }
-.detalle-proyecto-seccion--principal { padding-top: var(--espacio-sm); }
+/* Cuando la portada solo contiene "Volver al portafolio", se reduce
+   al mínimo su aire para que la franja quede pegada justo debajo. */
+.detalle-proyecto-hero--minima { padding-top: var(--espacio-md); padding-bottom: var(--espacio-xs); }
+.detalle-proyecto-seccion--video { padding-top: var(--espacio-md); padding-bottom: var(--espacio-md); }
 
 .detalle-proyecto-titulo { max-width: 820px; }
 
@@ -2336,59 +2335,57 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   display: block;
 }
 
-/* Dos columnas: información del proyecto a la izquierda (~37%), video
-   madre a la derecha (~63%, protagonista), alineados por arriba para
-   que ambos se vean simultáneamente al cargar. En celular se apilan
-   en el orden pedido: cabecera → video → concepto/insight →
-   participación → créditos. */
-.proyecto-detalle-grid {
+/* Franja animada de KitKat: mismo mecanismo de .franja-ticker, en
+   burdeos con texto crema y el logo real intercalado. Reemplaza la
+   antigua portada del proyecto. */
+.franja-ticker--kitkat {
+  background-color: var(--color-burdeos);
+  padding: 0.85rem 0;
+}
+.franja-ticker-track--kitkat { align-items: center; gap: 1.1rem; }
+.franja-kitkat-texto {
+  color: var(--color-marfil);
+  font-family: var(--fuente-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.franja-kitkat-logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+/* Dos columnas iguales: explicación de la campaña a la izquierda,
+   piezas de la campaña a la derecha, alineadas por arriba. En
+   celular se apilan en el mismo orden del documento. */
+.proyecto-dos-columnas {
   display: grid;
-  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr);
-  grid-template-areas:
-    "cabecera      video"
-    "concepto      video"
-    "participacion video"
-    "creditos      video";
+  grid-template-columns: 1fr 1fr;
   gap: var(--espacio-xl);
   align-items: start;
 }
-.proyecto-info-cabecera { grid-area: cabecera; }
-.proyecto-info-concepto { grid-area: concepto; }
-.proyecto-info-participacion { grid-area: participacion; }
-.proyecto-info-creditos { grid-area: creditos; }
-.proyecto-video-col { grid-area: video; }
 
-.proyecto-info-logo {
-  display: block;
-  width: 156px;
-  height: auto;
-  margin-bottom: var(--espacio-md);
-}
-.proyecto-info-tipo {
+.proyecto-explicacion-etiqueta {
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 0.03em;
   color: var(--color-cafe-suave);
   margin-bottom: var(--espacio-xs);
 }
+.proyecto-explicacion-subtitulo { margin-bottom: var(--espacio-md); }
+.proyecto-explicacion-texto p { margin-bottom: var(--espacio-sm); }
+.proyecto-explicacion-texto { margin-bottom: var(--espacio-lg); }
 
-/* Composición editorial simple para concepto, insight, participación y
-   créditos: sin cuadrados ni tarjetas, solo un divisor fino (línea
-   superior) y una etiqueta pequeña entre bloques. */
+/* Composición editorial simple para participación y créditos: sin
+   cuadrados ni tarjetas, solo un divisor fino (línea superior) y una
+   etiqueta pequeña entre bloques. */
 .proyecto-editorial-bloque {
   padding-top: var(--espacio-md);
   border-top: 1px solid var(--color-borde);
 }
 .proyecto-editorial-bloque + .proyecto-editorial-bloque { margin-top: var(--espacio-lg); }
-
-.proyecto-concepto-frase {
-  font-family: var(--fuente-serif);
-  font-style: italic;
-  color: var(--color-burdeos);
-  font-size: 1.15rem;
-  line-height: 1.5;
-  margin: 0;
-}
 
 .proyecto-creditos-lista {
   display: flex;
@@ -2397,33 +2394,47 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   color: var(--color-cafe);
 }
 
-/* Encabezado de la galería: título + enlace discreto a la pieza completa */
-.proyecto-galeria-encabezado {
+/* Piezas de la campaña: apiladas verticalmente, cada una conserva su
+   proporción original (sin recortes) y se puede ampliar. */
+.proyecto-piezas-lista {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--espacio-sm);
+  flex-direction: column;
+  gap: var(--espacio-md);
+  margin-top: var(--espacio-md);
 }
-.proyecto-enlace-discreto {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-cafe-suave);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+.proyecto-pieza-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: var(--radio-borde);
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.proyecto-pieza-item:hover,
+.proyecto-pieza-item:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-papel);
+}
+.proyecto-pieza-item img,
+.proyecto-pieza-item video {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* Cierre editorial de agradecimientos: cálido y cercano, sin aspecto
-   de créditos legales ni tarjeta rígida. */
-.proyecto-agradecimiento {
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-}
+/* Cierre editorial: mismo ancho visual que el video madre, cálido y
+   cercano, sin aspecto de créditos legales ni tarjeta rígida. */
+.proyecto-agradecimiento { text-align: center; }
 .proyecto-agradecimiento-titulo {
   font-size: clamp(1.6rem, 4vw, 2.2rem);
 }
 .proyecto-agradecimiento-texto {
+  max-width: 680px;
+  margin: 0 auto;
   font-family: var(--fuente-serif);
   font-style: italic;
   color: var(--color-cafe);
@@ -2432,20 +2443,15 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 @media (max-width: 900px) {
-  .proyecto-detalle-grid {
+  .proyecto-dos-columnas {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "cabecera"
-      "video"
-      "concepto"
-      "participacion"
-      "creditos";
     gap: var(--espacio-lg);
   }
 }
 
 @media (max-width: 640px) {
-  .proyecto-info-logo { width: 108px; }
+  .franja-kitkat-logo { height: 22px; }
+  .franja-kitkat-texto { font-size: 0.82rem; }
 }
 
 /* Navegación entre proyectos: anterior / siguiente y progreso, al final de cada caso */
@@ -2553,43 +2559,6 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   font-size: 1.5rem;
 }
 
-/* Galería tipo collage editorial: una pieza grande + piezas medianas,
-   pensada para dar protagonismo a las imágenes reales del proyecto.
-   Los ítems son <button> para poder ampliarlos (lightbox). */
-.galeria-proyecto-grid--collage {
-  grid-template-columns: repeat(4, 1fr);
-}
-.galeria-proyecto-grid--collage .galeria-proyecto-item {
-  width: 100%;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-  cursor: pointer;
-  transition: transform var(--transicion), box-shadow var(--transicion);
-}
-.galeria-proyecto-grid--collage .galeria-proyecto-item:hover,
-.galeria-proyecto-grid--collage .galeria-proyecto-item:focus-visible {
-  transform: translateY(-3px);
-  box-shadow: var(--sombra-papel);
-}
-.galeria-proyecto-grid--collage .galeria-proyecto-item--grande {
-  grid-column: span 2;
-  grid-row: span 2;
-  aspect-ratio: 1 / 1;
-  font-size: 2.2rem;
-}
-@media (max-width: 640px) {
-  .galeria-proyecto-grid--collage { grid-template-columns: 1fr; }
-  .galeria-proyecto-grid--collage .galeria-proyecto-item--grande {
-    grid-column: span 1;
-    grid-row: span 1;
-    aspect-ratio: 16 / 10;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .galeria-proyecto-grid--collage .galeria-proyecto-item { transition: none; }
-}
-
 /* Lightbox de la galería: amplía la pieza seleccionada sobre un fondo
    oscuro, con cierre por botón, clic afuera o tecla Escape. */
 .galeria-lightbox[hidden] { display: none; }
@@ -2614,17 +2583,29 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   max-width: 720px;
 }
 .galeria-lightbox-pieza {
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radio-borde);
-  background: linear-gradient(135deg, var(--color-rosa-pastel), var(--color-rosa-palido));
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-burdeos);
   font-size: 3rem;
+}
+/* Placeholders (sin imagen real todavía): sí llevan caja con degradé */
+.galeria-lightbox-pieza:has(span) {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radio-borde);
+  background: linear-gradient(135deg, var(--color-rosa-pastel), var(--color-rosa-palido));
   overflow: hidden;
 }
-.galeria-lightbox-pieza img { width: 100%; height: 100%; object-fit: contain; display: block; }
+/* Piezas reales: cada una conserva su proporción original, sin caja fija */
+.galeria-lightbox-pieza img,
+.galeria-lightbox-pieza video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--radio-borde);
+}
 .galeria-lightbox-cerrar {
   position: absolute;
   top: -46px;
