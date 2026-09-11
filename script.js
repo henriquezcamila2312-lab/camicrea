@@ -6,14 +6,13 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Menú de archivador (pila vertical de carpetas) ----------
-     Al abrir, cada carpeta aparece con un pequeño desfase (como si el
-     archivador se fuera desplegando) en vez de mostrarse todas de
-     golpe. Al cerrar, se limpia el estado para que el próximo abrir
-     repita el mismo efecto escalonado. */
+  /* ---------- Menú "Explorar CamiCrea" ----------
+     Al abrir, cada bloque aparece con un pequeño desfase en vez de
+     mostrarse todos de golpe. Al cerrar, se limpia el estado para que
+     el próximo abrir repita el mismo efecto escalonado. */
   var navToggle = document.getElementById('navToggle');
   var primaryNav = document.getElementById('primaryNav');
-  var carpetasNavItems = primaryNav ? primaryNav.querySelectorAll('.carpeta-nav-item') : [];
+  var carpetasNavItems = primaryNav ? primaryNav.querySelectorAll('.explorar-item') : [];
   var prefiereMenosMovimientoMenu = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var temporizadoresCarpetas = [];
 
@@ -72,6 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
         cerrarArchivador();
         navToggle.focus();
       }
+    });
+
+    // Cierra el menú al tocar fuera de él
+    document.addEventListener('click', function (event) {
+      if (!primaryNav.classList.contains('is-open')) { return; }
+      if (primaryNav.contains(event.target) || navToggle.contains(event.target)) { return; }
+      cerrarArchivador();
     });
   }
 

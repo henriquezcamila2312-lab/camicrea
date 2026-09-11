@@ -293,83 +293,62 @@ textarea:focus-visible {
   display: block;
 }
 
-/* Botón de menú: una única carpeta principal ("Explorar Camicrea"),
-   para que se entienda de inmediato que se puede tocar y no quede un
-   bloque vacío esperando interacción. */
+/* =================== NAVEGACIÓN: "EXPLORAR CAMICREA" ===================
+   Botón simple (texto + tres puntos, sin ícono de carpeta) que abre un
+   panel con accesos directos a cada sección, presentados como bloques
+   de color — no como carpetas, archivos ni ventana de computador. */
 .nav-toggle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1rem;
-  background-color: var(--color-rosa-pastel);
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  background-color: var(--color-rosa-palido);
   border: 1.5px solid var(--color-burdeos);
-  border-radius: 4px 16px 16px 16px;
-  color: var(--color-cafe);
+  border-radius: 999px;
+  color: var(--color-burdeos);
   font-family: var(--fuente-sans);
   font-weight: 700;
-  font-size: 0.85rem;
-  box-shadow: var(--sombra-papel);
-  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco), background-color var(--transicion-deco);
-  animation: brillo-toggle 3s ease-in-out infinite;
+  font-size: 0.88rem;
+  transition: background-color var(--transicion), color var(--transicion), transform var(--transicion);
 }
 .nav-toggle:hover,
 .nav-toggle:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-suave);
-  background-color: var(--color-rosa-principal, var(--color-rosa-pastel));
+  background-color: var(--color-burdeos);
+  color: var(--color-rosa-palido);
+  transform: translateY(-1px);
 }
-.nav-toggle-carpeta { display: inline-flex; flex-shrink: 0; }
-.nav-toggle-flecha {
+.nav-toggle-puntos {
   display: inline-flex;
-  margin-left: 0.15rem;
-  transition: transform var(--transicion-deco);
+  align-items: center;
+  gap: 3px;
 }
-.nav-toggle[aria-expanded="true"] .nav-toggle-flecha { transform: rotate(180deg); }
-@keyframes brillo-toggle {
-  0%, 100% { box-shadow: var(--sombra-papel); }
-  50% { box-shadow: var(--sombra-papel), 0 0 0 4px rgba(243, 175, 195, 0.35); }
+.nav-toggle-puntos span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+  transition: transform var(--transicion);
 }
+.nav-toggle[aria-expanded="true"] .nav-toggle-puntos span:nth-child(2) { transform: translateY(-2px); }
 @media (max-width: 420px) {
   .nav-toggle-texto { display: none; }
-  .nav-toggle { padding: 0.6rem; border-radius: 4px 14px 14px 14px; }
+  .nav-toggle { padding: 0.7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav-toggle { animation: none; transition: none; }
-  .nav-toggle-flecha { transition: none; }
-}
-
-.primary-nav {
-  display: flex;
-  align-items: center;
-  gap: var(--espacio-md);
-}
-
-/* =================== NAVEGACIÓN COMO PILA VERTICAL DE ARCHIVOS ===================
-   El botón de menú abre un panel desplegable (en todos los anchos, no
-   solo en móvil) con las 5 carpetas de sección apiladas de arriba hacia
-   abajo: cada una tapa a la siguiente y asoma su pestaña por el costado
-   superior. Al pasar el cursor o el foco, la carpeta se adelanta hacia
-   la derecha, se inclina, aumenta su sombra y revela una franja de
-   textura más completa; las carpetas de abajo se separan levemente. */
-.nav-toggle { display: flex; }
-@media (min-width: 901px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle { transition: none; }
+  .nav-toggle-puntos span { transition: none; }
 }
 
 .primary-nav {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   right: 0;
-  width: min(420px, 100vw);
-  flex-direction: column;
-  align-items: stretch;
+  width: min(360px, 100vw);
   background-color: var(--superficie-blanco);
-  backdrop-filter: var(--desenfoque-superficie);
-  -webkit-backdrop-filter: var(--desenfoque-superficie);
   border: 1px solid var(--color-borde);
-  border-top: none;
+  border-radius: var(--radio-borde);
   box-shadow: var(--sombra-suave);
-  padding: var(--espacio-lg) var(--espacio-md);
+  padding: var(--espacio-md);
   max-height: calc(100vh - 100%);
   overflow-y: auto;
   overflow-x: hidden;
@@ -378,6 +357,7 @@ textarea:focus-visible {
   visibility: hidden;
   pointer-events: none;
   transition: transform var(--transicion), opacity var(--transicion);
+  z-index: 500;
 }
 .primary-nav.is-open {
   transform: translateY(0);
@@ -386,145 +366,68 @@ textarea:focus-visible {
   pointer-events: auto;
 }
 
-.carpetas-lista {
-  display: flex;
-  flex-direction: column;
+.explorar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
 }
 
-.carpeta-nav-item {
-  position: relative;
-  transition: margin var(--transicion-deco);
+.explorar-item {
   opacity: 0;
-  transform: translateY(-14px);
-  transition: margin var(--transicion-deco), opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.carpeta-nav-item.is-visible {
+.explorar-item.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
-.carpeta-nav-item + .carpeta-nav-item { margin-top: -22px; }
-.carpeta-nav-item:hover,
-.carpeta-nav-item:focus-within { z-index: 20; }
-.carpeta-nav-item:hover ~ .carpeta-nav-item,
-.carpeta-nav-item:focus-within ~ .carpeta-nav-item { margin-top: -6px; }
+.explorar-item--ancho { grid-column: 1 / -1; }
 
-.carpeta-nav {
-  position: relative;
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-  min-height: 76px;
-  margin-top: 22px;
-  border-radius: 4px 20px 20px 20px;
-  border: 1.5px solid var(--color-cafe);
-  box-shadow: var(--sombra-papel);
-  overflow: visible;
-  text-decoration: none;
-  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
-}
-.carpeta-nav-item:first-child .carpeta-nav { margin-top: 0; }
-.carpeta-nav:hover,
-.carpeta-nav:focus-visible {
-  transform: translateX(14px) rotate(-1.2deg);
-  box-shadow: var(--sombra-suave);
-  outline: none;
-}
-
-/* Pestaña: sobresale por la parte superior izquierda, como una carpeta
-   colgante real, siempre visible por encima de la carpeta siguiente. */
-.carpeta-nav-pestana {
-  position: absolute;
-  top: -20px;
-  left: var(--espacio-md);
-  background-color: var(--color-cafe);
-  color: var(--color-marfil);
-  font-family: var(--fuente-sans);
-  font-weight: 700;
-  font-size: 0.82rem;
-  line-height: 1.2;
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px 8px 0 0;
-  white-space: nowrap;
-  z-index: 2;
-}
-
-.carpeta-nav-vista {
-  flex: 0 0 96px;
-  position: relative;
+.explorar-bloque {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-cafe);
-  border-radius: 3px 0 0 20px;
-  overflow: hidden;
-}
-.carpeta-nav-vista::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(33, 28, 30, 0.1) 1px, transparent 1px);
-  background-size: 11px 11px;
-}
-.carpeta-nav-vista svg { position: relative; z-index: 1; }
-
-.carpeta-nav-cuerpo {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.9rem 1.1rem;
-  background-color: var(--superficie-papel);
-  backdrop-filter: var(--desenfoque-superficie);
-  -webkit-backdrop-filter: var(--desenfoque-superficie);
-  border-radius: 0 20px 20px 0;
+  width: 100%;
+  min-height: 84px;
+  padding: 0.9rem;
+  border-radius: 18px;
+  text-align: center;
+  text-decoration: none;
   font-weight: 700;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   color: var(--color-cafe);
+  background-color: var(--color-rosa-palido);
+  transition: transform var(--transicion-deco), box-shadow var(--transicion-deco);
 }
-.carpeta-nav-flecha {
-  flex-shrink: 0;
-  opacity: 0.45;
-  transition: transform var(--transicion-deco), opacity var(--transicion-deco);
+.explorar-bloque:hover,
+.explorar-bloque:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-papel);
+  outline: none;
 }
-.carpeta-nav:hover .carpeta-nav-flecha,
-.carpeta-nav:focus-visible .carpeta-nav-flecha { opacity: 1; transform: translateX(4px); }
 
-.carpeta-nav--rosa .carpeta-nav-vista { background-color: var(--color-rosa-pastel); }
-.carpeta-nav--verde .carpeta-nav-vista { background-color: var(--color-verde-suave); }
-.carpeta-nav--negro .carpeta-nav-vista { background-color: var(--color-cafe); color: var(--color-rosa-palido); }
-.carpeta-nav--negro .carpeta-nav-vista::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
-.carpeta-nav--papel .carpeta-nav-vista { background-color: var(--color-papel); border-right: 1.5px solid var(--color-cafe); }
-.carpeta-nav--papel { border-width: 2px; }
-.carpeta-nav--burdeos .carpeta-nav-vista { background-color: var(--color-burdeos); color: var(--color-rosa-palido); }
-.carpeta-nav--burdeos .carpeta-nav-vista::before { background-image: radial-gradient(circle, rgba(255, 253, 249, 0.14) 1px, transparent 1px); }
-.carpeta-nav--burdeos .carpeta-nav-pestana { background-color: var(--color-burdeos); }
+.explorar-bloque--rosa { background-color: var(--color-rosa-pastel); }
+.explorar-bloque--verde { background-color: var(--color-verde-suave); }
+.explorar-bloque--negro { background-color: var(--color-cafe); color: var(--color-rosa-palido); }
+.explorar-bloque--papel { background-color: var(--color-papel); border: 1.5px solid var(--color-burdeos); }
+.explorar-bloque--burdeos { background-color: var(--color-burdeos); color: var(--color-rosa-palido); }
 
-/* Carpeta activa: destacada en burdeos, con un pequeño botón de
-   costura junto a su nombre. */
-.carpeta-nav.esta-activo {
-  border-color: var(--color-burdeos);
-  box-shadow: 0 0 0 2px var(--color-burdeos), var(--sombra-papel);
-}
-.carpeta-nav.esta-activo .carpeta-nav-cuerpo { color: var(--color-burdeos); }
-.carpeta-nav.esta-activo .carpeta-nav-cuerpo::after {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-burdeos);
-  box-shadow: 0 0 0 1.5px var(--color-rosa-pastel);
+/* Bloque activo: aro burdeos sutil, sin depender del color de fondo */
+.explorar-bloque.esta-activo {
+  box-shadow: 0 0 0 2px var(--color-burdeos);
 }
 
 @media (max-width: 520px) {
-  .primary-nav { width: 100vw; right: 0; }
+  .primary-nav {
+    width: 100vw;
+    right: 0;
+    border-radius: 0 0 var(--radio-borde) var(--radio-borde);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carpeta-nav-item,
-  .carpeta-nav,
-  .carpeta-nav-flecha { transition: none; }
+  .explorar-item,
+  .explorar-bloque { transition: none; }
 }
 
 /* =================== SECCIONES GENERALES =================== */
@@ -2054,241 +1957,59 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   border: 1px solid var(--color-borde);
 }
 
-/* =================== SOBRE CAMICREA: CARTA Y SOBRE =================== */
-/* Composición de una carta personal saliendo de un sobre abierto, en
-   capas independientes (fondo del sobre, solapa trasera, carta,
-   solapa delantera, lazo y detalles) para que la carta quede siempre
-   legible por encima de las texturas. Paleta propia, tomada tal cual
-   de la referencia de esta sección. */
-:root {
-  --carta-burdeos: #8F2348;
-  --carta-rosa: #F6C1CF;
-  --carta-rosa-palido: #FBE8EC;
-  --carta-crema: #F7F1E8;
-  --carta-negro: #1E1719;
-}
-
-.carta-sobre-wrap {
-  max-width: 640px;
-  margin: 0 auto var(--espacio-lg);
+/* =================== SOBRE CAMICREA: PRESENTACIÓN EDITORIAL =================== */
+/* Composición abierta, sin tarjeta contenedora: título, presentación
+   breve en párrafos cortos, frase de cierre destacada y dos flores
+   discretas. Reutiliza la paleta y tipografía globales del sitio. */
+.presentacion {
   position: relative;
-}
-
-/* Halo suave + sombra proyectada: dan a la composición un aire de
-   fotografía/collage físico en vez de ilustración plana. */
-.carta-sobre-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -6% -4%;
-  background: radial-gradient(ellipse at center, rgba(143, 35, 72, 0.05) 0%, transparent 62%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.carta-sobre-wrap::after {
-  content: '';
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  bottom: 2px;
-  height: 44px;
-  background: radial-gradient(ellipse at center, rgba(30, 23, 25, 0.24), transparent 72%);
-  filter: blur(9px);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.carta-sobre {
-  position: relative;
-  isolation: isolate;
-  padding-bottom: 132px;
-}
-
-.sobre-cuerpo {
-  position: absolute;
-  left: 2%;
-  right: 2%;
-  bottom: 0;
-  height: 230px;
-  background-color: var(--carta-rosa);
-  background-image:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, transparent 35%, transparent 75%, rgba(30, 23, 25, 0.1) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: auto, 150px 150px;
-  background-blend-mode: normal, multiply;
-  border: 1.5px solid var(--carta-burdeos);
-  border-radius: 6px 6px 16px 16px;
-  box-shadow: var(--sombra-suave), 0 12px 22px rgba(30, 23, 25, 0.1);
-  z-index: 1;
-}
-
-.sobre-solapa-fondo {
-  position: absolute;
-  left: 2%;
-  right: 2%;
-  bottom: 170px;
-  height: 112px;
-  background-color: var(--carta-rosa-palido);
-  background-image:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 60%, rgba(30, 23, 25, 0.05) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: auto, 150px 150px;
-  background-blend-mode: normal, multiply;
-  border: 1.5px solid rgba(143, 35, 72, 0.5);
-  border-bottom: none;
-  clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
-  z-index: 2;
-}
-
-.carta {
-  position: relative;
-  z-index: 3;
-  width: 92%;
+  max-width: 720px;
   margin: 0 auto;
-  background-color: var(--carta-crema);
-  background-image:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 30%, transparent 72%, rgba(30, 23, 25, 0.06) 100%),
-    repeating-linear-gradient(to bottom, transparent 0, transparent 34px, rgba(143, 35, 72, 0.09) 34px, rgba(143, 35, 72, 0.09) 35px),
-    radial-gradient(circle, rgba(30, 23, 25, 0.045) 1px, transparent 1px),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: auto, auto, 6px 6px, 150px 150px;
-  background-blend-mode: normal, normal, normal, multiply;
-  border: 1px solid rgba(143, 35, 72, 0.3);
-  border-radius: 4px 16px 6px 18px;
-  box-shadow: var(--sombra-papel), 0 16px 28px rgba(30, 23, 25, 0.12);
-  padding: 2.5rem 2.1rem 2.9rem;
-  transform: rotate(-2deg);
-  transition: transform 0.5s ease;
-}
-@media (hover: hover) {
-  .carta:hover { transform: rotate(-2deg) translateY(-6px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .carta { transition: none; }
+  text-align: center;
+  padding-top: var(--espacio-md);
 }
 
-.carta-titulo {
+.presentacion-titulo {
   font-family: var(--fuente-serif);
-  font-size: clamp(1.7rem, 4vw, 2.2rem);
-  color: var(--carta-negro);
-  margin-bottom: var(--espacio-md);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-cafe);
+  margin-bottom: var(--espacio-xl);
 }
 
-.carta p { color: var(--carta-negro); font-family: var(--fuente-sans); }
+.presentacion-texto {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+.presentacion-texto p {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--color-cafe);
+  margin-bottom: var(--espacio-lg);
+}
+.presentacion-texto p:last-child { margin-bottom: 0; }
 
-.carta-resalte {
-  background-image: linear-gradient(180deg, transparent 62%, rgba(246, 193, 207, 0.7) 62%);
-  padding: 0 0.15em;
-  border-radius: 2px;
+.presentacion-resalte {
+  color: var(--color-burdeos);
+  font-weight: 600;
+  border-bottom: 2px solid rgba(141, 41, 73, 0.25);
 }
 
-.carta-firma {
-  margin-top: var(--espacio-md);
-  font-size: 1.7rem;
-  color: var(--carta-burdeos);
+.presentacion-cierre {
+  position: relative;
+  max-width: 560px;
+  margin: var(--espacio-xl) auto var(--espacio-lg);
+}
+.presentacion-frase {
+  font-family: var(--fuente-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  color: var(--color-burdeos);
+  line-height: 1.4;
+  margin: 0;
 }
 
-.carta-clip {
-  top: -20px;
-  right: 26px;
-  transform: rotate(10deg);
-  z-index: 4;
-}
-
-.carta-cinta {
-  position: absolute;
-  top: -14px;
-  left: 34px;
-  width: 66px;
-  height: 24px;
-  background:
-    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.55) 0 5px, transparent 5px 10px),
-    rgba(246, 193, 207, 0.8);
-  border: 1px solid rgba(143, 35, 72, 0.25);
-  box-shadow: 0 2px 5px rgba(30, 23, 25, 0.1);
-  transform: rotate(-5deg);
-  z-index: 4;
-  pointer-events: none;
-}
-
-.carta-corazon {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 22px;
-  height: 20px;
-  opacity: 0.55;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 36'%3E%3Cpath d='M20 32C20 32 4 22 4 12C4 5 10 2 15 5C18 7 20 11 20 11C20 11 22 7 25 5C30 2 36 5 36 12C36 22 20 32 20 32Z' fill='none' stroke='%238F2348' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 4;
-}
-
-.sobre-solapa-frente {
-  position: absolute;
-  left: 2%;
-  right: 2%;
-  bottom: 0;
-  height: 172px;
-  background-color: var(--carta-rosa);
-  background-image:
-    linear-gradient(200deg, rgba(255, 255, 255, 0.25) 0%, transparent 40%, rgba(30, 23, 25, 0.12) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: auto, 150px 150px;
-  background-blend-mode: normal, multiply;
-  border: 1.5px solid var(--carta-burdeos);
-  clip-path: polygon(0% 100%, 100% 100%, 50% 8%);
-  filter: drop-shadow(0 6px 10px rgba(30, 23, 25, 0.14));
-  z-index: 5;
-  pointer-events: none;
-}
-
-.sobre-lazo {
-  position: absolute;
-  left: 50%;
-  bottom: 4px;
-  width: 100px;
-  height: 70px;
-  transform: translateX(-50%);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cdefs%3E%3Cpattern id='c' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Crect width='10' height='10' fill='%23F6C1CF'/%3E%3Crect width='5' height='5' fill='%238F2348'/%3E%3Crect x='5' y='5' width='5' height='5' fill='%238F2348'/%3E%3C/pattern%3E%3C/defs%3E%3Cpath d='M50 35 L15 10 Q5 10 5 25 Q5 40 20 38 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L85 10 Q95 10 95 25 Q95 40 80 38 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L20 55 Q15 60 20 65 Q30 68 38 55 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Cpath d='M50 35 L80 55 Q85 60 80 65 Q70 68 62 55 Z' fill='url(%23c)' stroke='%238F2348' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='35' r='9' fill='%238F2348'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.16));
-  z-index: 6;
-  pointer-events: none;
-}
-
-.sobre-flor {
-  position: absolute;
-  right: 8%;
-  bottom: 18px;
-  width: 48px;
-  height: 48px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='pf1' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0%25' stop-color='%23FBE3EA'/%3E%3Cstop offset='100%25' stop-color='%23E38EA4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23pf1)' stroke='%238F2348' stroke-width='1' stroke-dasharray='2 2'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3Ccircle cx='26' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='26' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.18));
-  z-index: 6;
-  pointer-events: none;
-}
-
-.carta-flor-superior {
-  position: absolute;
-  top: -22px;
-  left: 7%;
-  width: 44px;
-  height: 44px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='pf2' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0%25' stop-color='%23FBE3EA'/%3E%3Cstop offset='100%25' stop-color='%23E38EA4'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='url(%23pf2)' stroke='%238F2348' stroke-width='1' stroke-dasharray='2 2'%3E%3Ccircle cx='30' cy='16' r='10'/%3E%3Ccircle cx='44' cy='30' r='10'/%3E%3Ccircle cx='30' cy='44' r='10'/%3E%3Ccircle cx='16' cy='30' r='10'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='8' fill='%238F2348'/%3E%3Ccircle cx='26' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='27' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='26' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3Ccircle cx='34' cy='33' r='1.3' fill='%23FBE8EC'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: rotate(-14deg);
-  filter: drop-shadow(0 3px 4px rgba(30, 23, 25, 0.18));
-  z-index: 4;
-  pointer-events: none;
-}
-
-.carta-acciones {
+.presentacion-acciones {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -2296,23 +2017,30 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   margin-top: var(--espacio-md);
 }
 
+.flor-presentacion--uno {
+  top: -18px;
+  right: 2%;
+  width: clamp(70px, 9vw, 108px);
+}
+.flor-presentacion--dos {
+  top: 50%;
+  left: -78px;
+  transform: translateY(-50%);
+  width: clamp(46px, 6vw, 62px);
+}
+
+@media (max-width: 780px) {
+  .flor-presentacion--dos {
+    left: 50%;
+    top: -38px;
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 640px) {
-  .carta-sobre { padding-bottom: 100px; }
-  .sobre-cuerpo { height: 176px; }
-  .sobre-solapa-fondo { bottom: 128px; height: 88px; }
-  .carta {
-    width: 96%;
-    padding: 1.9rem 1.4rem 2.3rem;
-    transform: none;
-  }
-  @media (hover: hover) {
-    .carta:hover { transform: translateY(-4px); }
-  }
-  .sobre-solapa-frente { height: 132px; clip-path: polygon(0% 100%, 100% 100%, 50% 10%); }
-  .sobre-lazo { width: 74px; height: 52px; left: 50%; transform: translateX(-50%); }
-  .sobre-flor { width: 34px; height: 34px; right: 6%; bottom: 14px; }
-  .carta-flor-superior { width: 30px; height: 30px; top: -14px; left: 8%; }
-  .carta-cinta { width: 54px; height: 20px; left: 20px; }
+  .presentacion-titulo { margin-bottom: var(--espacio-lg); }
+  .flor-presentacion--uno { width: 56px; top: -8px; right: 0; }
+  .flor-presentacion--dos { width: 40px; top: -30px; }
 }
 
 /* =================== CONTACTO =================== */
