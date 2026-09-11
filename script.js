@@ -586,6 +586,90 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Video madre de El Reino de los Dientes: carga bajo demanda con detección de bloqueo ---------- */
+  var reinoVideoWrap = document.getElementById('reinoVideoWrap');
+  var reinoVideoPoster = document.getElementById('reinoVideoPoster');
+  var reinoVideoEnlace = document.getElementById('reinoVideoEnlace');
+
+  if (reinoVideoWrap && reinoVideoPoster) {
+    var reinoVideoId = reinoVideoWrap.getAttribute('data-video-id');
+    var reinoEmbedFallo = false;
+
+    var mostrarFallbackVideoReino = function () {
+      if (reinoEmbedFallo) { return; }
+      reinoEmbedFallo = true;
+      reinoVideoWrap.innerHTML = '';
+
+      var enlace = document.createElement('a');
+      enlace.className = 'proyecto-video-poster';
+      enlace.href = 'https://youtu.be/' + reinoVideoId;
+      enlace.target = '_blank';
+      enlace.rel = 'noopener noreferrer';
+      enlace.setAttribute('aria-label', 'Ver pieza audiovisual en YouTube (se abre en una pestaña nueva)');
+
+      var img = document.createElement('img');
+      img.className = 'proyecto-video-poster-img';
+      img.src = 'https://i.ytimg.com/vi/' + reinoVideoId + '/hqdefault.jpg';
+      img.alt = '';
+      img.loading = 'lazy';
+
+      var play = document.createElement('span');
+      play.className = 'proyecto-video-play';
+      play.setAttribute('aria-hidden', 'true');
+      play.textContent = '▶';
+
+      enlace.appendChild(img);
+      enlace.appendChild(play);
+      reinoVideoWrap.appendChild(enlace);
+
+      if (reinoVideoEnlace) { reinoVideoEnlace.hidden = false; }
+    };
+
+    var iniciarPlayerReino = function () {
+      if (!window.YT || !window.YT.Player) { return; }
+      try {
+        new window.YT.Player('reinoVideoIframe', {
+          events: {
+            onError: function (evento) {
+              if (evento.data === 101 || evento.data === 150) { mostrarFallbackVideoReino(); }
+            }
+          }
+        });
+      } catch (error) { /* si la API no está disponible, se deja el iframe tal como está */ }
+    };
+
+    var cargarEmbedReino = function () {
+      reinoVideoWrap.innerHTML = '';
+      var iframe = document.createElement('iframe');
+      iframe.id = 'reinoVideoIframe';
+      iframe.className = 'proyecto-video';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + reinoVideoId + '?rel=0&autoplay=1&enablejsapi=1';
+      iframe.title = 'Pieza audiovisual principal de El Reino de los Dientes, campaña educativa de Midnight Lab sobre el cuidado dental infantil.';
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      reinoVideoWrap.appendChild(iframe);
+
+      if (window.YT && window.YT.Player) {
+        iniciarPlayerReino();
+      } else {
+        var previo = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = function () {
+          if (typeof previo === 'function') { previo(); }
+          iniciarPlayerReino();
+        };
+        if (!document.getElementById('youtubeIframeApiScript')) {
+          var tag = document.createElement('script');
+          tag.id = 'youtubeIframeApiScript';
+          tag.src = 'https://www.youtube.com/iframe_api';
+          document.head.appendChild(tag);
+        }
+      }
+    };
+
+    reinoVideoPoster.addEventListener('click', cargarEmbedReino);
+  }
+
   /* ---------- Parallax muy leve del gladiolo del hero (solo escritorio) ---------- */
   var florGladioloParallax = document.querySelector('.flor-gladiolo-parallax');
   var esDispositivoTactil = window.matchMedia('(hover: none), (pointer: coarse)').matches;

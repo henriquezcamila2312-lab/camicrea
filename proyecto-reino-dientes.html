@@ -21,11 +21,11 @@
   <!-- Tipografías: Playfair Display (serif editorial, con cursiva) + DM Sans (sans funcional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="pagina-reino-dientes">
 
   <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
@@ -92,19 +92,32 @@
       </div>
     </div>
 
-    <!-- ======================= VIDEO MADRE ======================= -->
+    <!-- ======================= VIDEO MADRE =======================
+         Se muestra primero una miniatura con botón de reproducción
+         (así tampoco hay autoplay). Al hacer clic, script.js inserta
+         el iframe de youtube-nocookie con la Player API para detectar
+         si YouTube rechaza la inserción (video no embebible); si
+         ocurre, reemplaza el reproductor por un enlace a YouTube en
+         una pestaña nueva, sin dejar un cuadro de error.
+
+         Solución definitiva pendiente: si se entrega el archivo de
+         video original, reemplazar todo este bloque
+         (#reinoVideoWrap y su contenido) por un <video> HTML5 nativo:
+           <video class="proyecto-video" controls playsinline poster="...">
+             <source src="./assets/images/proyectos/reino-dientes-video-madre.mp4" type="video/mp4">
+           </video>
+         y quitar la dependencia del embed de YouTube. -->
     <section class="detalle-proyecto-seccion detalle-proyecto-seccion--video">
       <div class="container">
-        <div class="proyecto-video-wrap reveal">
-          <iframe
-            class="proyecto-video"
-            src="https://www.youtube-nocookie.com/embed/pRDeP9rNYOA"
-            title="Pieza audiovisual principal de El Reino de los Dientes, campaña educativa de Midnight Lab sobre el cuidado dental infantil."
-            loading="lazy"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div class="proyecto-video-wrap reveal" id="reinoVideoWrap" data-video-id="pRDeP9rNYOA">
+          <button type="button" class="proyecto-video-poster" id="reinoVideoPoster" aria-label="Reproducir pieza audiovisual principal de El Reino de los Dientes">
+            <img class="proyecto-video-poster-img" src="https://i.ytimg.com/vi/pRDeP9rNYOA/hqdefault.jpg" alt="" loading="lazy">
+            <span class="proyecto-video-play" aria-hidden="true">▶</span>
+          </button>
         </div>
+        <p class="proyecto-video-enlace" id="reinoVideoEnlace" hidden>
+          <a href="https://youtu.be/pRDeP9rNYOA" target="_blank" rel="noopener noreferrer">Ver pieza audiovisual en YouTube →</a>
+        </p>
       </div>
     </section>
 
@@ -154,22 +167,37 @@
 
     <!--
       ======================= PIEZAS DE LA CAMPAÑA (pendiente) =======================
-      Cuando se reciban los archivos reales (banners, piezas gráficas,
-      material educativo, kit de actividades, fotografías), agregar
-      aquí una sección "Piezas de la campaña" y convertir el bloque de
-      arriba en un layout de dos columnas (proyecto-dos-columnas +
-      proyecto-piezas / proyecto-piezas-lista, igual que en KitKat).
+      Cuando se reciban los archivos reales, agregar aquí una sección
+      "Piezas de la campaña" y convertir el bloque de arriba en un
+      layout de dos columnas (proyecto-dos-columnas + proyecto-piezas
+      / proyecto-piezas-lista, igual que en KitKat), integrada con el
+      estilo de collage, papel recortado y textura celeste del
+      proyecto. Cada imagen debe conservar su proporción original
+      (sin recortes ni deformación), tener carga optimizada y poder
+      ampliarse en el lightbox ya existente (galeria-lightbox).
+
+      Espacios preparados, uno por pieza, sin duplicar entre sí:
+        - Key visual.
+        - Banner.
+        - Personaje Príncipe Swish.
+        - Logo de El Reino de los Dientes (versión final, si difiere
+          del recorte ya usado en la franja).
+        - Piezas gráficas.
+        - Material educativo.
+        - Kit o material de apoyo.
+
       No mostrar tarjetas vacías ni mensajes de "Próximamente" mientras
-      tanto.
+      tanto; no inventar ni duplicar piezas.
     -->
 
     <!--
       ======================= CONTENIDOS AUDIOVISUALES COMPLEMENTARIOS (pendiente) =======================
-      Espacio reservado para el jingle, una posible pieza radial,
-      videos complementarios y material descargable. Cuando se
-      entreguen los audios, deben mostrarse en reproductores
-      individuales con título y controles propios (no como video ni
-      con archivos inventados).
+      Espacio reservado para el jingle, la pieza radial y videos
+      complementarios (contenido audiovisual), y material descargable
+      si corresponde. Cuando se entreguen los audios, deben mostrarse
+      en reproductores individuales (<audio controls>) con título y
+      controles propios cada uno — no como video ni con archivos
+      inventados.
     -->
 
     <!--
@@ -183,10 +211,12 @@
       <div class="container">
         <div class="proyecto-agradecimiento">
           <h2 class="proyecto-agradecimiento-titulo reveal">Gracias por ser parte de este reino</h2>
+          <p class="proyecto-agradecimiento-texto reveal">Cada idea, melodía y pieza ayudó a construir un reino donde aprender a cuidar nuestros dientes podía sentirse como una aventura. Gracias a todas las personas que aportaron su creatividad y dedicación para darle vida al Príncipe Swish y a este proyecto.</p>
           <!--
-            Texto de agradecimiento y nombres del equipo: pendientes
-            de confirmar. No mostrar textos de ejemplo ni inventar
-            nombres, cargos o participantes mientras tanto.
+            Equipo: agregar aquí una grilla con fotografía, nombre y
+            rol o aporte de cada integrante cuando se confirme esa
+            información. No inventar nombres, cargos ni participantes
+            mientras tanto.
           -->
         </div>
       </div>
