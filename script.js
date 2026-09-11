@@ -554,6 +554,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ---------- Lightbox de la galería del proyecto (páginas de detalle) ---------- */
+  var galeriaLightbox = document.getElementById('galeriaLightbox');
+  var galeriaLightboxPieza = document.getElementById('galeriaLightboxPieza');
+  var galeriaItems = document.querySelectorAll('.galeria-proyecto-item');
+
+  if (galeriaLightbox && galeriaLightboxPieza && galeriaItems.length) {
+    var abrirGaleriaLightbox = function (item) {
+      galeriaLightboxPieza.innerHTML = item.innerHTML;
+      galeriaLightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      var botonCerrar = galeriaLightbox.querySelector('.galeria-lightbox-cerrar');
+      if (botonCerrar) { botonCerrar.focus(); }
+    };
+    var cerrarGaleriaLightbox = function () {
+      galeriaLightbox.hidden = true;
+      galeriaLightboxPieza.innerHTML = '';
+      document.body.style.overflow = '';
+    };
+
+    galeriaItems.forEach(function (item) {
+      item.addEventListener('click', function () { abrirGaleriaLightbox(item); });
+    });
+
+    galeriaLightbox.querySelectorAll('[data-cerrar-lightbox]').forEach(function (el) {
+      el.addEventListener('click', cerrarGaleriaLightbox);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !galeriaLightbox.hidden) { cerrarGaleriaLightbox(); }
+    });
+  }
+
   /* ---------- Parallax muy leve del gladiolo del hero (solo escritorio) ---------- */
   var florGladioloParallax = document.querySelector('.flor-gladiolo-parallax');
   var esDispositivoTactil = window.matchMedia('(hover: none), (pointer: coarse)').matches;

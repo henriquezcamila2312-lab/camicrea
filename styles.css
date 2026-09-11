@@ -2314,8 +2314,7 @@ section { padding: var(--espacio-xl) 0; position: relative; }
    de origen). El iframe se carga de forma diferida (loading="lazy"). */
 .proyecto-video-wrap {
   position: relative;
-  max-width: 860px;
-  margin: var(--espacio-lg) auto;
+  width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: var(--radio-borde);
   overflow: hidden;
@@ -2329,6 +2328,59 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   height: 100%;
   border: 0;
   display: block;
+}
+
+/* Dos columnas: información del proyecto a la izquierda, video madre
+   a la derecha, alineados por la parte superior. En celular se apilan
+   en el orden pedido: datos → video → mi participación → créditos. */
+.proyecto-detalle-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  grid-template-areas:
+    "datos         video"
+    "participacion video"
+    "creditos      video";
+  gap: var(--espacio-xl);
+  align-items: start;
+}
+.proyecto-info-datos { grid-area: datos; }
+.proyecto-info-participacion { grid-area: participacion; }
+.proyecto-info-creditos { grid-area: creditos; }
+.proyecto-video-col { grid-area: video; }
+
+.proyecto-info-marca {
+  display: block;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-burdeos);
+  font-size: 0.9rem;
+  margin-bottom: var(--espacio-xs);
+}
+.proyecto-info-tipo {
+  font-weight: 600;
+  color: var(--color-cafe-suave);
+  margin-bottom: var(--espacio-xs);
+}
+.proyecto-info-descripcion { margin-bottom: var(--espacio-lg); }
+.proyecto-info-bloque { margin-top: var(--espacio-lg); }
+
+.proyecto-creditos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--color-cafe);
+}
+
+@media (max-width: 900px) {
+  .proyecto-detalle-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "datos"
+      "video"
+      "participacion"
+      "creditos";
+    gap: var(--espacio-lg);
+  }
 }
 
 /* Navegación entre proyectos: anterior / siguiente y progreso, al final de cada caso */
@@ -2435,6 +2487,95 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   color: var(--color-burdeos);
   font-size: 1.5rem;
 }
+
+/* Galería tipo collage editorial: una pieza grande + piezas medianas,
+   pensada para dar protagonismo a las imágenes reales del proyecto.
+   Los ítems son <button> para poder ampliarlos (lightbox). */
+.galeria-proyecto-grid--collage {
+  grid-template-columns: repeat(4, 1fr);
+}
+.galeria-proyecto-grid--collage .galeria-proyecto-item {
+  width: 100%;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.galeria-proyecto-grid--collage .galeria-proyecto-item:hover,
+.galeria-proyecto-grid--collage .galeria-proyecto-item:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-papel);
+}
+.galeria-proyecto-grid--collage .galeria-proyecto-item--grande {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 1 / 1;
+  font-size: 2.2rem;
+}
+@media (max-width: 640px) {
+  .galeria-proyecto-grid--collage { grid-template-columns: 1fr; }
+  .galeria-proyecto-grid--collage .galeria-proyecto-item--grande {
+    grid-column: span 1;
+    grid-row: span 1;
+    aspect-ratio: 16 / 10;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .galeria-proyecto-grid--collage .galeria-proyecto-item { transition: none; }
+}
+
+/* Lightbox de la galería: amplía la pieza seleccionada sobre un fondo
+   oscuro, con cierre por botón, clic afuera o tecla Escape. */
+.galeria-lightbox[hidden] { display: none; }
+.galeria-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-lg) var(--espacio-md);
+}
+.galeria-lightbox-fondo {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(33, 28, 30, 0.78);
+}
+.galeria-lightbox-contenido {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+}
+.galeria-lightbox-pieza {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radio-borde);
+  background: linear-gradient(135deg, var(--color-rosa-pastel), var(--color-rosa-palido));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-burdeos);
+  font-size: 3rem;
+  overflow: hidden;
+}
+.galeria-lightbox-pieza img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.galeria-lightbox-cerrar {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-marfil);
+  color: var(--color-cafe);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: var(--sombra-papel);
+}
+.galeria-lightbox-cerrar:hover,
+.galeria-lightbox-cerrar:focus-visible { background-color: var(--color-rosa-palido); }
 
 .detalle-proyecto-rol {
   font-size: 1.15rem;
