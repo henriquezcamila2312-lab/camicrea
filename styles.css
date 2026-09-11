@@ -2434,12 +2434,15 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 .proyecto-agradecimiento-texto {
   max-width: 680px;
-  margin: 0 auto;
+  margin: 0 auto var(--espacio-sm);
   font-family: var(--fuente-serif);
   font-style: italic;
   color: var(--color-cafe);
   font-size: 1.1rem;
   line-height: 1.7;
+}
+.proyecto-agradecimiento-texto:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
