@@ -2470,11 +2470,13 @@ section { padding: var(--espacio-xl) 0; position: relative; }
   font-family: "Montserrat", var(--fuente-sans);
 }
 
-/* Piezas de la campaña más chicas, en mini-grilla junto al texto (en
-   vez de apiladas grandes), solo en esta página. */
+/* Piezas de la campaña en un término medio: ni apiladas grandes ni
+   miniaturas diminutas, en dos columnas para que la altura total de
+   la grilla quede dentro de la altura del texto de al lado, solo en
+   esta página. */
 .pagina-reino-dientes .proyecto-piezas-lista {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--espacio-sm);
 }
 
