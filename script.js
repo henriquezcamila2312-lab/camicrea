@@ -530,6 +530,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ---------- Capullo que se abre en Contacto ---------- */
+  var florCapullo = document.getElementById('florCapullo');
+  if (florCapullo) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      florCapullo.classList.add('is-open');
+    } else {
+      var capulloObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-open');
+            capulloObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      capulloObserver.observe(florCapullo);
+    }
+  }
+
   /* ---------- Parallax muy leve del gladiolo del hero (solo escritorio) ---------- */
   var florGladioloParallax = document.querySelector('.flor-gladiolo-parallax');
   var esDispositivoTactil = window.matchMedia('(hover: none), (pointer: coarse)').matches;

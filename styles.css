@@ -801,19 +801,52 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 .flor-loto-brillo { top: -34px; right: clamp(128px, 16vw, 198px); }
 
-/* Contacto: pequeño gladiolo reutilizado junto al CTA "Hagámosla
-   florecer" — discreto, en línea con el texto, sin posicionamiento
-   absoluto para no arriesgar desbordes. */
-.flor-mini {
-  position: static;
+/* Contacto: capullo ilustrado junto al CTA "Hagámosla florecer" que
+   se abre al entrar en pantalla (ver script.js) y queda con un vaivén
+   orgánico muy leve. Fondo transparente, sin posicionamiento absoluto
+   para no arriesgar desbordes; prefers-reduced-motion ya colapsa
+   duraciones de transición/animación de forma global (ver más abajo). */
+.flor-capullo {
   display: inline-block;
   vertical-align: middle;
-  width: 42px;
+  width: 40px;
   height: auto;
   margin-left: 0.4rem;
-  transform: rotate(-8deg);
+  overflow: visible;
+  transform-origin: 30px 64px;
   filter: drop-shadow(0 4px 8px rgba(33, 28, 30, 0.12));
-  animation: flor-flotar-b 8s ease-in-out infinite;
+}
+.flor-capullo.is-open {
+  animation: capullo-vaiven 7s ease-in-out infinite;
+}
+.capullo-tallo {
+  fill: none;
+  stroke: var(--color-verde);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.capullo-hoja {
+  fill: var(--color-verde-suave);
+  stroke: var(--color-verde);
+  stroke-width: 0.8;
+}
+.capullo-petalo {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: rotate(0deg) scale(0.38);
+  fill: url(#capulloPetaloGradiente);
+  stroke: var(--color-burdeos);
+  stroke-width: 1;
+  transition: transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.flor-capullo.is-open .capullo-petalo {
+  transform: rotate(var(--ang, 0deg)) scale(1);
+}
+.capullo-centro { fill: var(--color-burdeos); }
+
+@keyframes capullo-vaiven {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
 }
 
 @keyframes flor-flotar-a {
@@ -1155,9 +1188,25 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 .hero-inner { position: relative; z-index: 1; text-align: center; }
 
 .hero-title {
+  position: relative;
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   margin: 0.25rem auto var(--espacio-sm);
   max-width: 900px;
+}
+/* Despeja suavemente los puntos del fondo justo detrás del título,
+   sin caja sólida: un difuminado rosado que se disuelve hacia los
+   bordes para que el texto respire sobre el patrón de puntos. */
+.hero-title::before {
+  content: '';
+  position: absolute;
+  inset: -26% -12%;
+  background: radial-gradient(ellipse at center, rgba(251, 232, 236, 0.92) 0%, rgba(251, 232, 236, 0.6) 45%, rgba(251, 232, 236, 0) 78%);
+  filter: blur(4px);
+  z-index: -1;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .hero-title::before { inset: -18% -6%; }
 }
 .hero-title-acento {
   font-style: italic;
@@ -2360,15 +2409,10 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 /* =================== PIE DE PÁGINA =================== */
 
 /* Cierre visual: última invitación antes del pie de página propiamente
-   dicho, con un fondo de manchas de color suaves (sin flores ni fotos
-   dibujadas, solo degradados abstractos) y el correo real de contacto. */
+   dicho. Fondo plano y sobrio (sin puntos ni manchas flotantes) para
+   que la atención quede en el mensaje y el correo real de contacto. */
 .footer-cierre {
-  background-color: var(--color-marfil);
-  background-image:
-    radial-gradient(ellipse 420px 320px at 12% 25%, rgba(201, 215, 167, 0.4), transparent 70%),
-    radial-gradient(ellipse 460px 380px at 88% 20%, rgba(243, 175, 195, 0.45), transparent 70%),
-    radial-gradient(circle, var(--color-rosa-pastel) 1.5px, transparent 1.5px);
-  background-size: auto, auto, 24px 24px;
+  background-color: var(--color-rosa-palido);
   text-align: center;
   padding: var(--espacio-xl) var(--espacio-md);
 }
