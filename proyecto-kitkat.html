@@ -66,66 +66,71 @@
   <main id="contenido-principal" class="background-plano">
 
     <!-- ======================= VOLVER AL PORTAFOLIO ======================= -->
-    <section class="detalle-proyecto-hero detalle-proyecto-hero--compacta" id="portada">
+    <section class="detalle-proyecto-hero detalle-proyecto-hero--minima" id="portada">
       <div class="container">
         <a href="index.html#portafolio" class="detalle-proyecto-volver reveal">← Volver al portafolio</a>
       </div>
     </section>
 
-    <!-- ======================= INFORMACIÓN + VIDEO MADRE ======================= -->
-    <section class="detalle-proyecto-seccion detalle-proyecto-seccion--principal">
+    <!-- ======================= FRANJA ANIMADA KITKAT ======================= -->
+    <div class="franja-ticker franja-ticker--kitkat reveal" aria-hidden="true">
+      <div class="franja-ticker-track franja-ticker-track--kitkat">
+        <span class="franja-kitkat-texto">La vida te da un wate cuando necesitas un break</span>
+        <img class="franja-kitkat-logo" src="./assets/images/proyectos/kitkat-logo.png" alt="">
+        <span class="franja-kitkat-texto">La vida te da un wate cuando necesitas un break</span>
+        <img class="franja-kitkat-logo" src="./assets/images/proyectos/kitkat-logo.png" alt="">
+        <span class="franja-kitkat-texto">La vida te da un wate cuando necesitas un break</span>
+        <img class="franja-kitkat-logo" src="./assets/images/proyectos/kitkat-logo.png" alt="">
+        <span class="franja-kitkat-texto">La vida te da un wate cuando necesitas un break</span>
+        <img class="franja-kitkat-logo" src="./assets/images/proyectos/kitkat-logo.png" alt="">
+      </div>
+    </div>
+
+    <!-- ======================= VIDEO MADRE ======================= -->
+    <section class="detalle-proyecto-seccion detalle-proyecto-seccion--video">
       <div class="container">
-        <div class="proyecto-detalle-grid">
+        <div class="proyecto-video-wrap reveal">
+          <iframe
+            class="proyecto-video"
+            src="https://www.youtube-nocookie.com/embed/PKw8OB8rKJs"
+            title="Video madre de la campaña KitKat: La vida te da un wate cuando necesitas un break"
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+    </section>
 
-          <div class="proyecto-info-cabecera reveal">
-            <img class="proyecto-info-logo" src="./assets/images/proyectos/kitkat-logo.png" alt="KitKat">
-            <p class="proyecto-info-tipo">Campaña universitaria · 2025</p>
-            <h1 class="section-title detalle-proyecto-titulo">La vida te da un wate cuando necesitas un break</h1>
-          </div>
+    <!-- ======================= EXPLICACIÓN + PIEZAS DE LA CAMPAÑA ======================= -->
+    <section class="detalle-proyecto-seccion">
+      <div class="container">
+        <div class="proyecto-dos-columnas">
 
-          <div class="proyecto-video-col reveal">
-            <div class="proyecto-video-wrap">
-              <iframe
-                class="proyecto-video"
-                src="https://www.youtube-nocookie.com/embed/PKw8OB8rKJs"
-                title="Video madre de la campaña KitKat: La vida te da un wate cuando necesitas un break"
-                loading="lazy"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <div class="proyecto-explicacion reveal">
+            <p class="proyecto-explicacion-etiqueta">Campaña universitaria · 2025</p>
+            <h2 class="section-title proyecto-explicacion-subtitulo">Del scroll al verdadero break</h2>
+            <div class="proyecto-explicacion-texto">
+              <p>Descansar ya no siempre significa desconectarse. Muchas veces, el tiempo libre termina convertido en más minutos frente a una pantalla.</p>
+              <p>Esta campaña nace del insight de que los jóvenes creen que descansar es scrollear en el celular, aunque el verdadero break comienza cuando logramos salir de la pantalla y volver a conectar con lo que ocurre a nuestro alrededor.</p>
+              <p>A partir de esta idea, mostramos pequeños "wates" cotidianos que interrumpen el scroll y devuelven a los personajes a la realidad. KitKat aparece como una invitación a detenerse, disfrutar el momento y tomar el break que realmente necesitaban.</p>
             </div>
-          </div>
 
-          <div class="proyecto-info-concepto reveal">
-            <div class="proyecto-editorial-bloque">
-              <span class="section-tag">Concepto central creativo</span>
-              <p class="proyecto-concepto-frase">La vida te da un wate cuando necesitas un break.</p>
-            </div>
-            <div class="proyecto-editorial-bloque">
-              <span class="section-tag">Insight</span>
-              <p>A veces la vida te da un wate: un golpe inesperado que te obliga a detenerte. El concepto transforma ese momento cotidiano en una invitación a hacer una pausa, recuperar energía y disfrutar el break que necesitabas con KitKat.</p>
-            </div>
-          </div>
-
-          <div class="proyecto-info-participacion reveal">
             <div class="proyecto-editorial-bloque">
               <span class="section-tag">Mi participación</span>
-              <p>Participé en el desarrollo creativo de la campaña, la redacción del concepto y también frente a cámara como modelo del video madre.</p>
+              <p>Participé en el desarrollo creativo, la redacción del concepto y también frente a cámara como modelo del video madre.</p>
               <ul class="producto-tags" role="list">
-                <li>Concepto creativo</li>
+                <li>Desarrollo creativo</li>
                 <li>Redacción</li>
-                <li>Desarrollo de campaña</li>
                 <li>Modelo frente a cámara</li>
               </ul>
             </div>
-          </div>
 
-          <div class="proyecto-info-creditos reveal">
             <div class="proyecto-editorial-bloque">
               <span class="section-tag">Créditos</span>
               <ul class="proyecto-creditos-lista" role="list">
                 <li><strong>Marca:</strong> KitKat</li>
-                <li><strong>Proyecto:</strong> Campaña universitaria</li>
+                <li>Campaña universitaria</li>
                 <li><strong>Año:</strong> 2025</li>
                 <li><strong>Agencia:</strong> Midnight Lab</li>
               </ul>
@@ -133,33 +138,32 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= GALERÍA ======================= -->
-    <section class="detalle-proyecto-seccion">
-      <div class="container">
-        <div class="proyecto-galeria-encabezado">
-          <div>
-            <span class="section-tag reveal">Galería</span>
-            <h2 class="section-title reveal">Piezas de la campaña</h2>
+          <div class="proyecto-piezas reveal">
+            <h2 class="section-title">Piezas de la campaña</h2>
+            <div class="proyecto-piezas-lista">
+              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar imagen del insight de la campaña">
+                <img src="./assets/images/proyectos/kitkat-insight.webp" alt="Insight de la campaña: cuatro escenas de jóvenes interrumpiendo su scroll para disfrutar un KitKat, con el texto “La vida te da un wate cuando necesitas un break”.">
+              </button>
+              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar key visual de la campaña">
+                <video autoplay loop muted playsinline aria-label="Key visual de la campaña: collage de escenas cotidianas junto a la paleta de colores de la campaña.">
+                  <source src="./assets/images/proyectos/kitkat-key-visual.mp4" type="video/mp4">
+                  <source src="./assets/images/proyectos/kitkat-key-visual.webm" type="video/webm">
+                </video>
+              </button>
+              <button type="button" class="proyecto-pieza-item" aria-label="Ampliar tira panorámica de escenas de la campaña">
+                <video autoplay loop muted playsinline aria-label="Tira panorámica con distintas escenas del video madre de la campaña.">
+                  <source src="./assets/images/proyectos/kitkat-tira-panoramica.mp4" type="video/mp4">
+                  <source src="./assets/images/proyectos/kitkat-tira-panoramica.webm" type="video/webm">
+                </video>
+              </button>
+            </div>
           </div>
-          <!-- Enlace "ver proyecto completo" pendiente de URL: agregar href="URL_REAL" cuando se proporcione (sin href, el enlace queda inerte y no navega). -->
-          <a class="proyecto-enlace-discreto reveal" aria-disabled="true">Ver proyecto completo →</a>
-        </div>
-        <p class="section-text reveal">Esta galería está preparada para incorporar imágenes, videos y mockups de la campaña a medida que estén disponibles.</p>
 
-        <div class="galeria-proyecto-grid galeria-proyecto-grid--collage">
-          <button type="button" class="galeria-proyecto-item galeria-proyecto-item--grande reveal" aria-label="Ampliar pieza 1 de la campaña (pendiente de imagen)"><span aria-hidden="true">✿</span></button>
-          <button type="button" class="galeria-proyecto-item reveal" aria-label="Ampliar pieza 2 de la campaña (pendiente de imagen)"><span aria-hidden="true">✿</span></button>
-          <button type="button" class="galeria-proyecto-item reveal" aria-label="Ampliar pieza 3 de la campaña (pendiente de imagen)"><span aria-hidden="true">✿</span></button>
-          <button type="button" class="galeria-proyecto-item reveal" aria-label="Ampliar pieza 4 de la campaña (pendiente de imagen)"><span aria-hidden="true">✿</span></button>
         </div>
       </div>
     </section>
 
-    <!-- Lightbox: amplía la pieza seleccionada de la galería -->
+    <!-- Lightbox: amplía la pieza seleccionada -->
     <div class="galeria-lightbox" id="galeriaLightbox" hidden>
       <div class="galeria-lightbox-fondo" data-cerrar-lightbox></div>
       <div class="galeria-lightbox-contenido" role="dialog" aria-modal="true" aria-label="Pieza de la campaña ampliada">
@@ -168,23 +172,20 @@
       </div>
     </div>
 
-    <!-- ======================= DETRÁS DE CÁMARA ======================= -->
-    <section class="detalle-proyecto-seccion">
-      <div class="container">
-        <span class="section-tag reveal">Detrás de cámara</span>
-        <h2 class="section-title reveal">Detrás de cámara</h2>
-        <p class="section-text reveal">Esta sección se completará próximamente con fotografías y videos del detrás de cámara de la campaña.</p>
-      </div>
-    </section>
-
-    <!-- ======================= AGRADECIMIENTOS ======================= -->
+    <!-- ======================= CIERRE ======================= -->
     <section class="detalle-proyecto-seccion">
       <div class="container">
         <div class="proyecto-agradecimiento">
-          <!-- Fotografía grupal del equipo: agregar aquí cuando se proporcione. -->
-          <!-- Texto provisional: nombres y apellidos completos pendientes de confirmar. -->
           <h2 class="proyecto-agradecimiento-titulo reveal">Gracias por crear este break conmigo</h2>
-          <p class="proyecto-agradecimiento-texto reveal">Este proyecto fue posible gracias al trabajo, las ideas y la energía de todo el equipo de Midnight Lab. Gracias a Mira, Alfaro, Camila Ferrer, Nicole, Rayén y Marcela por ser parte de esta campaña.</p>
+          <p class="proyecto-agradecimiento-texto reveal">“Este proyecto fue posible gracias al trabajo, las ideas y la energía de todo el equipo de Midnight Lab.</p>
+          <p class="proyecto-agradecimiento-texto reveal">Gracias, Millaray Alfaro, Camila Ferrer, Rayen Caniguan, Nicol López, Evelyn Guevara, Marcela Molina e Isidora Streit, por ser parte de esta campaña.”</p>
+          <!--
+            VIDEO DE DETRÁS DE CÁMARA / CIERRE — PENDIENTE DE ARCHIVO.
+            No mostrar ningún reproductor vacío mientras tanto. Cuando
+            se entregue el video real, agregar aquí un bloque igual al
+            de "VIDEO MADRE" de más arriba (mismo ancho, sin autoplay
+            con sonido, controles y pantalla completa).
+          -->
         </div>
       </div>
     </section>
