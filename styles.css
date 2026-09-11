@@ -2340,19 +2340,19 @@ section { padding: var(--espacio-xl) 0; position: relative; }
    antigua portada del proyecto. */
 .franja-ticker--kitkat {
   background-color: var(--color-burdeos);
-  padding: 0.85rem 0;
+  padding: 0.6rem 0;
 }
-.franja-ticker-track--kitkat { align-items: center; gap: 1.1rem; }
+.franja-ticker-track--kitkat { align-items: center; gap: 0.9rem; }
 .franja-kitkat-texto {
   color: var(--color-marfil);
   font-family: var(--fuente-sans);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
 .franja-kitkat-logo {
-  height: 30px;
+  height: 1rem;
   width: auto;
   display: block;
 }
@@ -2453,8 +2453,8 @@ section { padding: var(--espacio-xl) 0; position: relative; }
 }
 
 @media (max-width: 640px) {
-  .franja-kitkat-logo { height: 22px; }
-  .franja-kitkat-texto { font-size: 0.82rem; }
+  .franja-kitkat-logo { height: 0.85rem; }
+  .franja-kitkat-texto { font-size: 0.78rem; }
 }
 
 /* Navegación entre proyectos: anterior / siguiente y progreso, al final de cada caso */
